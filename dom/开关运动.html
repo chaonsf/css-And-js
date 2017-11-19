@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 0;
+				height: 80px;
+				background: blueviolet;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="yundongkaiguan" />
+		<div></div>
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input")[0];
+		var adiv=document.getElementsByTagName("div")[0];
+		var timer=null;
+		var num=0;
+		var bStop=true;
+		 ainput.onclick=function(){
+		 	var cli=document.documentElement.clientWidth;
+		 	if(bStop){
+		 		clearInterval(timer);
+		 		timer=setInterval(function(){
+		 			if(num>=cli){
+		 				clearInterval(timer);
+		 				timer=null;
+		 			}else{
+		 				num++;
+		 				adiv.style.width=num+"px";
+		 			}
+		 		},1)
+		 	}else{
+		 		clearInterval(timer);
+		 		timer=setInterval(function(){
+		 			if(num<=0){
+		 				clearInterval(timer);
+		 				timer=null;
+		 			}else{
+		 				num--;
+		 				adiv.style.width=num+"px";
+		 			}
+		 		},1)
+		 	}
+		 	bStop=!bStop;
+		 }
+	</script>
+</html>

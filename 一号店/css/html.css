@@ -1,0 +1,101 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration:none;
+	color: #333;
+}
+ul,li,dd,dt,dl{
+	list-style: none;
+}
+img{
+	vertical-align: bottom;
+	border: 0;
+}
+/*公共样式*/
+#top{
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 12px;
+	color: #333;
+}
+.left .left1{
+	float: left;
+	position: relative;
+}
+.left{
+	overflow: hidden;
+}
+.left1 a{
+	color: #0066cc;
+}
+.left1 a:hover{
+	color: red;
+}
+.left11 dt{
+	float: left;
+	
+}
+.left11{
+	width: 312px;
+	overflow: hidden;
+	margin-top:5px;
+	display: none;
+	position: absolute;
+}
+.left11 dd a{
+	margin-bottom: 10px;
+	display: inline-block;
+	border-radius: 50px;
+	border: 1px #c53b28  solid;
+	padding: 5px;
+	margin-left:5px;
+	color: #c53b28;	
+}
+.left11 dd p a{
+	border: 0;
+	color: #333;
+}
+.left11 dd a:hover{
+	border: solid red 1px;
+	color: red;
+}
+.left11 dd p a:hover{
+	border: 0;
+}
+.left1:hover .left11{
+	display: block;
+}
+.left2 li a{
+	display: inline-block;
+	width:41px;
+	height: 19px;
+	border: 1px #ccc solid;
+	line-height: 19px;
+	background: url(../img/a_03.jpg) no-repeat right;
+	padding-left:4px;
+	color: #000;
+}
+.left2 .lia .lib{
+	font-weight: bold;
+}
+.left .lia .lib a{
+	font-weight: normal;
+}
+.left .lia a{
+	background:none ;
+	border: 0;
+}
+.left .li0{
+	background: url(../img/a_04.jpg) no-repeat right;
+}
+.left .lia{
+	position:relative;
+}
+.left .lia ul{
+	position: absolute;
+	top:20px;
+	height: 0;
+	overflow: hidden;
+}

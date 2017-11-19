@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				height:280px;
+				width: 480px;
+				background:url(img/xiao.jpg) no-repeat ;
+				float: left;
+			}
+			
+			#btn {
+				height: 100px;
+				width: 100px;
+				background: navy;
+				opacity: 0.5;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			
+			#pp {
+				height: 400px;
+				width: 400px;
+				background:url(img/da1.jpg) no-repeat;
+				float: left;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="btn"></div>
+		</div>
+		<div id="pp"></div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+        var btn=document.getElementById("btn");
+        var pp=document.getElementById("pp");
+		box.onmouseover=function(){
+			btn.style.display="block";
+			pp.style.display="block"
+		}
+		box.onmousemove=function(ev){
+			var e=ev||event;
+			var ex=e.clientX-btn.offsetWidth/2;
+			var ey=e.clientY-btn.offsetHeight/2;
+			if(ex<box.offsetLeft){
+				ex=box.offsetLeft
+			}
+			if(ex>box.offsetWidth+box.offsetLeft-btn.offsetWidth){
+				ex=box.offsetWidth+box.offsetLeft-btn.offsetWidth;
+			}
+			if(ey<box.offsetTop){
+				ey=box.offsetTop
+			}
+			if(ey>box.offsetHeight+box.offsetTop-btn.offsetHeight){
+				ey=box.offsetHeight+box.offsetTop-btn.offsetHeight;
+			}
+			btn.style.left=ex+"px";
+			btn.style.top=ey+"px";
+			pp.style.backgroundPositionX=-4*ex+'px';
+			pp.style.backgroundPositionY=-4*ey+'px';
+		}
+		box.onmouseout=function(){
+			btn.style.display="none";
+			pp.style.display="none";
+		}
+		
+	</script>
+</html>

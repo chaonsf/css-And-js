@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width:100px;
+				height: 100px;
+				background: aqua;
+				position: absolute;
+				top: 50px;
+				left: 0;
+				
+			}
+		</style>
+	</head>
+	
+	<body>
+		<input type="button" value="开始" />
+		<div></div>
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input")[0];
+		var adiv=document.getElementsByTagName("div")[0];
+		var kd=document.documentElement.clientWidth;
+		var hd=document.documentElement.clientHeight;
+		var num=0;
+		var x=50;
+		var c=kd-100;
+		var d=hd-100;
+		ainput.onclick=function(){
+			setInterval(function(){
+				if(num<kd-100){
+					num++;
+					adiv.style.left=num+"px"
+				}
+				else if(x<hd-100){
+			         x++;
+			         adiv.style.top=x+"px"
+					
+				}
+				else if(c>0){
+					c--;
+					adiv.style.left=c+"px"
+				}
+				else if(d>50){
+					d--;
+					adiv.style.top=d+"px"
+				}
+				
+				
+			},1)
+		}
+	</script>
+</html>

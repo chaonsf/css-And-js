@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	        <style>
+	        	#oul li{
+	        		list-style: none;
+	        		width: 80px;
+	        		height: 20px;
+	                background: #fff;
+	                
+	            }
+	        	#oul li a{
+	        		padding-left: 20px;
+	        		width: 60px;
+	        		text-decoration: none;
+	        	}
+	        	#oul li:hover{
+	        		background: olivedrab;
+	        	}
+	        	#oul{
+	        		display: none;
+	        		position: absolute;
+	        	}
+	        </style>
+	</head>
+	<body>
+		<ul id="oul">
+			<li><a href="#">剪切</a></li>
+			<li><a href="#">复制</a></li>
+			<li><a href="#">粘贴</a></li>
+		</ul>
+	</body>
+	<script>
+	var oul=document.getElementById("oul");
+		document.oncontextmenu=function(ev){
+			var e=ev||window.event
+			e.returnValue=false;
+			e.preventDefault();
+			oul.style.display="block";
+			var a=e.clientX;
+			var b=e.clientY;
+			oul.style.top=b+"px";
+			oul.style.left=a+"px";
+			oul.onclick=function(){
+				oul.style.display="none"
+			}
+			
+		}
+	</script>
+</html>

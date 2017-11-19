@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: 100px auto;
+				width: 600px;
+				position: relative;
+				height: 484px;
+				overflow: hidden;
+			
+			}
+			img{
+				border: 0;
+				vertical-align: bottom;
+			}
+			span{
+				display: block;
+				width: 600px;
+				height:400px;
+			}
+			span img{
+				width: 600px;
+				height: 400px;
+			}
+			
+			.aul{
+				position: absolute;
+				left: 50px;
+				overflow: hidden;
+				height: 84px;
+			}
+			.aul li{
+				width: 125px;
+				height:84px ;
+				float: left;
+				list-style: none;
+			}
+			.aul li img{
+				width:125px;
+				height: 84px;
+			}
+			input{
+				position: absolute;
+				width: 30px;
+				height: 30px;
+				top:427px;
+				background: #00FFFF;
+			}
+			.left{
+				left: 0;
+			}
+			.right{
+				right: 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+	    <div id="box">
+	    	<span><img src="img/move1.jpg"></span>
+	    	 
+	    		<ul class="aul">
+	    			<li><img src="img/move1.jpg"></li>
+	    			<li><img src="img/move2.jpg"></li>
+	    			<li><img src="img/move3.jpg"></li>
+	    			<li><img src="img/move4.jpg"></li>
+	    			<li><img src="img/move5.jpg"></li>
+	    			<li><img src="img/move6.jpg"></li>
+	    		</ul>
+	    		<input type="button" value="<" class="left">
+	    		<input type="button" value=">" class="right" />
+	    	
+	    </div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var aspan=document.getElementsByTagName("span")[0];
+		var aul=document.getElementsByClassName("aul")[0];
+		var ali=aul.getElementsByTagName("li");
+		aul.innerHTML+=aul.innerHTML;
+		var iwidth=parseInt(getStyle(ali[0],"width"));
+		var totalwidth=iwidth*ali.length;
+	    aul.style.width=totalwidth+"px";
+	</script>
+</html>

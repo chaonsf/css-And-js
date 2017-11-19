@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"  id="box"/>
+		<input type="button" value="判断一下" id="tex1" />
+		<input type="text"  id="tex2"/>
+	</body>
+	<script>
+		var aa=document.getElementById("tex1");
+		var bb=document.getElementById("box");
+		var cc=document.getElementById("tex2");
+		aa.onclick=function(){
+			for(i=2;i<bb.value;i++){
+				if(bb.value%i==0){
+					cc.value=bb.value+"不是素数";
+					break;
+				}
+				cc.value=bb.value+"是素数";
+			}
+			
+		}
+	</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: #ccc;
+			}
+			ul,li{
+				list-style: none;
+			}
+			img{
+				width: 600px;
+				vertical-align:bottom;
+				border: none;
+			}
+			div{
+				width: 1100px;
+				margin: 100px auto;
+				border: solid 10px #fff;
+				border-radius:10px;    /* 让角有圆角*/
+				height: 340px;
+				box-shadow:0 0 10px 2px #ddd;
+				overflow: hidden;
+			}
+			div ul{
+				position: relative;
+			}
+			div ul li{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li><img src="img/move1.jpg"></li>
+				<li><img src="img/move2.jpg"></li>
+				<li><img src="img/move3.jpg"></li>
+				<li><img src="img/move4.jpg"></li>
+				<li><img src="img/move5.jpg"></li>
+				<li><img src="img/move6.jpg"></li>
+			</ul>
+		</div>
+	</body>
+	
+	<script>
+	 function startMove(obj,json,fnEnd){
+	 		//每次调用的时候，就需要只有一个定时器在工作，开始运动的时候关闭所有定时器（先清空在设定特殊的思想）
+	 		//并且关闭或开启都是当前物体的定时器，防止与页面上其他定时器冲突，使每个定时器互不干扰。
+	 		clearInterval(obj.timer);
+	 		obj.timer=setInterval(function(){
+	 			var bStop=true;  //假设所有的物体运动都已达到了目标了。
+	 			for(var name in json){
+	 				var iTarget=json[name]   //所有的目标点
+	 				if(name=="opacity"){
+	 					var cur=parseInt(parseFloat(getStyle(obj,name))*100)   //乘以100是因为opacity的取值是0-1之间，便于计算
+	 				}else{
+	 					var cur=parseInt(getStyle(obj,name))   //cur是当前移动的数值。
+   	 				}
+	 				var speed=(iTarget-cur)/9;
+	 				speed=speed>0?Math.ceil(speed):Math.floor(speed)
+	 				if(name=="opacity"){
+	 					obj.style.opacity=(cur+speed)/100;       
+	 				}else{
+	 					obj.style[name]=cur+speed+"px";
+	 				}
+	 				//若某个值不等于目标点
+	 				if(cur!=iTarget){
+	 					bStop=false;
+	 				}
+	 			}
+	 			if(bStop){
+	 				clearInterval(obj.timer);
+	 				if(fnEnd){
+	 					fnEnd();  //有些物体是达到目标点后还有其他函数的运动（fnEnd）,然后就按着这函数运动；，
+	 				}
+	 			}
+	 		},20)
+	 	}
+	 function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj)[attr];
+			}
+			
+		}
+		var ali=document.getElementsByTagName("li");
+		for(var i=0;i<ali.length;i++){
+			ali[i].index=i;
+			if(i!=0){
+				ali[i].style.left=600+100*(i-1)+"px";
+			}
+			ali[i].onmouseover=function(){
+				for(var j=0;j<ali.length;j++){
+					if(j<=this.index){
+						startMove(ali[j],{left:100*j})
+					}else{
+						startMove(ali[j],{left:600+100*(j-1)})
+					}
+				}
+			}
+		}
+	</script>
+</html>

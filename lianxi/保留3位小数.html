@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="box">
+		<input type="button" value="shiyixia" id="buy2"/>
+		<input type="text"  id="buy1"/>
+	</body>
+	<script>
+	        var a=document.getElementById("box");
+		    var b=document.getElementById("buy1");
+		    var c=document.getElementById("buy2")
+			c.onclick=function(){
+			
+		      b.value=(Math.round(parseFloat(a.value)*1000)/1000).toFixed(3);
+		 
+		  
+		      
+		
+		}
+		
+	</script>
+</html>

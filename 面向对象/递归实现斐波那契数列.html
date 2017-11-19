@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function fei(num){
+			if(num==1||num==2){
+				return 1
+			}else{
+				return fei(num-1)+fei(num-2)
+			}
+		}
+		alert(fei(6))/*用递归算法实现斐波那契数列的第n项*/
+	</script>
+</html>

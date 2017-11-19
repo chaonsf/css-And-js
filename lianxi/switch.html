@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		 <select id='select'>
+    	<option value='0'>星期天</option>
+		<option value="1">星期一</option>
+		<option value="2">星期二</option>
+		<option value="3">星期三</option>
+		<option value='4'>星期四</option>
+		<option value="5">星期五</option>
+		<option value="6">星期六</option>
+		</select>
+		<input type="button" value="判断一下" onclick="yut()" />
+		<input type="text" id="box" />
+		
+	</body>
+	<script>
+		function yut(){
+			var aa=document.getElementById("select").value;
+			var bb=document.getElementById("box")
+			switch(aa){
+				case "0": bb.value="今天是星期天"; break;
+				case "1": bb.value="今天是星期一"; break;
+				case "2": bb.value="今天是星期二"; break;
+				case "3": bb.value="今天是星期三"; break;
+				case "4": bb.value="今天是星期四"; break;
+				case "5": bb.value="今天是星期五"; break;
+				default:  bb.value="今天是星期六"; break;
+				
+			}
+		}
+	</script>
+</html>

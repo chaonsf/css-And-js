@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 50px;
+				height: 50px;
+				background: aqua;
+				line-height: 50px;
+				text-align: center;
+				position: absolute;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="按钮" />
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input")[0];
+		var adiv=document.getElementsByTagName("div");
+		var num=0;
+		ainput.onclick=function(){
+			num++;
+			for(var i=0;i<adiv.length;i++){
+			adiv[i].style.display="block";
+			if(num%4==1){
+				adiv[i].style.left=50+50*i+"px";
+				if(i<Math.round(adiv.length/2)){
+					adiv[i].style.top=50+50*i+"px";
+				}else{
+					adiv[i].style.top=50+50*(adiv.length-1-i)+"px";
+				}
+			}
+			else if(num%4==2){
+				adiv[i].style.top=50+50*i+"px";
+				if(i<Math.round(adiv.length/2)){
+					adiv[i].style.left=50+50*i+"px";
+				}else{
+					adiv[i].style.left=50+50*(adiv.length-1-i)+"px";
+				}
+			}
+			else if(num%4==3){
+				adiv[i].style.left=50+50*i+"px";
+				if(i<Math.round(adiv.length/2)){
+					adiv[i].style.top=adiv.length*50-50*i+"px";
+				}else{
+					adiv[i].style.top=adiv.length*50-50*(adiv.length-1-i)+"px";
+				}
+			}
+			else if(num%4==0){
+				adiv[i].style.top=50+50*i+"px";
+				if(i<Math.round(adiv.length/2)){
+					adiv[i].style.left=50*adiv.length-50*i+"px";
+				}
+				else{
+					adiv[i].style.left=adiv.length*50-50*(adiv.length-1-i)+"px";
+				}
+			}
+		}
+		}
+	</script>
+</html>

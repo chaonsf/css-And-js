@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<p id="p1">hasdljksdbjkdji</p>
+		</div>
+	</body>
+	<script>
+		var a=document.createElement("p")   //这段代码创建新的 <p> 元素：
+		var b=document.createTextNode("增加的内容")  //如需向 <p> 元素添加文本，您必须首先创建文本节点。这段代码创建了一个文本节点：
+		a.appendChild(b);    //然后您必须向 <p> 元素追加这个文本节点：
+		var c=document.getElementById("box");  //找到一个已有的元素：
+		c.appendChild(a);  //这段代码向这个已有的元素追加新元素：
+	</script>
+</html>
+<!--下面是删除节点-->
+<!--<div id="div1">
+<p id="p1">这是一个段落。</p>
+<p id="p2">这是另一个段落。</p>
+</div>
+
+<script>
+var parent=document.getElementById("div1");
+var child=document.getElementById("p1");
+parent.removeChild(child);
+</script>-->

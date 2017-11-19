@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding: 0;
+			}
+			header{
+				position: fixed;
+				top: 0;
+				left: 0;
+				background:brown;
+				height: 50px;
+				width: 100%;
+				display:-webkit-box;
+				-webkit-box-orient: horizontal;
+			}
+			header span{
+				padding: 0 10px;
+				-webkit-box-flex:1;
+				display: block;
+				text-align: center;
+			}
+			header span:nth-child(1){
+				-webkit-box-flex-group: 2;
+				font-size: 20px;
+			   line-height: 50px;
+			}
+			 header span:nth-child(2){
+				-webkit-box-flex-group: 1;
+				line-height: 50px;
+			}
+			header span:nth-child(3){
+				-webkit-box-flex-group:2;
+				font-size:20px;
+				line-height:50px;
+			}
+			footer{
+				position:fixed;
+				background: chartreuse;
+				height: 50px;
+				bottom:0;
+				left: 0;
+				width: 100%;
+				display:-webkit-box;
+			}
+			footer a{
+				display: block;
+				text-align: center;
+				text-decoration:none;
+				line-height:50px;
+				border-right:solid 1px #fff;
+			}
+			footer a:nth-child(1){
+				-webkit-box-flex: 1;
+			}
+			footer a:nth-child(2){
+				-webkit-box-flex: 1;
+			}
+			footer a:nth-child(3){
+				-webkit-box-flex: 1;
+			}
+			footer a:nth-child(4){
+				-webkit-box-flex:1;
+				border-right:none;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<span><</span>
+			<span>MY app</span>
+			<span>Edit</span>
+		</header>
+		<footer>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+		</footer>
+	</body>
+</html>

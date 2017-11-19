@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				list-style: none;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				border: 0;
+				vertical-align: bottom;
+				width: 600px;
+				height: 400px;
+			}
+			#banner{
+				width: 600px;
+				height: 400px;
+				margin: 100px auto;
+				position:relative;
+				cursor: pointer;
+			}
+			#buy1{
+				width: 600px;
+				height: 400px;
+				position: relative;
+			}
+			#buy1 li{
+				display: none;
+				position: absolute;
+				
+			}
+			#buy1 .teshu{
+				display: block;
+			}
+			#buy2{
+				position: absolute;
+				left: 200px;
+				bottom: 10px;
+				overflow: hidden;
+			}
+			#buy2 li{
+				width: 20px;
+				height: 20px;
+				float: left;
+				background: #ccc;
+				color: #fff;
+				margin: 0 5px;
+				line-height: 20px;
+				border-radius:50%;
+				text-align: center;
+			}
+			#buy2 .teshu{
+				background: red;
+			}
+			.left{
+				position: absolute;
+				left: 0;
+				top: 180px;
+				width: 20px;
+				height: 50px;
+				font-size:20px;
+				text-align: center;
+				line-height: 50px;
+				background: #ccc;
+			}
+			.right{
+				position: absolute;
+				right: 0;
+				top: 180px;
+				width: 20px;
+				height: 50px;
+				font-size:20px;
+				text-align: center;
+				line-height: 50px;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="banner">
+			<ul id="buy1">
+				<li class="teshu"> <a href="#"><img src="img/i01.jpg"></a></li>
+				<li> <a href="#"><img src="img/i02.jpg"></a></li>
+				<li> <a href="#"><img src="img/i04.jpg"></a></li>
+				<li> <a href="#"><img src="img/i05.jpg"></a></li>
+				<li> <a href="#"><img src="img/img01.jpg"></a></li>
+			</ul>
+			<ul id="buy2">
+				<li class="teshu">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<div class="left">&lt;</div>
+			<div class="right">&gt;</div>
+		</div>
+	</body>
+	<script>
+	
+		var buy1=document.getElementById("buy1");
+		var buy1o=buy1.getElementsByTagName("li");
+		var buy2=document.getElementById("buy2");
+		var buy2o=buy2.getElementsByTagName("li");
+		var left=document.getElementsByClassName("left")[0];
+		var right=document.getElementsByClassName("right")[0];
+		var num=0;
+		right.onclick=function(){
+			for(var i=0;i<buy1o.length;i++){
+				buy1o[i].style.display="none";
+			}
+			num++;
+			if(num==buy1o.length){
+				num=0;
+			}
+			buy1o[num].style.display="block";
+			for(var i=0;i<buy2o.length;i++){
+				buy2o[i].style.background="#ccc";
+			}
+			  buy2o[num].style.background="red";
+		}
+		left.onclick=function(){
+			for(var i=0;i<buy1o.length;i++){
+				buy1o[i].style.display="none";
+			}
+			num--;
+			if(num==-1){
+				num=buy1o.length-1;
+			}
+			buy1o[num].style.display="block";
+			for(var i=0;i<buy2o.length;i++){
+				buy2o[i].style.background="#ccc";
+			}
+			buy2o[num].style.background="red";
+		}
+	</script>
+</html>

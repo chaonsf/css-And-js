@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: red;
+				
+			}
+			@keyframes hui{
+				from{
+				   transform: translateX(0);
+				}
+				to{
+				 transform: translateX(200px);
+				}
+			}
+			div{
+				animation:hui 5s .3s ease-in-out 4 alternate;/*4代表来回运行的次数*/
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

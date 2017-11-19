@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			textarea{
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea>
+			　　<p>不过他很快又想到自己既然接收了这个身份，也就等于接收了对方的一切，这样一想，高明又觉得理所当然了。<br></p>
+		</textarea>
+		<input type="button" value="提取文本" />
+		<div id="box"></div>
+	</body>
+	<script>
+		var txt=document.getElementsByTagName("textarea")[0];
+		var btn=document.getElementsByTagName("input")[0];
+		var box=document.getElementById("box");
+		var a=txt.value;
+		var re=/<[^>]>/g;
+		var aa=a.replace(re,"");
+		box.innerHTML=aa;
+	</script>
+</html>

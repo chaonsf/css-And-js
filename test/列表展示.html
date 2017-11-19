@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				background: #DEE7E7;
+				width: 270px;
+				padding-top: 10px;
+				overflow: hidden;
+				padding-bottom: 5px;
+			}
+			#box span{
+				float: left;
+				font-size: 18px;
+				color: #295263;
+				margin-left: 2px;
+				padding-left: 16px;
+			    width: 134px;
+			    border-bottom: solid 1px #94BDD6;
+			    padding-bottom: 10px;
+			    
+			}
+			#box .aul{
+				float: left;
+			}
+			#box .aul li{
+				float: left;
+				list-style: none;
+				width:35px ;
+				height: 22px;
+				border: 1px solid #94BDD6;
+				margin-top: 8px;
+				color:#94BDD6 ;
+				font-size: 12px;
+				line-height: 22px;
+				text-align: center;
+			}
+			#box .aul li:hover{
+				border-bottom: none;
+				background: #fff;
+				color: #000;
+			}
+			#box .aul .aa{
+				border-bottom: none;
+				background: #fff;
+				color: #000;
+			}
+			.lb{
+				padding-left: 2px;
+			}
+			.lb ul{
+				display: none;
+				margin-top:35px ;
+			}
+			.lb .tes{
+				display: block;
+			}
+			.tes li{
+				list-style: none;
+				border-bottom: solid 1px #fff;
+				height: 26px;
+				line-height: 26px;
+				padding-bottom:4px;
+			}
+			.tes li a{
+				text-decoration: none;
+				font-size: 12px;
+				color: #333;
+			}
+			.tes li:hover a{
+				display: none;
+			}
+			.tes li i{
+				font-style: normal;
+				display: inline-block;
+				background: #29739C;
+				width: 15px;
+				height: 14px;
+			    line-height: 14px;
+			    text-align: center;
+			    margin-right: 5px;
+			    font-size: 12px;
+			}
+			p a{
+				font-size: 12px;
+				text-decoration: none;
+				color: #333333;
+				margin-left: 220px;
+			}
+			.tes .hua{
+				width: 256px;
+				height: 80px;
+				background:#fff ;
+			}
+		   
+		    body .aaa{
+		    	width: 258px;
+		    	height: 80px;
+		    	background: url(img/JS1.png) no-repeat left ;
+		    	background-position: 18px 0;
+		    	display: block;
+		    }
+		    
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span>观看排行榜</span>
+			<ul class="aul">
+				<li>每日</li>
+				<li>每周</li>
+				<li>全部</li>
+			</ul>
+			<div class="lb">
+				<ul class="tes">
+					<li><i>1</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>2</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>3</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>4</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>5</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>6</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>7</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>8</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>9</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+					<li><i>10</i><a href="#">解密：关于地球和人类的一千零一问</a></li>
+				</ul>
+				<ul>
+					每周观看排行榜
+				</ul>
+				<ul>
+					全部观看排行榜
+				</ul>
+			</div>
+			<p><a href="#">更多>></a></p>
+		</div>
+	</body>
+	<script>
+		var aul=document.getElementsByClassName("aul")[0];
+		var ali=aul.getElementsByTagName("li");
+		var lb=document.getElementsByClassName("lb")[0];
+		var bul=lb.getElementsByTagName("ul");
+		var bli=bul[0].getElementsByTagName("li");
+		for(var i=0;i<ali.length;i++){
+			ali[i].index=i;
+			ali[i].onclick=function(){
+				for(var j=0;j<ali.length;j++){
+					bul[j].style.display="none"
+					ali[j].style.background="";
+				}
+				bul[this.index].style.display="block"
+				ali[this.index].style.background="white"
+				ali[this.index].style.borderBottom="#fff"
+			}
+		}
+		for(var i=0;i<bli.length;i++){
+			bli[i].onmouseover=function(){
+				this.className="aaa";
+			}
+			bli[i].onmouseout=function(){
+				this.className="";
+				
+			}
+		}
+	</script>
+</html>

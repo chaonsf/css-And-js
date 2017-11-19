@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#con{
+				width: 840px;
+				height: 280px;
+				border: solid 1px #ccc;
+				margin: 50px auto;
+				background: #C0C0C0;
+			}
+			#box{
+				border: solid 5px #eee;
+				width: 820px;
+				height: 260px;
+				margin: 10px;
+				background: #fff;
+			}
+			#left{
+				width: 310px;
+				height: 230px;
+				float: left;
+				border: dashed 1px #333;
+				margin: 10px;
+			}
+			#left textarea{
+				width:100%;
+				height: 100%;
+				background: #EFEF8F;
+				font-size:16px;
+				box-sizing: border-box;/*这个属性可以让里面的textarea不至于盖住外面left设置的虚线*/
+			}
+			#tip{
+				width: 130px;
+			    float: left;
+			    text-align: center;
+			    font-size:18px;
+			}
+			#tip button{
+				width: 100px;
+				height: 35px;
+				text-align: center;
+				line-height: 35px;
+				color: #fff;
+				background: orange;
+				font-weight: bold;
+				margin: 10px;
+			}
+			ul{
+				list-style: none;
+				margin-top: 20px;
+				margin-left: 15px;
+			}
+			ul li{
+				width: 10px;
+				height: 10px;
+				background: orange;
+				float: left;
+				margin-right:5px;
+			}
+            #right{
+            	width: 310px;
+            	height: 230px;
+            	border: dashed 1px #333;
+            	float: right;
+            	margin: 10px;
+            	background: aqua;
+            }
+            .red{
+            	background: red;
+            }
+		</style>
+	</head>
+	<body>
+		<div id="con">
+			<div id="box">
+				<div id="left">
+					<textarea>据介绍，该教材主要致力于帮助男孩们了解其生长过程中所需面对的一些性别困惑，旨在提升男孩敢于担当的勇气与素养。诸如在第三篇章“好想长大”中，男孩们可理解“父亲对儿子意味着什么？”“怎样把学习变成一种有趣的活动？”“为什么男子汉要有担待？”等问题。</textarea>
+				</div>
+				<div id="tip">
+					<button>文字搬移</button><br />
+					<span>0/0</span>
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				
+				<div id="right">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	  <script>
+	  	  var btn=document.getElementsByTagName("button")[0];
+	  	  var txt=document.getElementsByTagName("textarea")[0];
+	  	  var ali=document.getElementsByTagName("li");
+	  	  var right=document.getElementById("right");
+	  	  var aSpan=document.getElementsByTagName("span")[0];
+	  	  btn.onclick=function(){
+	  	  	if(txt.value==""){
+	  	  		alert("请输入内容");
+	  	  	}else{
+	  	  		var str=txt.value;
+	  	  		for(var i=0;i<str.length;i++){
+	  	  			fn(i)
+	  	  		}
+	  	  	}
+	  	  	function fn(num){
+	  	  		var str=txt.value;
+	  	  		setTimeout(function(){
+	  	  			right.innerHTML+=str.substring(num,num+1);
+	  	  			txt.value=str.substring(num+1);
+	  	  			aSpan.innerHTML=(num+1)+"/"+str.length;
+	  	  			for(var j=0;j<ali.length;j++){
+	  	  				ali[j].className="";
+	  	  			}
+	  	  			ali[num%ali.length].className="red";
+	  	  			btn.disabled=true;
+	  	  			btn.style.opacity=0.4;
+	  	  			if(num==str.length-1){
+	  	  				for(var j=0;j<ali.length;j++){
+	  	  				ali[j].className="";
+	  	  			}
+	  	  				btn.disabled=false;
+	  	  				btn.style.opacity=1;
+	  	  			}
+	  	  		},50*num)
+	  	  	}
+	  	  }
+	  	  
+	  </script>
+</html>

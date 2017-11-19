@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<style>
+			body{
+				background: #A9A970;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.te{
+				margin:0 auto;
+				width: 700px;
+			}
+			img{
+				width: 150px;
+				height: 150px;
+				border: solid 5px #fff;
+				border-radius: 5px;
+				margin-right: 14px;
+			}
+			ul,li{
+				list-style: none;
+			}
+			h1{
+				margin-top: 50px;
+				font-size: 28px;
+				color: #0f1011;
+				text-align: center;
+				margin-bottom: 40px;
+			}
+			.aul li{
+				float: left;
+				margin-right: 14px;
+				font-size: 16px;
+				color: #4b5157;
+			}
+			.aul{
+				overflow: hidden;
+				height: 30px;
+				margin-bottom: 20px;
+			}
+			.tat ul li{
+				float: left;
+				margin-bottom: 15px;
+			}
+			.aul .yyy{
+				color: #fff;
+			}
+		</style>
+		<script type="text/javascript" src="js/jq.js"></script>
+	</head>
+	<body>
+		<div class="te">
+			<h1>相关联图片展示</h1>
+			<ul class="aul">
+				<li rel="all" class="yyy">所有教程</li>
+				<li rel="jQuery">jQuery教程</li>
+				<li rel="css">css教程</li>
+				<li rel="js">js教程</li>
+			</ul>
+			<div class="tat">
+				<ul class="uuu">
+					<li rel="jQuery"><img src="img/zhu.png"></li>
+					<li rel="js"><img src="img/zhu2.png"></li>
+					<li rel="jQuery"><img src="img/zhu3.png"></li>
+					<li rel="css"><img src="img/zhu4.png"></li>
+					<li rel="css"><img src="img/zhu.png"></li>
+					<li rel="js"><img src="img/zhu2.png"></li>
+					<li rel="jQuery"><img src="img/zhu4.png"></li>
+					<li rel="css"><img src="img/zhu2.png"></li>
+				</ul>
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			$(".aul li").click(function(){
+				$(this).addClass("yyy").siblings().removeClass("yyy");
+				var value=$(this).attr("rel");
+				if(value=="all"){
+					$(".uuu li").show();
+				}else{
+					$(".uuu li").hide();
+					$(".uuu li[rel="+value+"]").show()
+				}
+			})
+		})
+	</script>
+</html>
+

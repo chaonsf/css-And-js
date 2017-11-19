@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			div{
+				margin:300px  500px;
+				position: relative;
+			}
+			ul li{
+				float: left;
+				margin-right: 50px;
+			}
+			input{
+				position: absolute;
+				left: 200px;
+				top: 100px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jq.js"></script>
+	</head>
+	<body>
+		<div>
+			<ul>
+			<li>徐福记(3006)</li>
+			<li>徐福记(3006)</li>
+			<li>徐福记(3006)</li>
+			<li class="te">徐福记(3006)</li>
+			<li class="te">徐福记(3006)</li>
+			<li class="te">徐福记(3006)</li>
+			<li>徐福记(3006)</li>
+			<li>点击显示更多产品(8888)</li>
+		</ul>
+		<input type="button" value="点击显示更多产品" />
+		</div>
+	</body>
+	<script>
+		$(function(){
+			$("input").click(function(){
+				if($("li:gt(2):not(:last):visible").length>0){
+					$("li:gt(2):not(:last)").hide()
+				}else{
+					$("li").show()
+				}
+			})
+		})
+	
+		
+	</script>
+</html>

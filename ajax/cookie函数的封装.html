@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="box" />
+		<input type="button" id="btn"  value="save"/>
+		<input type="button" value="geta" id="btn1">
+		<input type="button" value="删除"  id="btn2"/>
+	</body>
+	<script>
+	var box=document.getElementById("box");
+	var btn=document.getElementById("btn");
+	var btn1=document.getElementById("btn1");
+	var btn2=document.getElementById("btn2");
+	btn.onclick=function(){
+			setCookie("username",box.value,7)
+		}
+	btn1.onclick=function(){
+		alert(getCookie("username"))
+	}
+	btn2.onclick=function(){
+		removeCookie("username")
+	}
+		function setCookie(key,value,time){
+			var mydate=new Date();
+			mydate.setDate(mydate.getDate()+time);
+			document.cookie=key+"="+encodeURI(value)+"; expires="+mydate.toGMTString();/*转码转化不了数字,expires指定了在浏览器上缓存距过期还有多长时间*/
+			
+		}
+		
+		 function getCookie(key){
+		 	var str=document.cookie;
+		 	var arr=str.split(";&nbsp;");/*俩个cookie之间是以分号和空格相隔开的*/
+		 	for(var i=0;i<arr.length;i++){
+		 		var newArr=arr[i].split("=");
+		 		if(newArr[0]==key){
+		 			return decodeURI(newArr[1])  /*decodeuri是解码，相应的编码转化成汉字*/
+		 		}
+		 	}
+		 }
+		 function removeCookie(key){
+		 	setCookie(key,"",-1)
+		 }
+	</script>
+</html>

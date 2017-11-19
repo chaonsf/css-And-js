@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 220px;
+				height: 800px;
+				border: solid 1px #ccc;
+               font-size:14px;
+			}
+			p{
+				margin-bottom:40px;
+			}
+			.aa{
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			.bb{
+				white-space:break-word;
+			}
+		</style>
+	</head>
+	<body>
+		 <div>
+		 	<p class="aa">CSS3文字与字体 text-overflow 与 word-wrap:text-overflow用来设置是否使用一个省略标记（...）标示对象内文本的溢出。</p>
+		 	<p class="bb">但是text-overflow只是用来说明文字溢出时用什么方式显示，要实现溢出时产生省略号的效果，还须定义强制文本在一行内显示（white-space:nowrap）及
+		 		溢出内容为隐藏（overflow:hidden），只有这样才能实现溢出文本显示省略号的效果</p>
+		 </div>
+	</body>
+</html>

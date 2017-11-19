@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			textarea{
+				width: 300px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset>
+			<legend>留言板</legend>
+			<textarea>
+				
+			</textarea><br />
+			<input type="button" value="save" />
+			<input type="button" value="get" />
+			<input type="button" value="clear"/>
+			<div id="bu"></div>
+		</fieldset>
+	</body>
+	<script>
+		window.onload=function(){
+			var aa=document.getElementsByTagName("input");
+			aa[0].onclick=function(){
+				var time=new Date().getTime();
+				var bb=document.getElementsByTagName("textarea")[0];
+				sessionStorage.setItem(time,bb.value);
+			}
+			aa[1].onclick=function(){
+				var table="<table>";
+				var length=sessionStorage.length;
+				for(var i=0;i<length;i++){
+					var keys=sessionStorage.key(i)/*根据索引值找出所有的key值*/
+					var tim=new Date();
+					 tim.setTime(keys);
+					var year=tim.getFullYear();
+					var month=tim.getMonth()+1;
+					var day=tim.getDate();
+					var hours=tim.getHours();
+					var min=tim.getMinutes();
+					var sec=tim.getSeconds();
+					var str=year+"/"+month+"/"+day+"/"+" "+hours+":"+min+":"+sec+"  ";
+					var yy=sessionStorage.getItem(keys);
+					table+="<tr><td>"+str+"</td><td>"+yy+"</td></tr>"
+					
+				}
+				table+="</table>";
+				var bu=document.getElementById("bu");
+				bu.innerHTML=table;
+			}
+			aa[2].onclick=function(){
+				sessionStorage.clear();
+			}
+			
+		}
+	</script>
+</html>

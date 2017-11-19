@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    /*div{
+				margin-top: 10px;
+			}*/
+			#pp{
+				display: block;
+				width: 100px;
+				height: 100px;
+				background: orchid;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<input type="button" id="btn" value="锁定范围" />
+		<input type="button" id="btn1" value="水平锁定"/>
+		<input type="button" id="btn2" value="垂直锁定" />
+		<input type="button" id="btn3" value="锁定位置" />
+		<div>拖放状态：<span id="main">未开始</span></div>
+		<p id="pp"></p>
+	</body>
+	<script>
+		var btn=document.getElementById("btn");
+		var btn1=document.getElementById("btn1");
+		var btn2=document.getElementById("btn2");
+		var btn3=document.getElementById("btn3");
+		var adiv=document.getElementsByTagName("div")[0];
+		var aspan=adiv.getElementsByTagName("span")[0];
+		var pp=document.getElementById("pp");
+		var disX;
+		var disY;
+		function fn(obj,x1,x2,y1,y2){
+			pp.onmousedown=function(ev){
+		document.onmouseup=document.onmousemove=null;
+			var e=ev||event;
+			e.returnValue=false;
+			e.preventDefault();
+			disX=e.clientX-pp.offsetLeft;
+			disY=e.clientY-pp.offsetTop;
+			aspan.innerHTML='开始了'
+		document.onmousemove=function(ev){
+			var e=ev||event;
+			e.returnValue=false;
+			e.preventDefault();
+			var bisX=e.clientX-disX;
+			var bisY=e.clientY-disY;
+			if(x1!=null&&x2!=null){
+				if(bisX>x1||bisX==x1){
+					bisX=x1
+				}
+				if(bisX<x2||bisX==x2){
+					bisX=x2
+				}
+			}
+			if(y1!=null&&y2!=null){
+				if(bisY>y1||bisY==y1){
+					bisY=y1
+				}
+				if(bisY<y2||bisY==y2){
+					bisY=y2
+				}
+			}
+			obj.style.left=bisX+"px";
+			
+			obj.style.top=bisY+"px";
+			console.log(obj.style.top)
+			aspan.innerHTML='left:'+bisX+'&nbsp;top:'+bisY;
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+			aspan.innerHTML='结束了'
+		}
+			
+		}
+			
+		}
+		fn(pp);
+	 btn.onclick=function(ev){
+	 	var e=ev||window.event;
+	 	var x1=document.documentElement.clientWidth-100;
+	 	var x2=0;
+	 	var y1=document.documentElement.clientHeight-100;
+	 	var y2=0;
+	 	fn(pp,x1,x2,y1,y2)
+	 }
+	 btn1.onclick=function(ev){
+	 	var e=ev||window.event;
+	 	var x1=pp.offsetLeft;
+	 	var x2=pp.offsetLeft;
+	 	var y1=document.documentElement.clientHeight-100;
+	 	var y2=0;
+	 	fn(pp,x1,x2,y1,y2)
+	 }
+	 btn2.onclick=function(ev){
+	 	var e=ev||window.event;
+	 	var y1=pp.offsetTop;
+	 	var y2=pp.offsetTop;
+	 	var x1=document.documentElement.clientWidth-100;
+	 	var x2=0;
+	 	fn(pp,x1,x2,y1,y2)
+	 }
+	 btn3.onclick=function(ev){
+	 	var e=ev||event;
+	 	var x1=pp.offsetLeft;
+	 	var x2=pp.offsetLeft;
+	 	var y1=pp.offsetTop;
+	 	var y2=pp.offsetTop;
+	 	fn(pp,x1,x2,y1,y2)
+	 }
+	</script>
+</html>

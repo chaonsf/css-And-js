@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jq.js"></script>
+	</head>
+	<body>
+		<input id="nihao" type="checkbox" />全选/反选
+		<input id="hao" type="checkbox" />反选<br>
+		<input type="checkbox" name="ite" value="足球"/>足球
+		<input type="checkbox" name="ite" value="篮球"/>蓝球
+		<input type="checkbox" name="ite" value="乒乓球"/>乒乓球
+		<input type="checkbox" name="ite" value="排球"/>排球
+	</body>
+	<script>
+		$(function(){
+			$("#nihao").click(function(){
+				if($("#nihao").prop("checked")==true){
+				$("input[name='ite']").prop("checked",true)
+			}else{
+				$("input[name='ite']").prop("checked",false)
+			}
+			})
+			$("#hao").click(function(){
+				$("input[name='ite']").each(function(){
+					this.checked=!this.checked
+				})
+			})
+		})
+	</script>
+</html>

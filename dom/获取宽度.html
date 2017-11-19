@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <style>
+        	div{
+        		width: 10px;
+        		height: 70px;
+        		background: mediumaquamarine;
+        	}
+        </style>
+	</head>
+	<body>
+		<input type="button" value="hjdaskl;ajilsd" />
+		<div></div>
+	</body>
+	<script>
+	var adiv=document.getElementsByTagName("div")[0]
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj)[attr];
+			}
+		}
+		console.log(getStyle(adiv,"width"))
+	</script>
+</html>

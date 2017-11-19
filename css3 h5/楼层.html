@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+			div{
+				width: 100%;
+				height: 400px;
+			}
+			#head{
+				background:brown;
+				height: 600px;
+			}
+			.box1{
+				background: aquamarine;
+			}
+			.box2{
+				background:olive;
+			}
+			.box4{
+				background:darkorange;
+			}
+			.box5{
+				background:plum;
+			}
+			.box3{
+				 background:yellow;
+			}
+			body{
+				position: relative;
+			}
+			ul{
+				position:fixed;
+				left: 0;
+				top: 300px;
+				width: 50px;
+				height: 400px;
+			}
+			ul li{
+				width: 50px;
+				height: 80px;
+				line-height: 80px;
+				background:white;
+				text-align: center;
+			}
+			.louceng .ba{
+				background:teal;
+			}
+		</style>
+	</head>
+	<body>
+		 <div id="head">header</div>
+		<div id="main">
+			<div class="box1"></div>
+		   <div class="box2"></div>
+		   <div class="box3"></div>
+		   <div class="box4"></div>
+		   <div class="box5"></div>
+		</div>
+		<div></div>
+		 <div class="louceng">
+		 	 <ul>
+		 	 	<li>1</li>
+		 	 	<li>2</li>
+		 	 	<li>3</li>
+		 	 	<li>4</li>
+		 	 	<li>5</li>
+		 	 </ul>
+		 </div>
+	</body>
+	<script type="text/javascript" src="js/jq.js"></script>
+	<script>
+ var oNav=$(".louceng ul");
+  var aNav=oNav.find("li");
+  var oDiv=$("#main").children();
+  $(window).scroll(function(){
+  	var winH=$(window).height()
+  	var iTop=$(window).scrollTop();
+  	if(iTop>=$("#head").height()){
+  		oNav.fadeIn();
+  	 oDiv.each(function(){
+  	 	if(winH+iTop-$(this).offset().top>winH/2){
+  	 		aNav.removeClass("ba");
+  	 		aNav.eq($(this).index()).addClass("ba")
+  	 	}
+  	 })
+  	}
+  	else{
+  		oNav.fadeOut();
+  	}
+  })
+  aNav.click(function(){
+  	 var t=oDiv.eq($(this).index()).offset().top;
+  	 $("body,html").animate({
+  	 	scrollTop:t
+  	 },500);
+  	 $(this).addClass("ba").siblings().removeClass("ba")
+  })
+	</script>
+</html>

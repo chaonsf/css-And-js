@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button"  value="新闻" id="btn"/>
+		<ul id="oul">
+			
+		</ul>
+	</body>
+	<script>
+	function ajax(method,url,data,sucessFn){
+			var xhr;
+			if(window.XMLHttpRequest){
+				xhr=new XMLHttpRequest
+			}else{
+				xhr=new ActiveXObject("microsoft.XMLHttp")
+			}
+			if(method=="get"){
+				url+="?"+data;
+			}
+			xhr.open(method,url,true);
+			if(method=="get"){
+				xhr.send();
+			}else{
+				xhr.setRequestHeader('content-type','app');/*设置请求头*/
+				xhr.send(data);
+			}
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					sucessFn&&sucessFn(xhr.responseText);
+				}
+			}
+		}
+		var btn=document.getElementById("btn");
+		btn.onclick=function(){
+
+			fn()
+			function fn(){
+				ajax("get","2.get.php",'',function(data){
+					var dba=JSON.parse(data);
+
+					var str="";
+					for(var i=0;i<dba.length;i++){
+						str+="<li><a href='#'>"+dba[i].title+"</a><span>"+dba[i].date+"</span></li>"
+
+					}
+					oul.innerHTML=str;
+				})
+			}
+			 setInterval(fn,3000);
+		}
+	</script>
+</html>

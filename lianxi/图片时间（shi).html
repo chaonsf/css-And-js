@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		for( var i=0;i<8;i++){
+			document.body.innerHTML+="<img />"
+		}
+		var aimg=document.getElementsByTagName("img");
+		setInterval(tim,1000);
+		 function tim(){
+		 	 var mydate=new Date();
+		    var iHour=mydate.getHours();
+		    var imin=mydate.getMinutes();
+		    var isec=mydate.getSeconds();
+		    var str=orz(iHour)+":"+orz(imin)+":"+orz(isec);
+		    for(var i=0;i<aimg.length;i++){
+		    	aimg[i].src="img/"+str.charAt(i)+".JPG";
+		    }
+		     aimg[2].src="img/colon.JPG";
+		 	setTimeout(function(){
+		 		aimg[2].src="img/space.jpg"
+		 	},500);
+		 	aimg[5].src="img/colon.JPG";
+		 	setTimeout(function(){
+		 		aimg[5].src="img/space.jpg"
+		 	},500)
+		 	function orz(a){
+		 		if(a<10){
+		 			return "0"+a;
+		 		}else{
+		 			return a;
+		 		}
+		 	}
+		 }
+	</script>
+</html>

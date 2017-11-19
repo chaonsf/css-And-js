@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+	    	@font-face {
+  font-family: 'iconfont';
+  src: url('bb/iconfont.eot');
+  src: url('bb/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('bb/iconfont.woff') format('woff'),
+  url('bb/iconfont.ttf') format('truetype'),
+  url('bb/iconfont.svg#iconfont') format('svg');
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('cc/iconfont.eot');
+  src: url('cc/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('cc/iconfont.woff') format('woff'),
+  url('cc/iconfont.ttf') format('truetype'),
+  url('cc/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:22px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing:grayscale;
+}
+    
+      ul,li{
+      	list-style: none;
+      }
+      html,body{
+      	width:100%;
+      	height: 100%;
+      }
+      a{
+      	text-decoration:none;
+      }
+       @media only screen and (max-width:640px) {
+       	   header{
+       	   	width: 100%;
+       	   	height: 0.86rem;
+       	   	background:#b11f1f;
+       	   	font-size:0.36rem;
+       	   	line-height: 0.86rem;
+       	   	color: #fff;
+       	   }
+       	   header span{
+       	   	 margin-left:2.38rem;
+       	   	 margin-right:1.3rem;
+       	   }
+       	   header i{
+       	   	 display:inline-block;
+       	   	 width:1rem;
+       	   	 height: 0.52rem;
+       	   	 border: solid 1px #8f0b09;
+       	   	 border-radius: 0.3rem;
+       	   	 text-align: center;
+       	   	 line-height:0.52rem ;
+       	   	 background:#ad0b09;
+       	   }
+           .left{
+           	  width:100%;
+           	  height: 0.57rem;
+           	  line-height: 0.57rem;
+           	  background:#9b9ea5;
+           }
+           .left ul{
+           	  height: 0.57rem;
+           	  width: 100%;
+           	  padding-left: 0.36rem;
+           }
+           .left ul li b{
+           	display: none;
+           }
+           .left ul li{
+           	height: 0.57rem;
+           	line-height:0.57rem;
+           	 width: 0.6rem;
+           	 position:relative;
+           	 float: left;
+           }
+           .left ul li i{
+           	position: absolute;
+           	left: 0;
+           	top: 0;
+           }
+           .left ul li span{
+           	  border-bottom: solid 6px #fff;
+           	  border-left: solid 6px transparent;
+           	  border-right: solid 6px transparent;
+           	  position: absolute;
+           	  bottom: 0;
+           	  left: 0.08rem;
+           	  display: none;
+           }
+           .left ul .xs span{
+           	 display: block;
+           }
+           .left ul .xs i{
+           	   color: #fff; 
+           }
+           .right{
+           	  background:#f3f4f6;
+           	  width:100%;
+           	  padding-left: 0.36rem;
+           }
+           .right ul{
+           	overflow: hidden;
+           	width: 100%;
+           	padding-top:0.4rem;
+           }
+           .right ul li{
+           	   width: 2.68rem;
+           	   height:3.4rem;
+           	   border: solid 1px #ccc;
+           	   float: left;
+           	   margin-right:0.4rem;
+           	   margin-top:0.15rem;
+           	   font-size:14px;
+           	   text-align: center;
+           }
+           .right ul li img{
+           	   width: 2.45rem;
+           	   height: 2.45rem;
+           	   border: solid 1px #ccc;
+           }
+           .right ul li p{
+           	  width: 2.45rem;
+           	  height: 0.45rem;
+           	  overflow: hidden;
+           	  white-space: nowrap;
+           	  text-overflow:ellipsis;
+           }
+           .right ul li div{
+           	  width: 2.68rem;
+           }
+           .right ul li div span{
+           	   color: #d51112;
+           }
+           .right ul li div del{
+           	  color: #878785;
+           	  margin-left:0.58rem;
+           }
+           footer{
+           	  width: 100%;
+           	  height: 0.98rem;
+           	  position: fixed;
+           	  bottom: 0;
+           	  background:#484850;
+           }
+           footer ul li{
+           	   width:1.22rem;
+           	   height: 0.98rem;
+           	   position:relative;
+           	    float: left;
+           }
+           footer ul{
+           	   height: 0.98rem;
+   
+           }
+           footer ul li i{
+           	  position: absolute;
+           	  left:0.45rem;
+           	  top: 0.13rem;
+           }
+           footer ul li p{
+           	  font-size:0.24rem;
+           	  position: absolute;
+           	  left:0.42rem;
+           	  top: 0.6rem;
+           	  color: #fff;
+           }
+       }
+       @media only screen and (min-width: 640px) {
+       	    header{
+       	    	width: 100%;
+       	    	height: 0.35rem;
+       	    	background:#af1d1d;
+       	    	line-height:0.34rem;
+       	    	font-size:0.16rem;
+       	    	}
+       	    header span{
+       	    	margin-left:2.8rem;
+       	    	color: #fff;
+       	    }
+       	    header i{
+       	   	 display:inline-block;
+       	   	 width:0.4rem;
+       	   	 height: 0.22rem;
+       	   	 border: solid 1px #8f0b09;
+       	   	 border-radius: 0.5rem;
+       	   	 text-align: center;
+       	   	 line-height:0.22rem ;
+       	   	 background:#ad0b09;
+       	   	 margin-left:3.5rem;
+       	   }
+       	   article{
+       	   	  overflow: hidden;
+       	   }
+       	   .left{
+       	   	 float: left;
+       	   	 width: 1.13rem;
+       	   	 background:#9a9fa5;
+       	   	 font-size: 0.16rem;
+       	   	 padding-top: 0.07rem;
+       	   	 padding-bottom:0.4rem;
+       	   }
+       	    .left ul li{
+       	    	height: 0.39rem;
+       	    	width:1rem;
+       	    	position: relative;
+       	    	padding-left: 0.13rem;
+       	    } 
+       	   .left ul li span{
+       	   	   position: absolute;
+       	   	   border-right: solid 4px #fff;
+       	   	   border-top: solid 4px transparent;
+       	   	   border-bottom: solid 4px transparent;
+       	   	   right: 0;
+       	   	   top:0.11rem;
+       	   	   display: none;
+       	   }
+       	   .left ul .xs span{
+       	   	   display: block;
+       	   }
+       	   .left ul .xs i{
+       	   	  color: #fff;
+       	   }
+       	   .right{
+       	   	 float: left;
+       	   	 width:5.27rem;
+       	   	 background:#f3f4f6;
+       	   	 padding: 0.15rem;
+       	   }
+       	   .right ul{
+       	   	  overflow: hidden;
+       	   	  width:100%;
+       	   }
+       	   .right ul li{
+       	   	  font-size:14px;
+       	   	  width:1.58rem;
+       	   	  height:2.05rem;
+       	   	  float: left;
+       	   	  margin-left:0.1rem;
+       	   	  text-align: center;
+       	   	  margin-bottom:0.12rem;
+       	   }
+       	   
+       	   .right ul li img{
+       	   	  width:1.48rem;
+       	   	  height:1.48rem;
+       	   }
+       	   .right ul li p{
+       	   	  width: 1.58rem;
+           	  height: 0.45rem;
+           	  overflow: hidden;
+           	  white-space: nowrap;
+           	  text-overflow:ellipsis;
+       	   }
+       	   .right ul li div{
+       	   	  width: 1.58rem;
+       	   }
+       	   .right ul li div span{
+       	   	  color: #d93735;
+       	   	  margin-right:0.34rem;
+       	   }
+       	   .right ul li div del{
+       	   	   color: #757575;
+       	   }
+       	   footer{
+       	        position:fixed;
+       	    	width:100%;
+       	    	height:0.35rem;
+       	    	background:#3c3d42;
+       	    	bottom: 0;
+       	    }
+       	    footer ul li{
+       	    	width: 0.38rem;
+       	    	height: 0.35rem;
+       	    	float: left;
+       	    	font-size:12px;
+       	    	margin-left:0.1rem;
+       	    	color: #85868a;
+       	    }
+       	    footer ul li:nth-child(5){
+       	    	display: none;
+       	    }
+       	    footer ul{
+       	     height:0.35rem;
+       	    }
+       	    
+       }
+		</style>
+	</head>
+	<body>
+		<header>
+			<span>新品上市</span>
+			<i class="iconfont">&#xe616;</i>
+		</header>
+		<article>
+			<div class="left">
+				<ul>
+					<li class="xs">
+						<i class="iconfont">&#xe679;</i>
+						<b>新品</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>皮衣</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>外套</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>连衣裙</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>女鞋</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>女上衣</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>男上衣</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>T恤</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>箱包</b>
+						<span></span>
+					</li>
+					<li>
+						<i class="iconfont">&#xe679;</i>
+						<b>运动</b>
+						<span></span>
+					</li>
+				</ul>
+			</div>
+			<div class="right">
+				<ul>
+					
+					
+				</ul>
+			</div>
+		</article>
+		<footer>
+			<ul>
+				<li>
+					<i class="iconfont">&#xe616;</i>
+					<p>首页</p>
+				</li>
+				<li>
+					<i class="iconfont">&#xe616;</i>
+					<p>分类</p>
+				</li>
+				<li>
+					<i class="iconfont">&#xe616;</i>
+					<p>购物车</p>
+				</li>
+				<li>
+					<i class="iconfont">&#xe616;</i>
+					<p>我的秀</p>
+				</li>
+				<li>
+					<i class="iconfont">&#xe616;</i>
+					<p>更多</p>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="js/jq.js"></script>
+	<script type="text/javascript" src="js/rem.js"></script>
+	<script type="text/javascript" src="js/iconfont.js"></script>
+	<script>
+	      var ico_data=[
+        {id:'6',txt:'T恤',code:'&#xe628;'},
+        {id:'7',txt:'风衣',code:'&#xe637;'},
+        {id:'8',txt:'打底裤',code:'&#xe630;'},
+        {id:'9',txt:'皮草',code:'&#xe60c;'},
+        {id:'10',txt:'羊绒衫',code:'&#xe64c;'},
+        {id:'11',txt:'牛仔裤',code:'&#xe638;'},
+        {id:'12',txt:'休闲裤',code:'&#xe649;'},
+        {id:'13',txt:'短裤',code:'&#xe61d;'},
+        {id:'0',txt:'新品',code:'&#xe6aa;'},
+        {id:'1',txt:'衬衫',code:'&#xe670;'},
+        {id:'2',txt:'礼服',code:'&#xe666;'},
+        {id:'3',txt:'棉服',code:'&#xe63b;'},
+        {id:'4',txt:'短外套',code:'&#xe643;'},
+        {id:'5',txt:'卫衣',code:'&#xe66a;'}
+      ];
+
+	     $(function(){
+	     fn(0);
+	     	function fn(n){
+	     		$.ajax({
+	     			type:"get",
+	     			url:"http://datainfo.duapp.com/shopdata/getGoods.php",
+	     			dataType:"jsonp",
+	     			data:{
+	     				classID:n
+	     			},
+	     			success:function(data){
+	     				/*console.log(data)*/
+	     			 for(var a in data){
+	     			 	for(var i=0;i<ico_data.length;i++){
+	     			 		var ico_id=ico_data[i].id;
+	     			 		var goods_id=data[a].classID;
+	     			 		$(".left ul li ").eq(ico_id).find("i").html(ico_data[i].code)
+	     			 		.attr("index",ico_id)
+	     			 		
+	     			 		if(ico_id==goods_id){
+	     			 			$(".left ul li ").eq(ico_id).find("b").html(data[a].className)
+	     			 		}
+	     			 	        
+	     			 	}
+	     			 }
+	     		     
+	     		   }
+	     		});
+	     	}
+	     })
+	      $(function(){
+	      	  $(".left ul li").click(function(){
+	      	  	$(this).addClass("xs").siblings().removeClass("xs");
+	      	  	 var num=$(this).index();
+	      	  	 bn(num)
+	      	  })
+	      	 bn(0);
+	      	 function bn(n){
+	      	 	$.ajax({
+	      	 		type:"get",
+	      	 		url:"http://datainfo.duapp.com/shopdata/getGoods.php",
+	      	 		dataType:"jsonp",
+	      	 		data:{
+	      	 			classID:n
+	      	 		},
+	      	 		success:function(data){
+	      	 			console.log(data)
+	      	 			var a="";
+	      	 		  for(var i in data){
+	      	 		   
+	      	 		  	 a+="<li index='"+data[i].goodsID+"'><img src="+data[i].goodsListImg+">"+"<p>"+data[i].goodsName+"</p>"+"<div><span>￥"+data[i].price+"</span><del>￥"+data[i].price*data[i].discount+"</del></div></li>"
+	      	 		      
+	      	 		  }
+	      	 		  $(".right ul").html(a);
+	      	 		  
+	      	 		  $(".right ul li").click(function(){
+	      	 		  	  localStorage.setItem($(this),$(this).attr("index"))
+	      	 		  	window.location.href="goods.html"
+	      	 		  })
+	      	 		}
+	      	 	});
+	      	 }
+	      	 
+	      })
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		  *{
+		  	margin: 0;
+		  	padding: 0;
+		  }
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><img src="img/aa.png" /></li>
+			<li><img src="img/aa.png" /></li>
+			<li><img src="img/aa.png" /></li>
+		</ul>
+	</body>
+	<script>
+	   var aimg=document.getElementsByTagName("img");
+	 
+	   for(var i=0;i<aimg.length;i++){
+	   /*   aimg[i].index=i;这个可以去掉，改成this代替*/
+	      aimg[i].boff=true;/*给每个灯一个开关*/
+	      		aimg[i].onclick=function(){
+	   		if(this.boff){
+	   			this.src="img/bb.png"
+	   		}else{
+	   			this.src="img/aa.png"
+	   		}
+	   		this.boff=!this.boff;
+	   	}
+	     
+	      
+	   }
+	  
+	</script>
+</html>

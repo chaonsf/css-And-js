@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: auto 100px;
+				width: 200px;
+				height: 300px;
+			}
+			.ull li{
+				float: left;
+				list-style: none;
+				color: #fff;
+				margin-left:5px;
+			}
+			.ull{
+				overflow: hidden;
+				background:black;
+			}
+			.ull .teshu{
+				background:#ccc;
+			}
+			#tat{
+				background:aqua;
+				padding-left:20px;
+				height: 200px;
+			}
+			#tat ul{
+				display: none;
+			}
+			#tat .teshu{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul class="ull">
+				<li class="teshu">第一课</li>
+				<li>第二课</li>
+				<li>第三课</li>
+			</ul>
+			<div id="tat">
+				<ul class="teshu">
+					<li>11</li>
+					<li>11</li>
+					<li>11</li>
+					<li>11</li>
+				</ul>
+				<ul>
+					<li>22</li>
+					<li>22</li>
+					<li>22</li>
+					<li>22</li>
+				</ul>
+				<ul>
+					<li>33</li>
+					<li>33</li>
+					<li>33</li>
+					<li>33</li>
+				</ul>
+			</div>
+			
+		</div>
+	</body>
+	<script>
+		var ula=document.getElementsByClassName("ull")[0];
+		var lia=ula.getElementsByTagName("li");
+		var adiv=document.getElementById("tat");
+		var ulb=adiv.getElementsByTagName("ul");
+		 for(var i=0;i<lia.length;i++){
+		    lia[i].index=i;
+		 	lia[i].onclick=function(){
+		 		for(var j=0;j<lia.length;j++){
+		 			ulb[j].style.display="none";
+		 			lia[j].style.background="black";
+		 		}
+		 		ulb[this.index].style.display="block";
+		 		lia[this.index].style.background="#ccc";
+		 	}
+		 }
+	</script>
+</html>

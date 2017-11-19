@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="开始" />
+		<input type="button" value="停止" /><br />
+		<img src="img/i01.jpg">
+		
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input");
+		var aimg=document.getElementsByTagName("img")[0];
+		var arr=["img/i01.jpg","img/i02.jpg","img/i04.jpg","img/i05.jpg"];
+		var num=0;
+		var time=null;
+		function abc(){
+			if(num<arr.length-1){
+				num++;
+				aimg.src=arr[num];
+			}else if(num==arr.length-1){
+				num=0;
+				aimg.src=arr[num];
+			}
+		}
+		ainput[0].onclick=function(){
+			clearInterval(time);
+			time=setInterval(abc,1000);
+		}
+		ainput[1].onclick=function(){
+			clearInterval(time);
+		}
+	</script>
+</html>

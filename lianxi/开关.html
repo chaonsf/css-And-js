@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	   <style>
+	   	 div{
+	   	 	width: 200px;
+	   	 	height: 200px;
+	   	 	border: solid 1px #000;
+	   	 	margin-top: 20px;
+	   	 	display: none;
+	   	 }
+	   </style>
+	   <script>
+	   	window.onload=function(){
+	   		var aa=document.getElementsByTagName("input")[0];
+	   		var bb=document.getElementsByTagName("div")[0];
+	   		var i=true;
+	   		aa.onclick=function(){
+	   			
+	   				if(i){
+	   					bb.style.display="block";
+	   				}
+	   				else{
+	   					bb.style.display="none";
+	   				}
+	   				i=!i;
+	   		}
+	   	}
+	   </script>
+	
+	</head>
+	<body>
+		<input type="button" value="按我啊" />
+		<div class="box">
+		</div>
+	</body>
+</html>

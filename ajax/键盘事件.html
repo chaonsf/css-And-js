@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+	<script>
+		var adiv=document.getElementsByTagName("div")[0];
+	var num=0,ad=0,asa=100,aer=100;
+		document.onkeydown=function(ev){
+			var e=ev||event;
+			if(e.keyCode==39){
+				num++
+				adiv.style.left=num+"px"
+			}
+			if(e.keyCode==37){
+				num--;
+				adiv.style.left=num+"px"
+			}
+			if(e.keyCode==40&&!e.ctrlKey){
+				ad++;
+				adiv.style.top=ad+'px'
+			}
+			if(e.keyCode==38&&!e.ctrlKey){
+				ad--;
+				adiv.style.top=ad+"px"
+			}
+			if(e.ctrlKey&&e.keyCode==49){
+				adiv.style.background="green";
+			}
+			if(e.ctrlKey&&e.keyCode==50){
+				adiv.style.background="yellow";
+			}
+			if(e.ctrlKey&&e.keyCode==51){
+				adiv.style.background="blue";
+			}
+			if(e.ctrlKey&&e.keyCode==38){
+				asa++;
+				aer++;
+				adiv.style.width=asa+'px';
+				adiv.style.height=aer+'px'
+				
+			}
+			if(e.ctrlKey&&e.keyCode==40){
+				asa--;
+				aer--;
+				adiv.style.width=asa+'px';
+				adiv.style.height=aer+'px'
+			}
+		}
+	</script>
+</html>

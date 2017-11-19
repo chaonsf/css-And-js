@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="javascript:;">验证码</a>
+	</body>
+	 <script type="text/javascript" src="js/jq.js"></script>
+	 <script>
+	 	 $(function(){
+	 	 	 var a=parseInt(60)
+	 	 	   $("a").click(function(){
+	 	 			setInterval(function(){
+		 	 	  a--;
+
+	 	 	   	  $("a")[0].innerHTML=a+"s后重新获取"
+	 	 	   },1000)
+	 	 	})
+	 	 })
+	 </script>
+</html>

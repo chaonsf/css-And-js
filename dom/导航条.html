@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+				color:orchid;
+			}
+			#box{
+				width: 500px;
+				margin: 0 auto;
+				position: relative;
+				background:#ccc ;
+			}
+			ul{
+				overflow: hidden;
+			}
+			ul li{
+				float: left;
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+			}
+			ul li a{
+				display: block;
+				padding: 0 22px;
+				width: 56px;
+			}
+			ul li a:hover{
+				background: yellowgreen;
+			}
+			p{
+				position: absolute;
+				top:50px;
+				left: 0;
+				width: 100px;
+				height: 5px;
+				background: red;
+				display: none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><a href="#">你傻吗</a></li>
+				<li><a href="#">你傻吗</a></li>
+				<li><a href="#">你傻吗</a></li>
+				<li><a href="#">你傻吗</a></li>
+				<li><a href="#">你傻吗</a></li>
+			</ul>
+			<p></p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var ap=document.getElementsByTagName("p")[0];
+		var ali=document.getElementsByTagName("li")
+		var awidth=parseInt(getStyle(ali[0],"width"));
+		var alo=parseInt(getStyle(ap,"left"));
+		var num=0;
+		for(var i=0;i<ali.length;i++){
+			ali[i].index=i;
+			ali[i].onmousemove=function(){
+				ap.style.display="block"; 
+				num=this.index*awidth;
+				startMove(ap,{
+					left:num
+				},clear)
+			}
+			ali[i].onmouseout=function(){
+				ap.style.display="none";
+			}
+		}
+		function clear(){
+			startMove(ap,{
+				left:num-10
+			},clear1)
+		}
+		function clear1(){
+			startMove(ap,{
+				left:num
+			},clear)
+		}
+	</script>
+</html>

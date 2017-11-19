@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<input type="text" />
+		<input type="button" value="liuyan">
+		<ul>
+			
+			
+		</ul>
+	</body>
+	<script>
+		var aa=document.getElementsByTagName("ul")[0];
+		var aq=document.getElementsByTagName("input")[0];
+		var aqq=document.getElementsByTagName("input")[1];
+		aqq.onclick=function(){
+			var bb=document.createElement("li");
+			bb.innerHTML=aq.value;
+			var cc=document.createElement("a");
+			cc.innerHTML="删除";
+		    cc.href="javascript:;"
+			bb.appendChild(cc);
+			aa.appendChild(bb);
+			var dd=aa.children;
+			for(var i=0;i<dd.length;i++){
+				if(i%2==0){
+					dd[i].style.background="red"
+				}else{
+					dd[i].style.background="blueviolet"
+				}
+			}
+			cc.onclick=function(){
+				aa.removeChild(this.parentNode)
+			}
+		}
+	</script>
+</html>

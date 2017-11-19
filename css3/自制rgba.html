@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset>
+			<legend>自制rgba</legend>
+			<form>
+				<input type="range" max="255" min='0'/>
+			    <output></output>
+			    <input type="range" max="255" min='0'/>
+			    <output></output>
+			    <input type="range" max="255" min='0' />
+			    <output></output>
+			    <input type="range" max="100" min="0"/>
+			    <output></output>
+			</form>
+		</fieldset>
+	</body>
+	<script>
+		var inp=document.getElementsByTagName("input");
+		var tup=document.getElementsByTagName("output");
+		var bo=document.getElementsByTagName("body")[0];
+		for(var i=0;i<inp.length;i++){
+			inp[i].index=i;
+			inp[i].onchange=function(){
+				tup[this.index].innerHTML=this.value;
+				var aa=tup[3].innerHTML/100;
+				bo.style.background="rgba"+"("+tup[0].innerHTML+","+tup[1].innerHTML+","+tup[2].innerHTML+","+aa+")"
+			}
+		}
+		  
+	</script>
+</html>

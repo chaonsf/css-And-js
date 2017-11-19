@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*var str='菲律宾非常重要的少是还贷监视款好看多监视大跑哈哈就打谁费军看见了·就'
+		var re=/菲律宾|费军|监视/g;
+		var newst=str.replace(re,function($0){
+			var a='';
+			for(var i=0;i<$0.length;i++){
+				a+="*"
+			}
+			return a;
+		})
+		console.log(newst)*/
+		var num=0;//记录出现的次数
+		var val="";//记录谁出现的
+		var str="ansssstrcssfdssssfsdddfrsserbdfssssdsss"
+		var arr=str.split("");
+		var a=arr.sort()
+		var b=a.join("")
+		var re=/(\w)(\1)+/g
+        var aa=b.replace(re,function($1,$2){
+            console.log($1.length);
+            if(num<$1.length){
+            	num=$1.length;
+            	val=$2;
+            }
+            
+        })
+        alert("出现最多的是"+val+"出现了"+num+"次")
+	</script>
+</html>

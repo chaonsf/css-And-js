@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0;
+			  padding: 0;
+			}
+			#box{
+				width: 800px;
+				height: 400px;
+				margin: 50px auto;
+				position: relative;
+			}
+			#box img{
+				position: absolute;
+				display: block;
+				border: null;
+			}
+			#box .aa{
+				width: 320px;
+				height: 160px;
+				top: -160px;
+				left: 0;
+				z-index: 1;
+				opacity: 0;
+			}
+			#box .aa1{
+				width: 320px;
+				height: 160px;
+				top: 120px;
+				left:0 ;
+				z-index: 1;
+				opacity: 0.2;
+			}
+			#box .aa2{
+				width: 360px;
+				height: 180px;
+				top: 110px;
+				left: 100px;
+				z-index: 2;
+				opacity: 0.6;
+			}
+			#box .aa3{
+				width: 400px;
+				height: 200px;
+				top: 100px;
+				left: 200px;
+				z-index: 3;
+				opacity: 1;
+			}
+			#box .aa4{
+				width: 360px;
+				height: 180px;
+				top: 110px;
+				left: 340px;
+				z-index: 2;
+				opacity: 0.6;
+			}
+			#box .aa5{
+				width: 320px;
+				height: 160px;
+				top: 120px;
+				left: 480px;
+				z-index: 1;
+				opacity: 0.2;
+			}
+			#box .aa6{
+				width: 320px;
+				width: 160px;
+				top: -160px;
+				left: 480px;
+				z-index: 1;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a href="javascript:;">
+				<img class="aa" src="img/move1.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa1" src="img/move2.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa2" src="img/move3.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa3" src="img/move4.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa4" src="img/move5.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa5" src="img/move6.jpg">
+			</a>
+			<a href="javascript:;">
+				<img class="aa6" src="img/bg.jpg">
+			</a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var aimg=document.getElementsByTagName("img");
+		var arr=["zIndex","width","height","opacity","left","top"];
+		var arre=[];
+		for(var i=0;i<aimg.length;i++){
+			var oarr={};
+			for(var j=0;j<arr.length;j++){
+				if(arr[j]=="opacity"){
+					var icur=Math.round(getStyle(aimg[i],"opacity")*100);
+				}else{
+					var icur=parseInt(getStyle(aimg[i],arr[j]))
+				}
+				oarr[arr[j]]=icur;
+			}
+			arre.push(oarr);
+		}
+		setInterval(function(){
+			arre.push(arre.shift());{
+				for(var i=0;i<aimg.length;i++){
+					startMove(aimg[i],arre[i])
+				}
+			}
+		},3000)
+	</script>
+</html>

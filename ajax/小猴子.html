@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		  
+			#btn{
+				box-shadow: 0 0 20px 5px yellow;
+				border: 1px solid #CCCCCC;
+				border-radius:5px;
+				margin-right: 10px;
+			}
+			#btn1{
+				box-shadow: 0 0 20px 5px aquamarine;
+				border: 1px solid #CCCCCC;
+				border-radius:5px;
+			}
+			#box{
+				position: absolute;
+				width: 66px;
+				height: 45px;
+				background:url(img/houge0.gif) no-repeat;
+			}
+			p{
+				font-size: 18px;
+				color: aqua;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="btn" value="根据鼠标点击位置移动" />
+		<input type="button" id="btn1" value="根据鼠标轨迹移动" />
+		<p>请点击按钮激活此功能</p>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+	    var timer=null;
+		var btn=document.getElementById("btn");
+		var btn1=document.getElementById("btn1");
+		var op=document.getElementsByTagName("p")[0];
+		var box=document.getElementById("box");
+		var arr=[{
+			x:box.offsetLeft,
+			y:box.offsetTop
+		}]
+		btn.onclick=function(ev){
+			var e=ev||event;
+			e.cancelBubble=true;
+			e.stopPropagation();
+			btn.value="根据鼠标点击位置移动(已激活)"
+			btn1.value="根据鼠标轨迹移动"
+			op.innerHTML="鼠标点击页面，人物将移动到鼠标位置";
+			document.onmousedown=null;
+			document.onmousemove=null;
+			document.onmouseup=null;/*这一连三个是为了避免鼠标点击俩个input框时猴子也进行那样的运动*/
+			document.onclick=function(ev){
+				var e=ev||event;
+				box.style.background="url(img/houge1.gif) no-repeat";
+				var ex=e.clientX;
+				var ey=e.clientY;
+				startMove(box,{
+					left:ex,
+					top:ey
+				},fn)
+			}
+			function fn(){
+				box.style.background="url(img/houge0.gif) no-repeat";
+			}
+		}
+		btn1.onclick=function(ev){
+			var e=ev||event;
+			e.cancelBubble=true;
+			e.stopPropagation();
+			document.onclick=null;
+			btn.value="根据鼠标点击位置移动"
+			btn1.value="根据鼠标轨迹移动(已激活)"
+			op.innerHTML="鼠标按住左键在页面滑动，人物将按鼠标轨迹运动";
+			document.onmousedown=function(ev){
+				var e=ev||event;
+				var ex=e.clientX;
+				var ey=e.clientY;
+				arr.push({
+					x:ex,
+					y:ey
+				})
+			document.onmousemove=function(ev){
+				var e=ev||event;
+				var ex=e.clientX;
+				var ey=e.clientY;
+				arr.push({
+					x:ex,
+					y:ey
+				})
+			e.preventDefault()
+			}
+			e.preventDefault()/*俩个鼠标事件都需要阻止默认事件*/
+			}
+			document.onmouseup=function(){
+				box.style.background="url(img/houge1.gif) no-repeat";
+			    document.onmousemove=null;/*避免鼠标按下然后运动在抬起后猴子运动过后，鼠标在进行移动时猴子还会跟着鼠标轨迹运动*/
+				var timer=setInterval(function(){
+					if(arr.length==0){
+						clearInterval(timer);
+						box.style.background="url(img/houge0.gif) no-repeat";
+					}else{
+						startMove(box,{
+							left:arr[0].x,
+							top:arr[0].y
+						})
+						arr.shift();
+					}
+				},30)
+			}
+		}
+	</script>
+</html>

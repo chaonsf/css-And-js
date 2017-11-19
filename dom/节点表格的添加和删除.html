@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		姓名：<input type="text" id="btn"/><br>
+		年龄：<input type="text" id="btn1" />
+		<input type="button" id="btn2" value="添加学生" />
+		<input type="button" id="btn3" value="删除一行" />
+		<table border="1" width="200px" height="10px" id="hui">
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+			</tr>
+		</table>
+	</body>
+	<script>
+		var btn=document.getElementById("btn");
+		var btn1=document.getElementById("btn1");
+		var btn2=document.getElementById("btn2");
+		var btn3=document.getElementById("btn3");
+		var hui=document.getElementById("hui")
+		btn2.onclick=function(){
+			var aa=document.createElement("tr");
+			var bb=document.createElement("td");
+			var cc=document.createElement("td");
+			cc.innerHTML=btn1.value;
+			bb.innerHTML=btn.value;
+			aa.appendChild(bb);
+			aa.appendChild(cc);
+			hui.appendChild(aa);
+			var dd=hui.children;
+			for(var i=0;i<dd.length;i++){
+				if(i%2==0){
+					dd[i].style.background="red"
+				}else{
+					dd[i].style.background="blue"
+				}
+				
+			}
+			btn3.onclick=function(){
+					hui.removeChild(hui.lastElementChild)
+					
+			
+			}
+			
+		}
+		
+	</script>
+</html>

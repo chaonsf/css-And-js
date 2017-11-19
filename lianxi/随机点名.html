@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				background: #ccc;
+				color: #fff;
+				width: 100px;
+				height: 100px;
+				text-align: center;
+				line-height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<input type="button" value="开始" />
+		<input type="button" value="结束" />
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input");
+		var adiv=document.getElementsByTagName("div")[0]
+		var arr=["高海蒙","许小丽","郑智梦","蒋奎","薛峰","孔丽丽","周一统","高豪杰","杨宇","陈敬刚","詹伟","周易涵","陈怿男","肖博文","何恒辉","李俊祎","朱志松","张安勇","周碧莹","邹怡婷","肖文华","王鹏","李超"];
+		  var time=null;
+		  function abc(){
+		  	var i=Math.floor(Math.random()*arr.length);
+		  	adiv.innerHTML=arr[i];
+		  }
+		  ainput[0].onclick=function(){
+		  	clearInterval(time);
+		    time=setInterval(abc,500);
+		  }
+		  ainput[1].onclick=function(){
+		  	clearInterval(time);
+		  }
+	</script>
+</html>

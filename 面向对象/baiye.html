@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul,
+			li,
+			div,
+			body {
+				margin: 0;
+				padding: 0
+			}
+			
+			#box {
+				width: 400px;
+				background: #eee;
+				margin: 50px auto;
+				border: 1px solid #ccc;
+				box-shadow: 0 0 8px #ccc;
+				border-radius: 8px;
+				overflow: hidden
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #999
+			}
+			
+			#box .view {
+				height: 24px;
+				width: 100%;
+				border-bottom: 1px dashed #ccc;
+				overflow: hidden;
+				position: relative;
+				top: 1px;
+			}
+			
+			.view ul {
+				position: absolute;
+				top: 0
+			}
+			
+			.view ul li {
+				line-height: 24px;
+				width: 100%;
+				font-size: 14px;
+				text-indent: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+			<div class="view">
+				<ul>
+					<li>
+						<a href="javascript:;">老板娘跑了，老板特意优惠三天</a>
+					</li>
+					<li>
+						<a href="javascript:;">老板娘又回来了，老板特意优惠三天</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="js/index.js"></script>
+    <script>
+    	var aul=document.getElementsByTagName("ul");
+    	var a=-1;
+    	setInterval(function(){
+    		for(var i=0;i<aul.length;i++){
+    			(function(i){
+    				setTimeout(function(){
+    					startMove(aul[i],{
+    						top:a*24
+    					})
+    				},250*i)
+    			})(i)              /*匿名函数自运行*/
+    		}
+    		a=a===-1?0:-1;
+    	},3000)
+    </script>
+</html>

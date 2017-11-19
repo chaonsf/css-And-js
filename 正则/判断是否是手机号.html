@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<input type="text" id="btn" />
+	<input type="button" id="btn1" value="判断一下"/>
+	</body>
+	<script>
+		var btn=document.getElementById('btn');
+		var btn1=document.getElementById("btn1");
+		var re=/^1[3578]\d{9}$/
+		btn1.onclick=function(){
+			var str=btn.value;
+			if(re.test(str)){
+				alert("输入正确")
+			}else{
+				alert("输入错误")
+			}
+		}
+	</script>
+</html>

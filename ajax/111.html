@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		姓名：<input type="text" id="btn"/><br>
+		年龄：<input type="text"  id="btn1"/>
+		<input type="button" value="发送" id="btn2" />
+	</body>
+	 <script>
+	    var btn=document.getElementById("btn");
+	    var btn1=document.getElementById("btn1");
+	    var btn2=document.getElementById("btn2")
+	 	 btn2.onclick=function(){
+	 	 	var xhr=new  XMLHttpRequest();
+		  xhr.open("get","3.get.php?username="+btn.value+"&age="+btn1.value,true)
+		  xhr.send()
+		  xhr.onreadystatechange=function(){
+		  	if(xhr.readyState==4&&xhr.status==200){
+		  		alert(xhr.responseText)
+		  	}
+		  }
+	 	 }
+	 </script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="box">
+			<li>quyuio</li>
+		</ul>
+		<input type="text" id="buy1" />
+		<input type="button" value="发送"  id="buy2"/>发送我爱你有惊喜哦
+	</body>
+	<script>
+		var aa=document.getElementById("box");
+		var bb=document.getElementById("buy1");
+		var cc=document.getElementById("buy2");
+		cc.onclick=function(){
+			if(bb.value=="我爱你"){
+				aa.innerHTML+="<li>我来到你的城</li>"
+			}
+		}
+	</script>
+</html>

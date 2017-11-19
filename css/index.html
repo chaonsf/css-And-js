@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0;}
+			img{vertical-align:bottom;}
+			ul,li{list-style:none;}
+			a{text-decoration:none;color: #333;}
+			.xiao{width: 900px; height:400px; background:url(img/bg.gif);}
+			.xiao li{float: left;}
+			.xiao li img{width:60px; height:400px;}
+			.xiao li:hover img{width:600px; height:400px;}
+			.gou{width: 600px; height:400px;}
+			.gou ul{width:600px;height:400px; position:relative;}
+			.gou ul .gou7{width:600px;height:400px ;overflow:hidden; }
+			.gou ul .gou8{width: 150px; height:30px; position: absolute;right:6px; bottom:5px;}
+			.gou ul .gou8 a{display: block; float:left; height:30px; width:30px; background:#000; opacity: 0.2; text-align: center;color: #fff;}
+			.gou ul .gou8 a:hover{opacity: 1;}
+			.doga li{float: left;position:relative;}
+			.doga li img{width: 220px;height: 220px;}
+			.doga li span{display: block; width: 220px; height: 220px; position: absolute;left: 0px;top: 0px; text-align: center; z-index: -10;}
+			.doga li em{background:url(img/tu.gif) no-repeat;position: absolute;left: 5px; bottom: 6px;z-index: 101; width:25px;height:25px;}
+			.doga li:hover em{background: url(img/tu2.gif) no-repeat;}
+			.doga li:hover span{z-index: 101; background:#fff; opacity: 0.5;}
+			</style>
+	</head>
+	<body>
+		<div class="xiao">
+			<ul>
+				<li><img src="img/child1.jpg"</li>
+				<li><img src="img/child2.jpg"</li>
+				<li><img src="img/child3.jpg"</li>
+				<li><img src="img/child4.jpg"</li>
+				<li><img src="img/child5.jpg"</li>
+			</ul>
+		</div>
+		<div class="gou">
+			<ul>
+				<li class="gou7">
+					<img src="img/child1.jpg" id="c1" />
+					<img src="img/child2.jpg" id="c2" />
+					<img src="img/child3.jpg" id="c3" />
+					<img src="img/child4.jpg" id="c4" />
+				</li>
+				<li class="gou8">
+					<a href="#c1">1</a>
+					<a href="#c2">2</a>
+					<a href="#c3">3</a>
+					<a href="#c4">4</a>
+				</li>
+			</ul>
+		</div>
+		<div class="doga">
+			<ul>
+				<li><img src="img/img01.jpg"><span>Are you ok?</span><em></em></li>
+				<li><img src="img/img02.jpg"><span>Are you ok?</span><em></em></li>
+				<li><img src="img/img03.jpg"><span>Are you ok?</span><em></em></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		  div{
+		  	width: 200px;
+		  	height:200px;
+		  	line-height: 200px;
+		  	text-align:center;
+		  	border: solid #ccc 1px;
+		  	display: none;
+		  	
+		  }
+		  .teshu{
+		  	display: block;
+		  }
+		  .act{
+		  	background: red;
+		  }
+		  input{
+		  	background: #ccc;
+		  }
+		</style>
+	</head>
+	<body>
+		<input type="button" value="选项一"  class="act"/>
+		<input type="button" value="选项二" />
+		<input type="button" value="选项三" />
+		<input type="button" value="选项四" />
+		<div class="teshu">1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		
+	</body>
+	<script>
+		var ainput=document.getElementsByTagName("input");
+		var adiv=document.getElementsByTagName("div");
+		for( var i=0;i<ainput.length;i++){
+			ainput[i].index=i;
+			ainput[i].onclick=function(){
+				for(var j=0;j<ainput.length;j++){
+					adiv[j].style.display="none";
+					ainput[j].style.background="#ccc";
+				}
+				adiv[this.index].style.display="block";
+				ainput[this.index].style.background="red";
+			}
+		}
+	</script>
+</html>

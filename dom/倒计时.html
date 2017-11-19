@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="btn"/>
+		<input type="text" id="btn1" />
+		<input type="button" id="btn2" value="开始倒计时吧"/>
+	</body>
+	<script>
+	var  btn=document.getElementById("btn");
+	var btn1=document.getElementById("btn1");
+	var btn2=document.getElementById("btn2");
+	var tim=null;
+		btn2.onclick=function(){
+			clearInterval(tim)
+			var mydate=new Date(btn.value);/*获取输入框里面的时间，可以直接传参的*/
+		    tim=setInterval(fn,1000);
+			function fn(){
+			var inow=new Date() /*获取系统的当前时间*/
+		  var t=Math.floor((mydate-inow)/1000)    
+		    if(t>=0){
+		    	var a=Math.floor(t/86400);
+		    	var b=Math.floor((t-a*86400)/3600);
+		    	var c=Math.floor((t-a*86400-b*3600)/60);
+		    	var d=t-86400*a-b*3600-c*60
+		    	var src=a+"天"+b+"时"+c+"分"+d+"秒";
+		    	console.log(src)
+		    	btn1.value=src;
+		    }else{
+		    	clearInterval(tim)
+		    	alert("时间到")
+		    }
+			}
+		}
+	</script>
+</html>

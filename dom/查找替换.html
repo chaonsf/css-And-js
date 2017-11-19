@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#banner{
+				margin: 100px auto;
+				width: 542px;
+				height:420px;
+				background: #EBEBEB;
+				border: #ddd solid 4px;
+			}
+			ul,li{
+				list-style: none;
+			}
+			#box{
+				margin-top: 60px;
+				overflow: hidden;
+			}
+			#box .left{
+				width:437px ;
+				height: 226px;
+				background: #fff;
+				margin-left: 15px;
+				float: left;
+			}
+			#box input{
+				width: 66px;
+				height: 28px;
+				background: #838383;
+				margin-left:5px;
+			}
+			#cha{
+				width: 455px;
+				height: 100px;
+				border: solid #FB2804 6px;
+				margin-top:10px;
+				margin-left: 15px;
+			}
+			#cha ul{
+				width: 424px;
+				margin-left: 15px;
+				border-bottom: solid yellow 2px;
+			}
+			#cha ul li{
+			display: inline-block;
+			width: 68px;
+			height: 26px;
+			line-height: 26px;
+			text-align: center;
+			margin-top: 15px;
+			}
+			#cha ul .moren{
+				background: #FF5500;
+			}
+			#cha input{
+				width: 169px;
+				height: 30px;
+				margin-top: 6px;
+				border: orange solid 1px;
+				outline: none;
+			}
+		#cha .ftu{
+			width: 34px;
+			height: 28px;
+			border: none;
+			background: #F4F2F4;
+		  
+		}
+		#cha .rty{
+			margin-left:15px;
+		}
+		#box .hidden{
+			background:olive;
+			display: none;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="banner">
+			<div id="box">
+				<div class="left">
+					据悉，安东内拉的一位女友在交通事故中去世，梅西得知后飞回阿根廷陪伴了她。那段时间，两人重新找回了儿时的感情。2010年，安东内拉结束了自己的大学学业，正式前往巴塞罗那与梅西住在了一起，这位金球先生的家中，终于也有了一位女主人。
+				</div>
+				<input type="button" value="展开" />
+				<input type="button" value="查找" class="hidden" />
+				<input type="button" value="替换" class="hidden" />
+			</div>
+			<div id="cha">
+				<ul>
+					<li class="moren">查找</li>
+					<li>替换</li>
+				</ul>
+				<input type="text" class="rty" />
+				<input type="text" />
+				<input type="button" class="ftu" value="查找"/>
+			</div>
+		</div>
+	</body>
+	<script>
+		var left=document.getElementsByClassName("left")[0];
+	</script>
+</html>

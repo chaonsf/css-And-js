@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			a{
+				text-decoration:none;
+			}
+			html,body{
+				width: 100%;
+				background:#f3eff0;
+			}
+			header{
+				width: 100%;
+				background:#a90506;
+				color: #fff;
+				font-size:0.34rem;
+				text-align: center;
+				height: 0.88rem;
+				line-height: 0.88rem;
+			}
+			article{
+				
+				font-size:0.3rem;
+				padding-top: 0.28rem;
+				padding-left: 0.28rem;
+				color: #5c5c5c;
+			}
+			article input{
+				outline: none;
+			}
+			.aa{
+				width: 5.82rem;
+				height: 0.88rem;
+				color: #9b9b9b;
+				font-size:0.26rem;
+				text-indent: 1em;
+				margin-bottom:0.04rem;
+			}
+			.bb{
+				margin-top:0.5rem;
+			    font-size: 0.28rem;
+				position:relative;
+				height: 0.4rem;
+				line-height:0.4rem;
+				color:#5b5b5b;
+				overflow: hidden;
+			}
+			.bb span{
+				width: 0.37rem;
+				height: 0.37rem;
+				border: 0.01px solid #676767;
+				display: inline-block;
+				background:url(img/wugou.jpg) no-repeat;
+				margin-right:0.1rem;
+				float: left;
+			}
+			.bb a{
+				color: #fe0f52;
+				margin-left:0.35rem;
+			}
+			.bb .gou{
+				background:url(img/gou.jpg) no-repeat ;
+				background-position:-0.05rem;
+			}
+			
+			.wj{
+				color: #ff1054;
+				margin-left:0.22rem;
+			}
+			.login{
+				display: block;
+				width: 5.8rem;
+				height: 0.88rem;
+				background:#c90908;
+				line-height:0.88rem;
+				text-align: center;
+				margin-top:0.5rem;
+				border-radius: 0.05rem;
+				color: #fff;
+				font-size:0.36rem;
+			}
+			.enroll{
+				display: block;
+				width: 5.8rem;
+				height: 0.88rem;
+				background:#3a3a3a;
+				line-height:0.88rem;
+				text-align: center;
+				margin-top:0.12rem;
+				border-radius: 0.05rem;
+				color: #fff;
+				font-size:0.36rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			开心摇摇用户登录
+		</header>
+		<article>
+			<input type="text" placeholder="请输入账户" class="aa"/>
+			<input type="password" placeholder="请输入密码" class="aa" />
+			<div class="bb">
+				<span>
+				</span>
+				<b>显示密码</b>
+				<a href="">忘记密码?</a>
+			</div>
+			<div class="bb">
+				<span class="gou"></span>
+				<b>记住密码自动登录</b>
+			</div>
+			<a href="javascript:;" class="login">登录</a>
+			<a href="enroll.html" class="enroll">注册</a>
+		</article>
+	</body>
+	<script type="text/javascript" src="js/jq.js"></script>
+	<script type="text/javascript" src="js/rem.js"></script>
+	<script>
+		$(".bb span").click(function(){
+			if($(this).hasClass("gou")){
+				$(this).removeClass("gou")
+			}else{
+				$(this).addClass("gou")
+			}
+		})
+	    $(function(){
+	    	var username1=sessionStorage.getItem("username");
+	    	var password1=sessionStorage.getItem("password");
+	    	var username2=localStorage.getItem("username");
+	    	var password2=localStorage.getItem("password");
+	    	if(username2&&password2){
+	    		$(".aa").eq(0).val(username2);
+	    		$(".aa").eq(1).val(password2);
+	    	}else{
+	    		if(username1&&password1){
+	    			$(".aa").eq(0).val(username1);
+	    		    $(".aa").eq(1).val(password1);
+	    		}else{
+	    			$(".aa").eq(0).val("");
+	    		    $(".aa").eq(1).val("");
+	    		}
+	    	}
+	    	function login(){
+	    		$.ajax({
+	    			type:"get",
+	    			url:"http://datainfo.duapp.com/shopdata/userinfo.php",
+	    			data:{
+	    				status:"login",
+	    				userID:$(".aa").eq(0).val(),
+	    				password:$(".aa").eq(1).val()
+	    			},
+	    			success:function(data){
+	    				if(data==0){
+	    					alert("用户名不存在")
+	    				}else if(data==2){
+	    					alert("用户名密码不符")
+	    				}else{
+	    					console.log("登录成功");
+	    					if($(".bb span").hasClass("gou")){
+	    						localStorage.setItem("username",$(".aa").eq(0).val());
+	    						localStorage.setItem("password",$(".aa").eq(1).val())
+	    					}
+	    					setTimeout(function(){
+	    						window.location.href="list.html"
+	    					},2000)
+	    				}
+	    			}
+	    		});
+	    	}
+	    	$(".login").click(function(){
+	    		if($(".aa").eq(0).val()&&$(".aa").eq(1).val()){
+	    			login();
+	    		}
+	    	})
+	    })
+	</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		     *{
+		     	margin: 0;
+		     	padding:0;
+		     }
+			#box{
+				width:100%;
+				height:400px;
+				 overflow: hidden;
+				}
+			 #box ul{
+			 	position:relative;
+			    margin:auto 100px;
+			    height: 400px;	
+			    width: 800px;
+			 }
+			 img{
+			 	width: 600px;
+			 	height: 400px;
+			 	margin-left:100px;
+			 	vertical-align: bottom;
+			 }
+			  ul li{
+			 	 background: aqua;
+			     width: 800px;
+			 	 list-style: none;
+			 }
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="img/wf.jpg"></li>
+				<li style="background: pink;"><img src="img/wf1.jpg"></li>
+				<li style="background: olive;"><img src="img/wf2.jpg"></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+	    var adiv=document.getElementById("box");
+		var aul=adiv.getElementsByTagName("ul")[0];
+		var ali=aul.getElementsByTagName("li");
+		aul.innerHTML+=aul.innerHTML;
+		var num=0;
+		var ihig=parseInt(getStyle(ali[0],"height"))
+	     var timer=setInterval(move,1000);
+	     function move(){
+	     /*	clearInterval(timer);*/
+	     	num++
+	     	startMove(aul,{
+	     		top:-ihig*num
+	     	},1000)
+	     }
+	   /*  function clear(){
+	     	
+	     	timer=setInterval(move,1000)
+	     	if(num>=ali.length/2){
+	     		num=0;
+	     		aul.style.top=0;
+	     	}
+	     }*/
+	</script>
+</html>

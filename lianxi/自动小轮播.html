@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#banner{
+				margin: 100px auto;
+				position: relative;
+				width: 400px;
+				height: 300px;
+				cursor: pointer;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			img{
+				border: 0;
+				vertical-align: bottom;
+			}
+			ul{
+				width:400px;
+				height: 300px;
+				position:relative;
+			}
+			ul li{
+				display: none;
+				position: absolute;
+			}
+			ul .teshu{
+				display: block;
+			}
+			input{
+				width: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="开始" />
+			<input type="button" value="结束">
+		<div id="banner">
+			<ul>
+				<li class="teshu"> <a href="#"><img src="img/i01.jpg"></a></li>
+				<li> <a href="#"><img src="img/i02.jpg"></a></li>
+				<li> <a href="#"><img src="img/i04.jpg"></a></li>
+				<li> <a href="#"><img src="img/i05.jpg"></a></li>
+				<li> <a href="#"><img src="img/img01.jpg"></a></li>
+			</ul>
+		</div>
+	</body>
+	<script>
+	    var kai=document.getElementsByTagName("input");
+		var ul1=document.getElementsByTagName("ul")[0];
+		var li1=ul1.getElementsByTagName("li");
+		var num=0;
+		var time=null;
+		function abc(){
+			for( var i=0;i<li1.length;i++){
+				li1[i].style.display="none";
+			}
+			num++
+			if(num==li1.length){
+				num=0;
+			}
+			li1[num].style.display="block";
+		}
+		kai[0].onclick=function(){
+			clearInterval(time);
+			time=setInterval(abc,1000);
+		}
+		kai[1].onclick=function(){
+			clearInterval(time);
+		}
+	</script>
+</html>

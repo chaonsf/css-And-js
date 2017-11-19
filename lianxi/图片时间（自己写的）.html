@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="img/0.JPG">
+		<img src="img/0.JPG"/>
+		<img src="img/colon.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/colon.JPG" />
+		<img src="img/0.JPG" />
+		<img src="img/0.JPG" />
+		
+		
+	</body>
+	<script>
+		var arr=["img/0.JPG","img/1.JPG","img/2.JPG","img/3.JPG","img/4.JPG","img/5.JPG","img/6.JPG","img/7.JPG","img/8.JPG","img/9.JPG"];
+		var aimg=document.getElementsByTagName("img");
+		
+		 setInterval(tim,1000);
+		 function tim(){
+		 	 var mydate=new Date();
+		    var iHour=mydate.getHours();
+		    var imin=mydate.getMinutes();
+		    var isec=mydate.getSeconds();
+		 	if(iHour<10){
+		 		aimg[0].src=arr[0];
+		 		aimg[1].src=arr[iHour];
+		 	}else{
+		 		aimg[0].src=arr[parseInt(iHour/10)];
+		 		aimg[1].src=arr[iHour%10];
+		 	}
+		 	if(imin<10){
+		 		aimg[3].src=arr[0];
+		 		aimg[4].src=arr[imin];
+		 	}else{
+		 		aimg[3].src=arr[parseInt(imin/10)];
+		 		aimg[4].src=arr[imin%10];
+		 	}
+		 	if(isec<10){
+		 		aimg[6].src=arr[0];
+		 		aimg[7].src=arr[isec];
+		 	}else{
+		 		aimg[6].src=arr[parseInt(isec/10)];
+		 		aimg[7].src=arr[isec%10];
+		 	}
+		 	aimg[2].src="img/colon.JPG";
+		 	setTimeout(function(){
+		 		aimg[2].src="img/space.jpg"
+		 	},500);
+		 	aimg[5].src="img/colon.JPG";
+		 	setTimeout(function(){
+		 		aimg[5].src="img/space.jpg"
+		 	},500)
+		 }
+		
+	</script>
+</html>

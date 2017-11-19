@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    *{
+		    	margin: 0;
+		    	padding: 0;
+		    }
+		    #banner{
+		    	width: 600px;
+		    	height: 400px;
+		    	margin: auto 100px;
+		    	overflow: hidden;
+		    }
+		    ul{
+		    	position: relative;
+		    	width: 600px;
+		    	height: 400px;
+		    }
+		    ul li{
+		    	list-style: none;
+		    	width: 600px;
+		    	height: 400px;
+		    }
+		    ul li img{
+		    	width: 600px;
+		    	height: 400px;
+		    	vertical-align: bottom;
+		    	border: none;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="banner">
+			<ul>
+				<li><img src="img/move1.jpg"></li>
+				<li><img src="img/move2.jpg"></li>
+				<li><img src="img/move3.jpg"></li>
+				<li><img src="img/move4.jpg"></li>
+				<li><img src="img/move5.jpg"></li>
+				<li><img src="img/move6.jpg"></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var aul=document.getElementsByTagName("ul")[0];
+		var ali=aul.getElementsByTagName("li");
+		aul.innerHTML+=aul.innerHTML;
+		var num=0
+		var ihig=parseInt(getStyle(ali[0],"height"));
+		var timer=null;
+		  timer=setInterval(move,1000);
+		  function move(){
+		  	clearInterval(timer);
+		  	num++;
+		  	startMove(aul,{
+		  		top:-ihig*num
+		  	},clear)
+		  }
+		  function clear(){
+		  	timer=setInterval(move,1000)
+		  	if(num>=ali.length/2){
+		  		num=0;
+		  		aul.style.top=0;
+		  	}
+		  }
+	</script>
+</html>

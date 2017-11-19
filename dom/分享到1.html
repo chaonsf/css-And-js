@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 150px;
+				height: 80px;
+				position: absolute;
+				top:40%;
+				left: -150px;
+				background: lawngreen;
+			}
+			span{
+				width: 20px;
+				height: 60px;
+				position: absolute;
+				left: 150px;
+				background: aquamarine;
+				margin-top:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<span>分享到</span>
+		</div>
+	</body>
+	<script>
+		function move(obj,attr,target){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var speed=(target-parseInt(getStyle(obj,attr)))/8;
+				var speedInt=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(parseInt(obj.style[attr])==target){
+					clearInterval(obj.timer);
+				}else{
+					obj.style[attr]=parseInt(getStyle(obj,attr))+speedInt+"px";
+				}
+			},50)
+		}
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj)[attr];
+			}
+			
+		}
+		var adiv=document.getElementsByTagName("div")[0];
+		var aspan=adiv.getElementsByTagName("span")[0];
+		adiv.onmouseover=function(){
+			move(adiv,"left",0);
+		}
+		adiv.onmouseout=function(){
+			move(adiv,"left",-150)
+		
+		}
+	</script>
+</html>

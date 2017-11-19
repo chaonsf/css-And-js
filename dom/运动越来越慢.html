@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 70px;
+				height: 60px;
+				background: brown;
+				position: absolute;
+				top: 30px;
+				left: 0;
+			}
+			#box1{
+				width: 1px;
+				height: 600px;
+				background: blue;
+				position: absolute;
+				top: 30px;
+				left: 1300px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="hjlkjad'jo'" />
+		<div id="box"></div>
+		<div id="box1"></div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var box1=document.getElementById("box1");
+		var ainput=document.getElementsByTagName("input")[0];
+		 function getStyle(obj,attr){
+		 	if(obj.currentStyle){
+		 		return obj.currentStyle[attr];
+		 	}else{
+		 		return getComputedStyle(obj)[attr];
+		 	}
+		 }
+		 var timer=null;
+		 ainput.onclick=function(){
+		 	clearInterval(timer);
+		 	timer=setInterval(function(){
+		 		var speed= (1300-parseFloat(getStyle(box,"left")))/9;
+		 		if(box.style.left==1300){/*清除定时器*/
+		 			clearInterval(timer)
+		 		}else{
+		 			box.style.left=parseFloat(getStyle(box,"left"))+speed+"px";
+		 		}
+		 	},50)
+		 }
+	</script>
+</html>

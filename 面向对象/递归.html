@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function fn(num){
+			if(num<=1){
+				return 1
+			}else{
+				return num*fn(num-1)
+			}
+		}
+		console.log(fn(10))
+	</script>
+</html>

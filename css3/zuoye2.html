@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			header{
+				position: fixed;
+				top: 15px;
+				left:0;
+				background:#2f2f2f;
+				height: 50px;
+				width: 100%;
+			}
+			header ul{
+				height: 50px;
+				width: 100%;
+				display: -webkit-box;
+			}
+			header ul li{
+				line-height: 50px;
+				color: #fff;
+				font-size:16px;
+				-webkit-box-flex:1;
+				text-align: center;
+			}
+			article{
+				margin-top:65px;
+				width: 100%;
+				height: 100%;
+			}
+			article .aul{
+				width: 100%;
+				height:100%;
+				display: -webkit-box;
+			}
+			article .aul li img{
+				width: 100%;
+				height: 100%;
+			}
+			article .aul li{
+				border: solid 1px #fff;
+			}
+			article .aul li:nth-child(1){
+				-webkit-box-flex:2;
+				
+			}
+			article .aul li:nth-child(2){
+				-webkit-box-flex:1;
+				
+			}
+			article .aul li:nth-child(3){
+				-webkit-box-flex:1;
+			
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li>首页</li>
+				<li>文章</li>
+				<li>活动</li>
+				<li>帮助</li>
+				<li>更多</li>
+			</ul>
+		</header>
+		<article>
+			<ul class="aul">
+				<li><img src="img/swiper1.jpeg"></li>
+				<li><img src="img/2.png"></li>
+				<li><img src="img/1.png"></li>
+			</ul>
+		</article>
+	</body>
+</html>

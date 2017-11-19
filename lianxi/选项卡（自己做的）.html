@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+			margin: 0;
+			padding: 0;
+			font-size:12px;
+		}
+		  a{
+			text-decoration:none;
+			color: #000;
+		}
+		ul,li{
+			list-style: none;
+		}
+		.box{
+			width: 500px;
+			margin: 20px auto;
+		}
+		.hide{
+			display: none;
+		}
+		#tab_t{
+			height: 25px;
+			overflow: hidden;
+		}
+		#tab_t li{
+			float: left;
+			width: 80px;
+			height: 24px;
+			line-height: 24px;
+			text-align: center;
+			background: #EAEAEA;
+			margin-right: 5px;
+			border: solid 1px #EAEAEA;
+			cursor: pointer;
+		}
+		#tab_t .act{
+			position:relative;
+			height: 25px;
+			margin-bottom: -1px;
+			background: #B98709;
+		}
+        #tab_c{
+        	border: 1px #00FFFF solid;
+        	background: #00FFFF;
+        	height: 100px;
+        	width: 320px;
+        	margin-top: 10px;
+        }
+		</style>
+		<script>
+			window.onload=function(){
+				var tab_t=document.getElementById("tab_t");
+				var tab_tli=tab_t.getElementsByTagName("li");
+				var tab_c=document.getElementById("tab_c");
+				var tab_cdiv=tab_c.getElementsByTagName("div");
+				for(var i=0;i<tab_tli.length;i++){
+					tab_tli[i].index=i;
+					tab_tli[i].onclick=function(){
+						for(var i=0;i<tab_tli.length;i++){
+							tab_tli[i].className="";
+							tab_cdiv[i].className="hide";
+						}
+						tab_tli[this.index].className="act";
+						tab_cdiv[this.index].className=""; 
+					}
+				}
+			
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<ul id="tab_t">
+			<li class="act"><a href="#">选项一</a></li>
+			<li><a href="#">选项二</a></li>
+			<li><a href="#">选项三</a></li>
+			<li><a href="#">选项四</a></li>
+		</ul>
+		 <div id=tab_c>
+			<div>我是一号选项</div>
+		    <div class="hide">我是二号选项</div>
+		   <div class="hide">我是三号选项</div>
+		   <div class="hide">我是四号选项</div>
+		</div>
+		</div>
+	</body>
+</html>

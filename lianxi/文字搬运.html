@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		  *{
+		  	margin: 0;
+		  	padding: 0;
+		  }
+		  #con{
+		  	width: 840px;
+		  	height: 280px;
+		  	border: solid 1px #ccc;
+		  	margin: 50px auto;
+		  	background:#C0C0C0;
+		  }
+		  #box{
+		  	width: 820px;
+		  	height: 260px;
+		  	border: 5px solid #eee;
+		  	margin: 10px;
+		  	background: #fff;
+		 
+		  }
+		  #left,#right{
+		  	width: 310px;
+		  	height: 230px;
+		  	border:  dashed 1px #333;
+		  	margin: 10px;
+		  }
+		  #left{
+		  	float: left;
+		  }
+		  #right{
+			width: 290px;
+			height: 210px;
+			float: right;
+			background: aqua;
+			padding: 10px;
+		}
+		#left textarea{
+			background: #EFEF8F;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			font-size: 16px;
+		}
+		#tip{
+			width: 130px;
+			float: left;
+			text-align: center;
+		    height: 100%;
+		}
+		#tip button {
+			text-align: center;
+			background: orange;
+			width: 100px;
+			height: 35px;
+			color: #fff;
+			margin: 10px auto;
+			border: 0;
+			cursor: pointer;
+		}
+		ul{
+			margin-left: 15px;
+			margin-top: 20px;
+		}
+		ul  li{
+			list-style: none;
+			width: 10px;
+			height: 10px;
+			background: orange;
+			float: left;
+			margin-right: 5px;
+		}
+		.style{
+			background: red;
+		}
+		.orange{
+			background: orange;
+		}
+		
+		</style>
+	</head>
+	<body>
+		<div id="con">
+			<div id="box">
+				<div id="left">
+					<textarea>为何推出这部教材？该教材主编，上海闸北第三中心小学校长尤睿此前在接受媒体采访时表示，“近年来，在应试教育等众多因素影响下，男生的健康成长备受关注，寻找‘小小男子汉’也成了一个社会话题，本课程正是在这样的背景下诞生的。”</textarea>
+					
+				</div>
+				<div id="tip">
+					<button>文字右移</button> <br />
+					<span>0/0</span>
+					<div id="animate">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<div id="right">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var btn=document.getElementsByTagName("button")[0];
+		var txt=document.getElementsByTagName("textarea")[0];
+		var ani=document.getElementById("animate");
+		var aLi=ani.getElementsByTagName("li");
+		var adiv=document.getElementById("right");
+		var aSpan=document.getElementsByTagName("span")[0];
+		btn.onclick=function(){
+			if(txt.value==""){
+				alert("请输入内容");
+			}else{
+				var str=txt.value;
+				for(var i=0;i<str.length;i++){
+					fn(i);
+				}
+			}
+			function fn(num){
+				var str=txt.value;
+				setTimeout(function(){
+				  adiv.innerHTML+=str.substring(num,num+1);
+				  txt.value=str.substring(num+1);
+				  aSpan.innerHTML=(num+1)+"/"+str.length;
+				  for(var j=0;j<aLi.length;j++){
+				  	aLi[j].className="orange";
+				  }
+				  aLi[num%aLi.length].className="style";
+				  btn.disabled=true;
+           		  btn.style.opacity=0.5;
+           		  if(num==str.length-1){
+           			for(var j=0;j<aLi.length;j++){
+           			aLi[j].className="orange"
+           		}
+           			btn.disabled=false;
+           			btn.style.opacity=1;
+           		}
+				},50*num)
+			}
+		}
+	</script>
+</html>

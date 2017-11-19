@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			ul{
+				height: 50px;
+				width: 50px;
+				position:relative;
+				left: 200px;
+				top: 100px;
+				transform-style:preserve-3d;
+				animation:move 5s linear alternate infinite;
+			}
+			ul li{
+				height: 50px;
+				width: 50px;
+				position: absolute;
+				/*opacity: 0.5;*/
+				font-size:40px;
+				line-height:50px;
+				text-align: center;
+				color: #fff;
+				/*border-radius: 50%;*/
+			}
+			ul li:nth-child(1){
+				background:aqua;
+				transform:rotateX(90deg) translateZ(25px);
+			}
+			ul li:nth-child(2){
+				background:red;
+				transform:rotateX(-90deg) translateZ(25px);
+			}
+			ul li:nth-child(3){
+				background:blue;
+				transform:rotateY(90deg) translateZ(25px);
+			}
+			ul li:nth-child(4){
+				background:chocolate;
+				transform:rotateY(-90deg) translateZ(25px);
+			}
+			ul li:nth-child(5){
+				background:green;
+				transform:rotateX(-180deg) translateZ(25px);
+			}
+			ul li:nth-child(6){
+				background:paleturquoise;
+				transform:rotateX(0deg) translateZ(25px);
+			}
+			@keyframes move{
+				0%{
+					transform: rotateX(0deg) rotateY(0deg);
+					top: 100px;
+					left: 200px;
+				}
+				25%{
+					transform: rotateX(90deg) rotateY(90deg);
+					top: 150px;
+					left: 300px;
+				}
+				50%{
+					transform: rotateX(180deg) rotateY(180deg);
+					top: 200px;
+					left: 400px;
+				}
+				75%{
+					transform: rotateX(270deg) rotateY(270deg);
+					top: 250px;
+					left: 500px;
+				}
+				100%{
+					transform: rotateX(360deg) rotateY(360deg);
+					top: 300px;
+					left: 600px;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		 <ul>
+		 	<li>1</li>
+		 	<li>2</li>
+		 	<li>3</li>
+		 	<li>4</li>
+		 	<li>5</li>
+		 	<li>6</li>
+		 </ul>
+	</body>
+</html>

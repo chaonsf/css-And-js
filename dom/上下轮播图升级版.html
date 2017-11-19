@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+				color: #ccc;
+			}
+			#banner{
+				width: 1010px;
+				height: 270px;
+				position: relative;
+				overflow: hidden;
+			}
+			#aul{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#aul li{
+				width: 810px;
+				height: 270px;
+			}
+			#aul li img{
+				width: 810px;
+				height: 270px;
+			}
+			#bul{
+				position: absolute;
+				left: 810px;
+				top: 0;
+				width: 200px;
+			}
+			#bul li{
+				width: 200px;
+				height: 90px;
+				background: olivedrab;
+				font-size: 25px;
+				line-height: 90px;
+				text-align: center;
+			}
+			#prev{
+				position: absolute;
+				top: 280px;
+				left: 100px;
+			}
+			#next{
+				position: absolute;
+				top: 280px;
+				left: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="banner">
+			<ul id="aul">
+				<li><img src="img/wf.jpg"></li>
+				<li><img src="img/wf1.jpg"></li>
+				<li><img src="img/wf2.jpg"></li>
+			</ul>
+			<ul id="bul">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<a href="#" id="prev">上一页</a>
+		<a href="#" id="next">下一页</a>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var aul=document.getElementById("aul");
+		var ali=aul.getElementsByTagName("li");
+		var bul=document.getElementById("bul");
+		var bli=bul.getElementsByTagName("li");
+		aul.innerHTML+=aul.innerHTML;
+		var iheight=parseInt(getStyle(ali[0],"height"));
+		var prev=document.getElementById("prev");
+		var next=document.getElementById("next");
+		var timer=null;
+		var num=0;
+		var boff=true;
+		timer=setInterval(move,1000);
+		for(var j=0;j<bli.length;j++){
+			bli[j].index=j;
+			bli[j].onclick=function(){
+				num=this.index-1;
+				clearInterval(timer);
+				move();
+			}
+		}
+		prev.onclick=function(){
+			if(boff){
+				if(num==0){
+				aul.style.top=-iheight*(ali.length)/2+"px"
+				num=ali.length/2-2;
+			}else{
+				num=num-2;
+			}
+			clearInterval(timer);
+			move();
+			}
+		}
+		next.onclick=function(){
+			if(boff){
+				clearInterval(timer);
+			    move();
+			}
+		}
+		function move(){
+			boff=false;
+			clearInterval(timer);
+             num++;
+             for(var j=0;j<bli.length;j++){
+             	bli[j].style.background="olivedrab"
+             }
+             if(num==ali.length/2){
+             	bli[0].style.background="aqua"
+             }
+             else{
+             	bli[num].style.background="aqua"
+             }
+             startMove(aul,{
+             	top:-iheight*num
+             },clear)
+		}
+		function clear(){
+			boff=true;
+			timer=setInterval(move,1000);
+			if(num>=ali.length/2){
+				num=0;
+				aul.style.top=0;
+			}
+		}
+	</script>
+</html>

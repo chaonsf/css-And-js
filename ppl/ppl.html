@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.nv img{
+				width: 220px;
+				border:0;
+				vertical-align: bottom;
+				border-radius: 8px;
+				box-shadow: 0 0 8px #ccc;
+				margin: 10px;
+				padding: 10px;
+			}
+			#main{
+				position: relative;
+				margin: 20px auto 0;
+			}
+			.nv{
+				float: left;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript" src="js/time_move.js"></script>
+		<script type="text/javascript" src="js/Tween.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<div class="nv"><img src="img/1.jpg"></div>
+			<div class="nv"><img src="img/2.jpg"></div>
+			<div class="nv"><img src="img/3.jpg"></div>
+			<div class="nv"><img src="img/4.jpg"></div>
+			<div class="nv"><img src="img/5.jpg"></div>
+			<div class="nv"><img src="img/6.jpg"></div>
+			<div class="nv"><img src="img/7.jpg"></div>
+			<div class="nv"><img src="img/8.jpg"></div>
+			<div class="nv"><img src="img/9.jpg"></div>
+			<div class="nv"><img src="img/10.jpg"></div>
+			<div class="nv"><img src="img/11.jpg"></div>
+			<div class="nv"><img src="img/12.jpg"></div>
+			<div class="nv"><img src="img/13.jpg"></div>
+			<div class="nv"><img src="img/14.jpg"></div>
+			<div class="nv"><img src="img/15.jpg"></div>
+			<div class="nv"><img src="img/16.jpg"></div>
+			<div class="nv"><img src="img/17.jpg"></div>
+			<div class="nv"><img src="img/18.jpg"></div>
+			<div class="nv"><img src="img/19.jpg"></div>
+			<div class="nv"><img src="img/20.jpg"></div>
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			var x=document.documentElement.clientWidth;
+		var y=document.documentElement.clientHeight;
+		var nvw=260;
+		var oimg=220;
+		var boff=true;
+		var num=Math.floor(x/nvw);
+		var box=document.getElementById("main");
+		var adiv=box.getElementsByTagName("div");
+		var n=[];
+		box.style.width=nvw*num+"px";
+		for(var i=0;i<adiv.length;i++){
+			if(i<num){
+				adiv[i].style.top=0;
+				adiv[i].style.left=i*nvw+"px";
+				n.push(adiv[i].offsetHeight);
+			}else{
+				var iMin=Math.min.apply(false,n);
+				m=getkey(n,iMin);
+				adiv[i].style.top=iMin+"px";
+				adiv[i].style.left=(m*nvw)+"px";
+				n[m]+=adiv[i].offsetHeight;
+			}
+		}
+		function getkey(a,b){
+			var ikey=i;
+		for(var i=0;i<a.length;i++){
+			if(a[i]==b){
+				ikey=i;
+				break;
+			}
+		}
+		return ikey;
+		}
+		window.scroll=function(){
+			var topscrolla=document.body.scrollTop||document.documentElement.scrollTop;
+			var olist=adiv[adiv.length-1];
+			if(boff&&topscrolla+y>olist.offsetHeight/2+olist.offsetTop){
+				boff=false;
+				var xhr=new XMLHttpRequest();
+				xhr.open("GET","waterfall.php",true);
+				xhr.send();
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4&&xhr.status==200){
+						var alist=JSON.parse(xhr.responseText);
+						for(var i=0;i<alist.length;i++){
+							var iMin=Math.min.apply(false,n);
+							var m=getkey(n,iMin);
+							var aimg=document.createElement("img");
+							aimg.src=alist[i].url;
+							aimg.style.height=oimg/alist[i].width*alist[i].height;
+							var odiv=document.createElement("div");
+							odiv.className="nv";
+							odiv.appendChild(aimg);
+							box.appendChild(odiv);
+							odiv.style.top=topscrolla+y+"px";
+							odiv.style.left=(x-nvw)/2+"px";
+							timeMove(odiv,{
+								left:m*nvw,
+								top:iMin
+							},Tween.Sine.easeOut,1000)
+							n[m]+=adiv[i].offsetHeight;
+						}
+						boff=true;
+					}
+				}
+			}
+		}
+		}
+		
+	</script>
+</html>

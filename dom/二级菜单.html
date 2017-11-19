@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    *{
+		    	margin: 0;
+		    	padding: 0;
+		    }
+			#box{
+				width: 1000px;
+				height: 40px;
+				background: orchid;
+				position: relative;
+				
+			}
+			#box a{
+				float: left;
+				display: block;
+				width: 200px;
+				height: 40px;
+				background: blueviolet;
+			}
+			#box ul{
+				position: absolute;
+				list-style: none;
+				top:40px;
+				width:200px;
+				height:0;
+				overflow: hidden;
+				background: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id=box>
+			<a href="#">aaa</a>
+			<a href="#">aaa</a>
+			<a href="#">aaa</a>
+			<a href="#">aaa</a>
+			<a href="#">aaa</a>
+			<ul style="left:0px">
+				<li>111111111</li>
+				<li>111111111</li>
+				<li>111111111</li>
+			</ul>
+				<ul style="left:200px">
+				<li>112111111</li>
+				<li>111111111</li>
+				<li>111111111</li>
+			</ul>
+				<ul style="left:400px">
+				<li>131111111</li>
+				<li>111111111</li>
+				<li>111111111</li>
+			</ul>
+				<ul style="left:600px">
+				<li>111411111</li>
+				<li>111111111</li>
+				<li>111111111</li>
+			</ul>
+				<ul style="left: 800px">
+				<li>111111111</li>
+				<li>111111511</li>
+				<li>111111111</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		function move(obj,attr,target){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var speed=(target-parseInt(getStyle(obj,attr)))/8;
+				console.log(speed)
+				var speedInt=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(parseInt(obj.style[attr])==target){
+					clearInterval(obj.timer);
+				}else{
+					obj.style[attr]=parseInt(getStyle(obj,attr))+speedInt+"px";
+				}
+			},50)
+		}
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj)[attr];
+			}
+			
+		}
+		var adiv=document.getElementById("box");
+		var aa=adiv.getElementsByTagName("a");
+		var ull=adiv.getElementsByTagName("ul");
+		for(var i=0;i<aa.length;i++){
+			aa[i].index=i;
+			
+			aa[i].onmouseover=function(){
+				
+				move(ull[this.index],"height",600)
+			}
+			aa[i].onmouseout=function(){
+				move(ull[this.index],"height",0)
+			}
+			ull[i].onmouseover=function(){
+				move(this,"height",600)
+			}
+			ull[i].onmouseout=function(){
+				move(this,"height",0)
+			}
+		}
+		/*后面从104行开始的代码是控制鼠标移到下面二级菜单时二级菜单不会再鼠标移开一级菜单时消失*/
+	</script>
+</html>

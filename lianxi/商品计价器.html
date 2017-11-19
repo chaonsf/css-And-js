@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+		单价:<em>12.5元</em>
+		<input type="button" value="-">
+		<strong>0</strong>
+		<input type="button" value="+">
+		小计：<span>0元</span>
+		</div>
+		<br>	
+		<div>
+		单价:<em>25元</em>
+		<input type="button" value="-">
+		<strong>0</strong>
+		<input type="button" value="+">
+		小计：<span>0元</span>
+		</div>
+		<br>
+		<div>
+		单价:<em>50元</em>
+		<input type="button" value="-">
+		<strong>0</strong>
+		<input type="button" value="+">
+		小计：<span>0元</span>
+		</div>
+		<br>
+		<div>
+		单价:<em>68元</em> 
+		<input type="button" value="-">
+		<strong>0</strong>
+		<input type="button" value="+">
+		小计：<span>0元</span>
+		</div>
+	</body>
+	<script>
+	   window.onload=function(){
+		 function number(cc){
+		var price=cc.getElementsByTagName("em")[0];
+		var jian=cc.getElementsByTagName("input")[0];
+		var count=cc.getElementsByTagName("strong")[0];
+		var jia=cc.getElementsByTagName("input")[1];
+		var zongjia=cc.getElementsByTagName("span")[0];
+		jian.onclick=function() {
+			var a=parseInt(count.innerHTML);
+			if(a<=0){
+				a=0;
+			}else{
+				a-=1;
+			}
+			count.innerHTML=a;
+			var b=parseFloat(price.innerHTML);
+			zongjia.innerHTML=a*b+"元"
+		}
+		jia.onclick=function(){
+			var a=parseInt(count.innerHTML);
+			a+=1;
+			count.innerHTML=a;
+			var b=parseFloat(price.innerHTML);
+			zongjia.innerHTML=a*b+"元"
+		}
+		
+		}
+		 var odiv=document.getElementsByTagName("div");
+		for(var i=0;i<odiv.length;i++){
+			number(odiv[i])
+	}
+	}	
+		
+		
+		
+	</script>
+</html>

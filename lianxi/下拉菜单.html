@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				list-style:none;
+				float: left;
+				padding: 0 20px;
+				position: relative;
+				
+				
+				
+			}
+			ul{
+				background: #ccc;
+				height: 40px;
+			}
+			a{
+			 text-decoration: none;
+			 text-align: center;
+			 line-height: 40px;
+			}
+			ul li ul {
+				position: absolute;
+				top:40px ;
+				left: 0px;
+				display: none;
+				background: none;
+				
+			}
+			ul li ul li{
+			float: none;
+			width:60px;
+			background-color:red;
+			}
+			ul li:hover ul{
+				display: block;
+			}
+			ul li ul:hover li{
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">课程列表</a>
+				<ul>
+					<li><a href="#">黄家驹</a></li>
+					<li><a href="#">黄大厦</a></li>
+				</ul>
+			</li>
+			<li><a href="#">黄家驹</a></li>
+			<li><a href="#">拓跋</a>
+				<ul>
+					<li><a href="#">黄家驹</a></li>
+					<li><a href="#">黄大厦</a></li>
+				</ul>
+			</li>
+			<li><a href="#">洪飒</a></li>
+		</ul>
+	</body>
+</html>

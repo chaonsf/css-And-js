@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding:0;
+			}
+		</style>
+	</head>
+	<body>
+		姓名:<input type="text"  class="bb"/><br />
+		密码:<input type="text"  class="cc"/><br />
+		<input type="button"  value="登录" class="aa"/>
+	</body>
+	<script type="text/javascript" src="js/jq.js"></script>
+	<script>
+	   $(function(){
+	   	  $(".cc").click(function(){
+	   	  	$.ajax({
+	   	  		type:"get",
+	   	  		url:"act.php",
+	   	  		async:true,
+	   	  		data:{
+	   	  			user:$(".bb").val(),
+	   	  			pass:$(".cc").val(),
+	   	  		},
+	   	  		dataType:"json",
+	   	  		success:function(dat){
+	   	  			alert(dat.msg)
+	   	  		}
+	   	  	});
+	   	  })
+	   })
+		
+	</script>
+</html>

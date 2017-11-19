@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="btn" />
+		<input type="button" id="btn1"  value="set"/>
+		<input type="button" id="btn2" value="get"/>
+		<input type="button" id="btn3" value="remove"/>
+		<input type="button" id="box" value="clear" />
+	</body>
+	<script>
+		var btn=document.getElementById("btn");
+		var btn1=document.getElementById("btn1");
+		var btn2=document.getElementById("btn2");
+		var btn3=document.getElementById("btn3");
+		var box=document.getElementById("box");
+		btn1.onclick=function(){
+			sessionStorage.setItem("username",btn.value);
+		}
+		btn2.onclick=function(){
+			alert(sessionStorage.getItem("username"));
+		}
+		btn3.onclick=function(){
+			sessionStorage.removeItem("username");
+		}
+		box.onclick=function(){
+			sessionStorage.clear()
+		}
+	</script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			li{
+				display: inline-block;
+				background: aqua;
+				padding: 5px;
+				color: #fff;
+			}
+			#box{
+				margin:auto 400px;
+				width: 500px;
+				height: 500px;
+				background: blue;
+				position:relative;
+				border-top: solid black 6px;
+				
+			}
+			input{
+				width: 20px;
+				height: 20px;
+				margin-left:50px;
+			}
+			#yu{
+				background:#ccc;
+				
+			}
+			#fu{
+				background: blue;
+				
+			}
+			#hu{
+				background: red;
+				
+			}
+			ul{
+				margin-left:50px;
+				margin-top: 50px;
+			}
+			span{
+				width: 10px;
+				height: 10px;
+				background: #fff;
+				display: inline-block;
+			}
+			.i1{
+				position: absolute;
+				top:5px;	
+				left: 55px;	
+				display: none;	
+				}
+			.i2{
+				position: absolute;
+				top: 5px;
+				left: 132px;
+				display: none;
+			}
+			.i3{
+				position: absolute;
+				top: 5px;
+				left:210px ;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+	    <input type="button" id="yu"/>
+		<input type="button" id="fu" />
+		<input type="button"  id="hu"/>
+		<span class="i1"></span>
+		<span class="i2"></span>
+		<span class="i3"></span>
+		<ul>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+		</ul>
+		</div>
+	</body>
+	<script>
+		
+		var adiv=document.getElementById("box");
+		var ainput=adiv.getElementsByTagName("input");
+		var uli=adiv.getElementsByTagName("li");
+		var aspan=adiv.getElementsByTagName("span")
+		ainput[0].onclick=function(){
+			for(var j=0;j<aspan.length;j++){
+				aspan[j].style.display="none";
+			}
+			aspan[0].style.display="block";
+			adiv.style.background="#ccc";
+			for(var i=0;i<uli.length;i++){
+				uli[i].style.background="red";
+			}
+		}
+	ainput[1].onclick=function(){
+			for(var j=0;j<aspan.length;j++){
+				aspan[j].style.display="none";
+			}
+			aspan[1].style.display="block";
+			adiv.style.background="blue";
+			for(var i=0;i<uli.length;i++){
+				uli[i].style.background="#ccc";
+			}
+		}
+		ainput[2].onclick=function(){
+			for(var j=0;j<aspan.length;j++){
+				aspan[j].style.display="none";
+			}
+			aspan[2].style.display="block";
+			adiv.style.background="red";
+			for(var i=0;i<uli.length;i++){
+				uli[i].style.background="aqua";
+			}
+		}
+	</script>
+</html>
+

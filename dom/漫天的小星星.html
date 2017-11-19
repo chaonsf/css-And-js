@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		 body,html{
+			width: 100%;
+			height: 100%;
+		    }
+			div{
+				background:url(img/bg.jpg);
+				width: 100%;
+				height: 100%;
+				position: relative;
+				left: 0;
+				top: 0;
+			}
+			span{
+				width: 20px;
+				height: 20px;
+					
+				}
+			img{
+				position: absolute;
+				left: 10px;
+				top: 10px;	
+				width: 20px;	
+				height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<span></span>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		var aspan=document.getElementsByTagName("span")[0];
+		for(var i=0;i<30;i++){
+			aspan.innerHTML+="<img src='img/1.jpg'>"
+		}
+		var aimg=document.getElementsByTagName("img");
+		for(var i=0;i<aimg.length;i++){
+			var aa=Math.round(Math.random()*(1380-10)+10);
+			var bb=Math.round(Math.random()*(780-10)+10);
+			aimg[i].style.left=aa+"px";
+			aimg[i].style.top=bb+"px";
+		}
+		setInterval(fn,3000);
+		function fn(){
+			for(var i=0;i<aimg.length;i++){
+			var aa=Math.round(Math.random()*(1380-10)+10);
+			var bb=Math.round(Math.random()*(780-10)+10);
+			startMove(aimg[i],{
+				left:aa,
+				top:bb
+			})
+		}
+		}
+	</script>
+</html>

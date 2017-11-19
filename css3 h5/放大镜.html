@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.fadajing{
+	width: 380px;
+	float: left;
+}
+.one{
+	width: 380px;
+	height: 380px;
+	position:relative;
+}
+.one span{
+	width: 100px;
+	height:100px;
+	position: absolute;
+	opacity: 0.5;
+	left:0;
+	top:0;
+	display: none;
+	background:#ccc;
+}
+.one img{
+	width: 380px;
+	height: 380px;
+	display: none;
+}
+.one .fadad{
+	display: block;
+}
+.two img{
+	margin-right:5px;
+	border: solid 1px #ccc;
+}
+.two img:hover{
+	border:1px solid black;
+}
+.two .active{
+	border: 1px solid black;
+}
+.fadajing{
+	position: relative;
+	
+}
+.the{
+	position:absolute;
+	left: 380px;
+	top: 0;
+	width:380px;
+	height:380px;
+	z-index: 20;
+	display: none;
+	overflow: hidden;
+}
+.the img{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+		</style>
+	</head>
+	<body>
+		<div class="fadajing">
+			<div class="wai">
+				<div class="one">
+					 <img src="img/1_05381510633312027_550.jpg" class="fadad">
+			   	  	 <img src="img/1_05381511373221329_550.jpg" />
+			   	  	 <img src="img/1_05381511405906498_550.jpg">
+			   	  	 <img src="img/1_05381511436537297_550.jpg">
+			   	  	 <img src="img/1_05381511462193699_550.jpg">
+			   	  	 <span></span>
+				</div>
+				<div class="two">
+					 <img src="img/1_05381510633312027_60 (1).jpg" class="active">
+			   	  	 <img src="img/1_05381511373221329_60.jpg">
+			   	  	 <img src="img/1_05381511405906498_60.jpg">
+			   	  	 <img src="img/1_05381511436537297_60.jpg">
+			   	  	 <img src="img/1_05381511462193699_60.jpg">
+				</div>
+			</div>
+			<div class="the">
+				     <img src="img/f1.jpg">
+			      	 <img src="img/f2.jpg">
+			      	 <img src="img/f3.jpg" />
+			      	 <img src="img/f4.jpg" />
+			      	 <img src="img/f5.jpg">
+			</div>
+		</div>
+	</body>
+	 <script type="text/javascript" src="js/jq.js"></script>
+	 <script>
+	 	$(".two img").mousemove(function(){
+	var num=$(this).index();
+	$(this).addClass("active").siblings().removeClass("active");
+	$(".one img").eq(num).addClass("fadad").siblings().removeClass("fadad");
+})
+$(".one img").mouseover(function(){
+	$(".one span").show();
+	var num=$(this).index();
+	$(".the").show();
+	$(".the img").eq(num).show().siblings().hide();
+	
+})
+$(".one img").mousemove(function(ev){
+	var e=ev||event;
+	var num=$(this).index();
+	var ex=e.clientX-$(".one span")[0].offsetWidth/2;
+	var ey=e.clientY-$(".one span")[0].offsetHeight/2;
+	if(ex<$(".one")[0].offsetLeft){
+				ex=$(".one")[0].offsetLeft
+			}
+			if(ex>$(".one")[0].offsetWidth+$(".one")[0].offsetLeft-$(".one span")[0].offsetWidth){
+				ex=$(".one")[0].offsetWidth+$(".one")[0].offsetLeft-$(".one span")[0].offsetWidth;
+			}
+			if(ey<$(".one")[0].offsetTop){
+				ey=$(".one")[0].offsetTop
+  			}
+			if(ey>$(".one")[0].offsetHeight+$(".one")[0].offsetTop-$(".one span")[0].offsetHeight){
+				ey=$(".one")[0].offsetHeight+$(".one")[0].offsetTop-$(".one span")[0].offsetHeight;
+			}
+			$(".one span")[0].style.left=ex+"px";
+			$(".one span")[0].style.top=ey+"px";
+		     $(".the img")[num].style.left=-3.8*ex+'px';
+			$(".the img")[num].style.top=-3.8*ey+'px';
+})
+$(".one img").mouseout(function(){
+	$(".one span").hide();
+	$(".the").hide()
+})
+	 </script>
+</html>

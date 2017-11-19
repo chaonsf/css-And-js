@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"  id="box"/>
+		<input type="button"  id="tex1" value="计算一下"/>
+		<input type="text" id="tex2" />
+	</body>
+	<script>
+		var aa=document.getElementById("box");
+		var bb=document.getElementById("tex1");
+		var cc=document.getElementById("tex2")
+		bb.onclick=function(){
+			
+				cc.value=2000*Math.pow(1.05,parseFloat(aa.value))
+			
+		}
+	</script>
+</html>

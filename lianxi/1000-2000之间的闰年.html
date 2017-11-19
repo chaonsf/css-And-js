@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var count=0;
+		for(var i=1000;i<=2000;i++){
+			if(i%4==0&&i%100 !=0||i%400==0){
+				document.write(i+"&nbsp");
+				count++;
+				if(count==4){
+					document.write("<br>");
+					count=0;
+				}
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<fieldset>
+			<legend>客户管理</legend>
+			<div>
+				姓名: <input type="text" id="uname" />
+			</div>
+			<div>
+				邮箱：<input type="text" id="em1" />
+			</div>
+			<div>
+				地址：<input type="text" id="dz" />
+			</div>
+			<div>
+				备注：<input type="text" id="bz" />
+			</div>
+			<div>
+				<input type="button" value="save" id="btn">
+			</div>
+			<div>
+				<input type="text" id="ser" />
+				<input type="button" value="search" id="btn1">
+			</div>
+			<div id="out"></div>
+		</fieldset>
+	</body>
+	<script>
+		
+		btn.onclick=function(){
+		var uname=document.getElementById("uname");
+		var em1 = document.getElementById("em1");
+		var dz = document.getElementById("dz");
+		var bz = document.getElementById("bz");
+		var btn = document.getElementById("btn");
+		var btn1 = document.getElementById("btn1");
+		var ser=document.getElementById("ser");
+		var name= uname.value;
+		var emaill = em1.value;
+		var adds = dz.value;
+		var mt = bz.value;
+		var syy = new Object();
+		syy.name = name;
+		syy.emaill = emaill;
+		syy.adds = adds;
+		syy.mt=mt;
+		var str=JSON.stringify(syy);/* 将对象转化为字符串*/
+		localStorage.setItem(name,str);/*此处name可以换成emaill，adds，mt都可以*/
+		}
+		btn1.onclick = function() {
+			var aa=ser.value;
+			var bb=localStorage.getItem(aa);
+			bb=JSON.parse(bb);
+			out.innerHTML="名字:"+bb.name+"<br>"+"邮箱:"+bb.emaill+"<br>"+"地址:"+bb.adds+"<br>"+"备注:"+bb.mt
+		}
+		
+	</script>
+
+</html>

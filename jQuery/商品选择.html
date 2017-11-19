@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <style>
+	    	*{
+	    		margin: 0;
+	    		padding: 0;
+	    	}
+	    	ul,li,dt,dd,dl{
+	    		list-style: none;
+	    	}
+	    	dt{
+	    		float: left;
+	    		font-size: 12px;
+	            margin-left: 70px;
+	          
+	    	}
+	    	dd{
+	    		float: left;
+	            
+	    	}
+	    	.aa{
+	    		width: 476px;
+	    		height: 203px;
+	    		border: solid 1px #d6d6d6;
+	    		margin: 100px 300px;
+	    	}
+	    	dl{
+	    		overflow: hidden;
+	    		padding-bottom: 10px;
+	    		border-bottom: dashed 1px #d0d0d1;
+	    		margin-top: 9px;
+	    	}
+	    	dd ul li{
+	    		float: left;
+	    		padding:auto 5px;
+	    		height: 20px;
+	    		font-size: 12px;
+	    		margin:0 10px;
+	    		color: #6495ed;
+	    	}
+	    	.clearfix dd{
+	    		margin-left: 107px;
+	    		margin-top: -15px;
+	    	}
+	    	p{
+	    		margin-left: 45px;
+	    		font-size: 12px;
+	    		margin-top: 16px;
+	    		float: left;
+	    	}
+	    	.dc_close ul li, .dc_close ul b, .dc_close ul i{
+	    		 float: left;
+	    		 margin-top: 16px;
+	    		 font-size: 12px;
+	    		 background: #fd6a0d;
+	    		color: #fff;
+	    		margin-right: 5px;
+	    	}
+	    	.app_close{
+	    		background: #fd6a0d;
+	    		color: #fff;
+	    	}
+	    </style>
+		<script type="text/javascript" src="js/jq.js"></script>
+	</head>
+	<body>
+		<div class="aa">
+			<dl class="clearfix">
+				<dt>上装:</dt>
+				<dd>
+					<ul class="aul">
+						<li class="ha">全部</li>
+						<li>针织衫</li>
+						<li>毛呢外套</li>
+						<li>t恤</li>
+						<li>羽绒服</li>
+						<li>棉衣</li>
+						<li>卫衣</li>
+						<li>风衣</li>
+					</ul>
+				</dd>
+			</dl>
+					<dl>
+				<dt>裤装:</dt>
+				<dd>
+					<ul class="aul1">
+						<li class="ha">全部</li>
+						<li>牛仔</li>
+						<li>小脚</li>
+						<li>休闲</li>
+						<li>打底裤</li>
+						<li>哈伦裤</li>
+					</ul>
+				</dd>
+			</dl>
+					<dl>
+				<dt>裙装:</dt>
+				<dd>
+					<ul class="aul2">
+						<li class="ha">全部</li>
+						<li>连衣裙</li>
+						<li>半身裙</li>
+						<li>长袖连衣裙</li>
+						<li>中长款连衣裙</li>
+					</ul>
+				</dd>
+			</dl>
+			<div class="dc_close">
+				<p>已选条件：</p>
+				<ul></ul>
+			</div>
+		</div>
+	</body>
+	<!--<script>
+		$(function(){
+			$("dl dd ul").find("li:gt(0)").click(function(){
+				$(this).addClass("app_close").siblings().removeClass("app_close");
+				var $li=$("<li></li>");
+			     $li[0].innerHTML=this.innerHTML+"x"
+				$(".dc_close ul").append($li);
+				$(".dc_close ul").find("li").click(function(){
+				$(this).hide()
+			})
+				
+			})
+			$("dl dd ul").find("li:first").click(function(){
+				$(this).addClass("app_close").siblings().removeClass("app_close");
+			})
+			
+		})
+	</script>-->
+	<script>
+		$(function(){
+			$("dl dd ul").find("li").click(function(){
+				var tt=$(this);
+				$(this).addClass("app_close").siblings().removeClass("app_close");
+				var $parent=$(this).parent();
+				if($parent.prop("class")=="aul"){
+					if(!$(this).hasClass("ha")){
+						var aa=$(this).text();
+						var $li=$("<li>"+aa+"<em>X</em></li>");
+						$(".dc_close ul").find("li").remove();
+						$(".dc_close ul").append($li);
+						$("li em").click(function(){
+						   $(".dc_close ul").find("li").remove();
+						   tt.removeClass("app_close")
+						   $(".aul li").first().addClass("app_close")
+						})
+					}
+				}
+				if($parent.prop("class")=="aul1"){
+					if(!$(this).hasClass("ha")){
+						var aa=$(this).text();
+						var $li=$("<b>"+aa+"<em>X</em></b>");
+						$(".dc_close ul").find("b").remove();
+						$(".dc_close ul").append($li);
+						$("b em").click(function(){
+						   $(".dc_close ul").find("b").remove();
+						   tt.removeClass("app_close")
+						   $(".aul1 li").first().addClass("app_close")
+						})
+					}
+				}
+				if($parent.prop("class")=="aul2"){
+					if(!$(this).hasClass("ha")){
+						var aa=$(this).text();
+						var $li=$("<i>"+aa+"<em>X</em></i>");
+						$(".dc_close ul").find("i").remove();
+						$(".dc_close ul").append($li);
+						$("i em").click(function(){
+						   $(".dc_close ul").find("i").remove();
+						   tt.removeClass("app_close")
+						   $(".aul2 li").first().addClass("app_close")
+						})
+					}
+				}
+			})
+		})
+	</script>
+</html>
