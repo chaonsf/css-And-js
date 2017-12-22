@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		强制类型转换主要有：Boolean、Number、String、parseInt、parseFloat
+		隐式类型转换： 在使用算术运算符时，运算符两边的数据类型可以是任意的，
+		比如，一个字符串可以和数字相加。之所以不同的数据类型之间可以做运算，是因为 JavaScript 引擎在运算之前会悄悄的把他们进行了隐式类型转换。
+		隐式类型转换主要有：+、–、==、!
+	</body>
+	<script>
+		<!--使用 typeof bar === "object" 判断 bar 是不是一个对象有神马潜在的弊端？如何避免这种弊端？-->
+		let obj={};
+		let arr=[];
+		console.log(typeof obj==="object");   //true
+		console.log(typeof arr==='object');  //true
+		console.log(typeof null==='object');  //true
+		/*从上面的输出结果可知，typeof bar === "object" 并不能准确判断 bar 就是一个 Object。
+		可以通过 Object.prototype.toString.call(bar) === "[object Object]" 来避免这种弊端*/
+		let obj = {};
+        let arr = [];
+ 
+       console.log(Object.prototype.toString.call(obj)); //[object Object]
+       console.log(Object.prototype.toString.call(arr)); //[object Array]
+       console.log(Object.prototype.toString.call(null)); //[object Null]
+	</script>
+</html>
