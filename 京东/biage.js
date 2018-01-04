@@ -196,13 +196,14 @@
                     clearBeforeRender: "*",
                     data: null,
                     onLoadSuccess: function () {
+                        //表格加载完成后回调
                         $(this).find("a[name=btnUpdate]").on("click", function () {
                             var a = $(this).closest("tr").index();
                             alert(a)
                         })
                     },
                     onEvenLoadSuccess: function ($result, settings, index) {
-                       
+                       //每行加载完成后回调
                     },
                     pagination: {
                         url: handler_url,
