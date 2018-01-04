@@ -1,0 +1,631 @@
+﻿@{ 
+    ViewData["HELLO"] = "Hello world123!";
+    ViewData["B"] = "3";
+}
+
+<div class="contentDIV"> 
+    <h1>Semantic-UI 简要示例</h1>
+    <h2 class="ui dividing header">约定class</h2>
+    <div>
+        .rt 或者 rt: 表示 margin-right：8px<br/>
+        .lt 或者 lt:表示 margin-left：8px<br />
+        .field_label ：表示标签显示，粗体，默认字号14px<br />
+        .required：文字最后加上必填*号，红色<br />
+        .ui.dropdow.mini:表示最小号 dropdown<br />
+        .ui.search.mini：最小号search<br />
+        .ui.input.mini：最小号input
+    </div>
+
+     <h2 class="ui dividing header">后台交互方式</h2>
+    <div class="ui secondary segment">
+        <h3>后台地址</h3>
+        <p>
+            <rt>列表数据查询:<strong>"../json/query"</strong> 无超时</rt>
+            <rt>变量: <strong>$.defs.private.defaultQueryUrl</strong></rt>
+            <rt>方法: <strong>$.defs.query(postData,success,complete,url)</strong> (postData:JSON,success:成功回调，complete:完成回调，无论是否成功都会成功,url:地址,可选） </rt>
+        </p>
+        <p>
+            <rt>列表数据查询:<strong>"../json/default" 三秒超时，可通过{pto}属性配置</strong></rt>
+            <rt>变量: <strong>$.defs.private.defaultUrl</strong></rt>
+            <rt>方法: <strong>$.defs.request(postData,success,complete,url)</strong> (postData:JSON,success:成功回调，complete:完成回调，无论是否成功都会成功,url:地址,可选） </rt>
+        </p>
+    </div>
+    <div class="ui secondary segment">
+         示例  $.defs.query({ pto:5,m:"LIST",SP_NAME:"",TB_NAME:"xxx",DB_NAME:"xxx"  },<br/>
+                          success:function(){...},<br />
+                          complete:function(){....}<br />
+                )<br />
+          注: <strong>m</strong>为JSON呈现方式，LIST代表{total:32,rows:[]}，总记录+json数组格式。SELECT代表[],json数组。其他皆代表DML操作。STATIC查询本地json数据<br />
+        <strong>SP_NAME</strong>关键字数据库操作命令，若m为STATIC，SP_NAME代表本地json文件，"SP"+ TB_NAME+ "_" + m== SP_NAME<br />
+        <strong>JSON_TYPE关键字(TOTAL)</strong>,若m为STATIC,返回格式为{total:32,rows:[]}
+
+    </div>
+    <h2 class="ui dividing header">快捷页面操作方式</h2>
+    <div class="ui secondary segment">
+        <p>
+            <h3>对容器目标布置数据 <rt>$.smui_help.fillData[$.defs.setup]</rt></h3>
+            
+        </p>
+        <p>
+            方法: <strong>$.smui_help.fillData({container:"xxx",data:{},not:"xxx"  })</strong> (container:对应布置容器选择器，如"#div,.container"，默认document.body, not:在对应容器内不包含的对应项， data:源数据,仅为json对象，如“{MEME_NAME:123}”） 
+        </p>
+        <p>
+            容器对应字段约定，自定义属性定义：field-存在field属性才会有效，field_op-"fill"仅布置数据，“submit”仅提交数据，“all”-布置或提交，默认
+        </p>
+        <p>
+            示例：$.smui_help.fillData({conainer:"#sample",data:{MEME_NAME:"123"}})<br/>
+            html:  &lt;div id="sample"&gt;<br/>
+            &lt;div class="ui mini input"&gt;&lt;input field="MEME_NAME"&gt;&lt;/div&gt;<br />
+    &lt;/div&gt;<br />
+        </p>
+    </div>
+    <div class="ui secondary segment">
+        <p>
+            <h3>对容器目标提交目标数据 <rt>$.smui_help.submit[$.defs.submit]</rt></h3>
+
+        </p>
+        <p>
+            方法: <strong>$.smui_help.submit({container:"xxx",queryParams:function(){return xxx},bindSuccess:fn })</strong> (container:对应布置容器选择器，如"#div,.container"，默认document.body,queryParams:固定传值，回调函数或json对象。bindSuccess:完成回调函数，若不配置bindSuccess，submit返回容器数据的json对象”）
+        </p>
+        <p>
+            container:表示对象容器，可以选择单一容器，得到结果为object，可以选择数组容器，得到结果为数组<br />
+            queryParams:上下文为当前容器，唯一参数data，若对象为单一容器，则为空，若数组容器，queryParams调用的最后一步，data为结果值<br />
+            容器对应字段约定，自定义属性定义：field-存在field属性才会有效，field_op-"fill"仅布置数据，“submit”仅提交数据，“all”-布置或提交，默认
+        </p>
+        <p>
+            示例：$.smui_help.submit({conainer:"#sample",queryParams:function(){ return {data:123} }, bindSuccess:function(){...}})<br />
+            html:  &lt;div id="sample"&gt;<br />
+            &lt;div class="ui mini input"&gt;&lt;input field="MEME_NAME"&gt;&lt;/div&gt;<br />
+            &lt;/div&gt;<br />
+        </p>
+    </div>
+    <h2 class="ui dividing header">主要组件封装写法</h2>
+    <div class="ui secondary segment">
+        <h3>文本框</h3>
+        <p>写法: &lt;input type="text" class="smui_text" smui_options="{配置}" &gt;</p>  F12参看脚本配置
+        <input class="mini smui_text" smui_options="t1" />
+    </div>
+    <div class="ui secondary segment">
+        <h3>下拉框</h3>
+        <p>
+            <div class="ui dropdown selection smui_dropdown" smui_options="d1"   field="TT"/>F12参看脚本配置
+        </p>
+    </div>
+    <div class="ui secondary segment">
+        <h3>搜索框</h3>
+        <p>
+            <div class="ui search smui_search" smui_options="s1"></div>  F12参看脚本配置
+        </p>
+    </div>
+    <h2 class="ui dividing header">页面启动入口</h2>
+    <div class="ui secondary segment">
+        PAGE_LOAD:function(){}<br/>
+        用此函数开始执行代码，可保证所有异步获取数据已经完成，如下拉框数据加载
+
+    </div>
+    <h2 class="ui dividing header">新式弹出框 $.smui_help.layer_ext</h2>F12参看脚本配置
+        <div  class="ui secondary segment">
+            <button id="test_layer" class="ui mini button blue">弹出选择框，选择完成后，在下方文本框输出结果</button>
+            <div id="store">
+                <input type="hidden" />
+                <input type="text" />
+            </div>
+ 
+            <button  class="ui mini button blue" id="test_layer2">定制表格框</button>
+
+        </div>
+      
+    <h2 class="ui dividing header">新式弹出框 $.smui_help.dialog</h2>F12参看脚本配置
+    <div class="ui secondary segment">
+        <button class="ui mini button blue" id="test_dialog">弹出对话框</button>
+    </div>
+
+      
+    <h2 class="ui dividing header">快速模板生成，字符格式化,$.smui_help.smui_render_template</h2>F12参看脚本配置
+       <h3>object 生成</h3>
+       <div id="divTemplate">
+
+       </div>
+        <h3>字符串拼接,$.smui_format</h3>
+        <div id="divStringFormat">
+
+        </div> 
+
+    <h2 class="ui dividing header">模板生成,$(...).smui_template</h2>F12参看脚本配置
+    <div class="ui divided items template1">
+
+    </div>
+    <a class="ui mini blue button" id="btnRefresh2">跳转第二页</a>
+    </div>
+
+<h2 class="ui dividing header">DataTables for Semantic-UI</h2>F12参看脚本配置
+<table id="tblSMUI" class="ui celled selectable table" >
+</table>
+
+
+<h2 class="ui dividing header">Checkbox for Semantic-UI</h2>F12参看脚本配置
+
+    <input class="smui_checkbox" type="radio" field="MEME_IND" name="123" checked="checked" smui_data="d" smui_options="headCss:'ui radio checkbox',onChange:ckChange">
+    <label>徐鹏是XP</label>
+    <input class="smui_checkbox" type="radio" field="MEME_IND" name="123" smui_data="s"  smui_options="headCss:'ui radio checkbox',onChange:ckChange">
+    <label>徐鹏是XP1</label>
+
+    <input class="smui_checkbox" type="checkbox" smui_data="s" smui_options="onChange:ckChange">
+    <label>徐鹏是否XP</label>
+
+
+<div class="ui segment">
+    <h3 class="ui dividing header">分部视图 </h3>
+    @{
+        List<string> lst = new List<string>();
+        lst.Add("title 1");
+        lst.Add("title 2");
+        Html.RenderPartial("~/Views/Member/MemberBasicDetail.cshtml", lst, ViewData);
+    }
+</div>
+
+
+<div class="ui segment" id="jsLoader">
+    <h3 class="ui dividing header">Javascript Html 加载</h3>
+    
+</div>
+
+<div class="ui segment" >
+   <div class="ui blue button" id="btnDownExcel">根据数据 生成excel</div>
+
+</div>
+
+<div class="ui segment">
+    <div class="ui blue button" id="btnDownPdf">生成pdf</div>
+
+</div>
+
+<script id="scriptDialog1" class="newDialog" type="text/html">
+   标签1:<input class="smui_text mini"  smui_options="type:'float'"/>    
+    <span>文本查看</span>
+</script>
+
+<script id="itemTemplate" type="text/html">
+    {{each $data}}
+    <div class="item">
+        <div class="content">
+            <a class="header">第{{$index|display_linenumber '.ui.items.template1'}}条:{{$value.CONTACT_NAME}}</a>
+            <div class="description">
+                <%= $value.CONTACT_POSITION%>
+            </div>
+            <div class="extra">
+                <i class="green check icon"></i>
+                <%= $value.USER_NAME%>
+               
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+</script>
+@section Scripts {
+@Scripts.Render(Url.Content4Version("~/Function/MedicalRecordsHelper/MedicalReportsTemplate.js"))
+@Styles.Render(Url.Content4Version("~/Function/MedicalRecordsHelper/MedicalReportsTemplate.css"))
+@Styles.Render(Url.Content4Version("~/Function/MedicalRecordsHelper/VTMD.css"))
+
+<script>
+    PAGE_LOAD = function () {
+        $.pdfLoader();
+
+        console.log("submit", $.smui_help.submit({
+            container: ".testSubmit",
+            queryParams: function (data) {
+                if (!data) {
+                    return {
+                        "SP_NAME": Math.random().toString(),
+                        m: "LIST"
+                    }
+                }
+                else {
+                    data.push({
+                        "hello": "world"
+                    })
+                    return data;
+                }
+            }
+        }));
+
+
+        $("#tblSMUI").DataTable({
+            ajax: {
+                beforeRequest: function () {
+                    return {
+                        SP_NAME: "SP_CARD_LIST",
+                        m:"LIST"
+                    }
+                }
+            },//beforeRequest 后台交互必须，本地数据 data属性，ajax：null
+            columns: [{
+                data: 'CARD_CLASS_VARIABLE_KEY_DESC',
+                title: "类别",
+                width: "200px"
+            }, {
+                data: 'CARD_NAME',
+                title: "卡片名称",
+                width: "200px"
+            },
+            {
+                data: 'BUYER_NAME',
+                title: "购买人"
+            },
+            {
+                data: 'STATUS_NAME',
+                title: "状态",
+                width: "100px"//px or percent
+            },
+            //自定义列
+            {
+                data: null,
+                title:"简介",
+                render: function (data, type, row) {
+                    var _html = "";
+                    $.each(row, function (name, value) {
+                        
+                        if (name in {"CARD_NAME":"", "BUYER_NAME":"", "STATUS_NAME":""}) {
+                            _html += "<rt>" + value + "</rt>"
+                        }
+                    })
+                    return _html;
+                },
+                createCell:function(){   //自定义列样式
+                
+                },
+                targets: -1
+            }],
+            preDrawCallback:function(){  //加载数据前回调
+                $.tools.showLoading();
+            },
+            drawCallback: function () {  //加载数据完成后回调
+                $.tools.hideLoading();
+                var api= $("#tblSMUI").dataTable().api()
+                //api.reload(fn,true) // fn，重载回调,true 回调第一页刷新， false 当前页刷新
+                console.log("drawCallback", api.row(0).data()) // api.row(tr).data()
+                // api.data() 所有数据
+
+
+            },
+            rowCallback: function (row,data,index) { //每行加载完成回调
+               // console.log("after", row, data);
+            }
+        });
+
+        $("#test_dialog").click(function () {
+            openDialog();
+        })
+
+        $("#test_layer").click(layer_ext_demo);
+        $("#test_layer2").click(function () {
+            $.smui_help.layer_ext({
+                title: "测试",
+                multiSelect: false,
+                whereFields: [{ field: "t1", title: "查找1" }, { field: "t2", title: "查找2" }],
+                cls: "inv luck",//重要用于区分对话框
+                mode:"table",
+                SP_NAME: "SP_INVENTORY_LIST",
+                idFields: "{INVENTORY_KEY}",
+                fields: [{ field: "STOCK_NAME", title: "库房",width:200 },
+                         { field: "METERIAL_CODE", title: "物料号" }
+                ]
+            })
+        });
+        $("#close_layer1").click(function () {
+            $.smui_help.layer_ext("hide", "demo luck");
+        });
+
+        $.smui_help.smui_render_template({
+            renderTo: "#divTemplate",
+            context: "<div><strong>{{$data[0].CONTACT_NAME}}</strong><strong>{{$data[0].USER_NAME}}</strong></div>",
+            url: handler_url,
+            queryParams: function () {
+                return {
+                    SP_NAME: "SP_CONTACT_LIST",
+                    m:"SELECT"
+                }
+            }
+        })
+
+        $.smui_help.smui_render_template({
+            renderTo: "#divTemplate",
+            context: "{{$data[0]}},{{$data[1]}}",
+            clearBeforeRender:"",
+            data: ["123","2231"]
+        })
+
+        var st = $.smui_format("Hello World!{{$data[0].CONTACT_NAME}}", {
+            SP_NAME: "SP_CONTACT_LIST",
+            m: "SELECT"
+        })
+
+        var st1 = $.smui_format("性别:{{SEX}},年龄:{{AGE}},生日:{{BIRTHDAY|display_date}}", {
+            SEX: "女",
+            AGE: "12",
+            BIRTHDAY: "1998-01-01 23:22:01",
+            display_date: '2017-01-01'
+        })
+        $("#divStringFormat").append(st+"<br/>");
+        $("#divStringFormat").append(st1);
+
+        var d = $("input.smui_checkbox[smui_data=d]").smui_checkbox("getValue");
+
+        //$.smui_help.smui_render_template({
+        //    renderTo:".ui.items.template",
+        //    context: $("#itemTemplate").html(),
+        //    action:"append",
+        //    url: handler_url,
+        //    queryParams: function () {
+        //        return {
+        //            SP_NAME: "SP_CONTACT_LIST",
+        //            m:"SELECT"
+        //        }
+        //    }
+        //});
+
+        /**
+        refresh:刷新页面，$(".ui.items.template1").smui_template("refresh",2);
+        有数值表示第几页，没有数值表示刷新当前页
+        getCurrentPage: $(".ui.items.template1").smui_template("getCurrentPage")
+        获取当前分页数
+
+        **/
+        $(".ui.items.template1").smui_template({
+            context: $("#itemTemplate").html(),
+            action: "append",
+            renderAttrElements:["HOSPITAL_KEY","CONTACT_KEY"],
+            data: null,//data不为空表示刷新本地数组变量
+            onEvenLoadSuccess:function($result,settings,index){
+                var row = this;
+
+                console.log(row);
+                console.log($result.data("data_info"))
+            },
+            pagination:{
+                url: handler_url,//url,queryParams不在pagination，表示不分页
+                queryParams: function () {
+                    return {
+                        SP_NAME: "SP_CONTACT_LIST",
+                        m: "LIST"
+                    }
+                },
+                pageSize: 3,
+                type: "whole"//whole:完整分页条，simple：简化分页条
+            }
+           
+        });
+
+        $("#btnRefresh2").click(function () {
+            $(".ui.items.template1").smui_template("refresh",2);
+        })
+        medicalRecordRender();
+        
+        $("#btnDownExcel").click(function () {
+            $(".ui.items.template1").smui_template("out", "会员管理 ", ["联系人", "联系地点", "操作人"])
+
+            $.xlsExport({
+                fileName: "卡片管理",
+                dataTableId: "#tblSMUI"
+
+            })
+        });
+
+        $("#btnDownPdf").click(function () {
+            pdfCreate1();
+        })
+    }
+
+    var layer_ext_demo = function () {
+        $.smui_help.layer_ext({
+            title: "家庭卡号",
+            displayFields: "{FAMILY_NAME}",
+            multiSelect: true,
+            target:"#store",
+            cls: "demo luck",//重要用于区分对话框
+            SP_NAME: "SP_FAMILY_LIST",
+            idFields: "{FAMILY_KEY}",
+            fields: [{ field: "CARD_ID", title: "卡号",width:250 },
+                     {field:"FAMILY_NAME",title:"家庭"}
+            ]
+        })
+    }
+    var t1 = {
+        type: "number",//number数字，带小数，money货币，text一般文本
+        minTarget: "0",//最小值
+        maxTarget: "100",//最大值
+        bindChange:null
+    }
+
+    var d1 = {
+        textField: 'VARIABLE_DESC',//显示文本
+        valueField: 'VARIABLE_KEY',//对应内码
+        autoFillFirstData: true,//默认显示第一项数据
+        canDisplayWholeItem:false,//默认增加全部项
+        fireOnInit: true,
+        queryParams: function () {
+            return {
+                m: "STATIC",
+                SP_NAME: "get_member_source_variable.json"
+            }
+        },
+        bindChange: function () {
+            console.log(Math.random().toString());
+            $.defs.setup({
+                data: { TT: -12, MEME_IND: "d" }
+            });
+        },
+        bindLoadSuccess: function () {
+           // $(".ui.dropdown").smui_dropdown("setValue", -12);
+
+        }
+
+    }
+
+    function ckChange()
+    {
+        alert($(this).smui_checkbox("getValue"));
+    }
+
+    var s1 = {
+        selectedTextFormat: '{COUNTRY_NAME}',//显示内容
+        valueField: 'COUNTRY_KEY',//值内容
+        searchFields: ['COUNTRY_KEY'],//查询字段
+        popupWidth: 480,//弹出宽度
+        queryParams: function () { //后台参数
+            return {
+                m: "LIST",
+                JSON_TYPE: "NOTOTAL",
+                TB_NAME: "COUNTRY",
+                DB_NAME: "GLOBAL"
+            }
+        },
+        popupTableFields: [{ title: '国家', name: 'COUNTRY_NAME' }],//对应弹出框显示字段
+        searchId: "countrySearchQuery",
+        searchQueryPageSize: 8,
+        searchQueryParams: function () {
+            return {
+                m: "LIST",
+                TB_NAME: "COUNTRY",
+                DB_NAME: "GLOBAL",
+                QUERY: $(".for_search.countrySearchQuery .ui.input.query").smui_text("getValue")
+            }
+        }
+    }
+
+    var openDialog = function () {
+        $("script.newDialog").dialog({
+            cls: "",////重要用于区分对话框,如果cls为空，将根据对象的class自动取值，若class也为空取随机数
+            title: "新式对话框",
+            dlgWidth: 500,
+            dlgHeight:300,
+            closed: false,//是否初始化以后即关闭对话框
+            autofocus:true,   //自动选中对话框内第一个文本框元素
+            bindOpen:function(dialog){
+                $(dialog).find("input:text").val("对话框打开后，我对你干了什么");
+            },
+            yes: function () {
+                alert("点我保存");
+                return true;//返回true，可安全关闭
+            },
+            no: function () {
+                alert("点我关闭");
+                //页面自动关闭
+
+            }
+            
+        })
+    }
+
+    var medicalRecordRender = function () {
+        $.MR_TPL("renderResult", "EyesTemplate.html", 2, "#jsLoader", function () {
+           //$("[display_name],[display_project]").remove();
+        });
+    }
+
+
+    var pdfCreate = function () {
+
+        var pdf = $.pdfExport({
+            content: function (imgs) {
+                return {
+                    header: "你好",
+                    pageMargins: [15,20],
+                    content: [
+                         imgs[0],
+                        {
+                           
+                            table: {
+                                headerRows: 2,
+                                widths: [110, 68, 68],
+                                body: [
+                                     [{ text: sum(), style: "table_th", colSpan: 3 }, {}, {}],
+                                    [{ text: "检查项", style: "table_th", alignment: 'center' },
+                                     { text: "右眼", style: "table_th", alignment: 'center' },
+                                     { text: "左眼", style: "table_th", alignment: 'center' }],
+                                    ['视力/cm', '1.0', '1.0'],
+                                    ['眼检', '正常', '未查'],
+                                    ['泪器', 'Sample value 2', 'Sample value 3']
+                                ]
+                                
+                            }
+                            ,style: ["mgTop"]
+                        },
+                        {
+                            stack: ['paragraph 1',
+                              'paragraph 2',
+                              {
+                                  columns: [
+                                          'first column is a simple text',
+                                      {
+                                          text: [
+                                              // second column consists of paragraphs
+                                              'paragraph A',
+                                              'paragraph B',
+                                              'these paragraphs will be rendered one below another inside the column'
+                                          ],
+                                          fontSize: 15
+                                      }
+                                  ]
+                              }
+                            ],
+                            style:"mgTop"
+                        },
+                        {text: 'Text on Landscape', pageOrientation: 'landscape', pageBreak: 'before'},
+                        {text: 'Text on Landscape 2', pageOrientation: 'portrait', pageBreak: 'after'},
+                        {text: 'Text on Portrait 2'}
+                    ],
+
+                    info: {
+                        title: '测试文档',
+                        author: 'Julian',
+                        subject: '测试文档123',
+                        keywords: '关键字',
+                    },
+                    styles: {
+                        table_th: {
+                            bold: false,
+                            alignment: 'left',
+                            fillColor: "#ddd",
+                            height:40
+                        },
+                        table_td: {
+                            bold: false,
+                            alignment: 'center'
+                        },
+                        mgTop: {
+                            margin: [0, 10,0,0]
+                        }
+                    },
+                    defaultStyle: {
+                        font: 'yh',
+                        fontSize: 10
+                    }
+
+                }
+            }
+            , imgs: ["../images/3.jpg"]
+            , complete: function (pdf) {
+                pdf.open();
+            }
+
+        });
+        var sum = function () {
+            return "眼部检查";
+        }
+       
+    }
+
+    var pdfCreate1 = function () {
+        $.MR_TPL("renderPdfJSON", "../Content/Template/Eyespdfjson.js","EyesPdfJson", 2, function (pdf) {
+            pdf.open();
+        });
+    }
+
+
+</script>
+
+
+
+}
