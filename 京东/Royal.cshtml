@@ -1,0 +1,117 @@
+﻿<div class="top">
+    <i class="home icon"></i>
+    <a href="javascript:;">首页</a>
+    <i class="right chevron icon jiant"></i>
+    <a href="javascript:;" class="xitong">系统</a>
+    <i class="right chevron icon jiant"></i>
+    <a href="javascript:;">权限管理</a>
+</div>
+<div id="form">
+    <label>权限:</label><input type="text" class="smui_text" id="txtUSER_NAME" field="PROFILE_NAME" />
+    <div id="btnSearch" class="ui blue button">查询</div>
+    <div class="ui green button" id="add">增加</div>
+    <table class="ui celled table display" id="example" width="100%">
+        <thead>
+
+        </thead>
+        <tbody></tbody>
+
+    </table>
+</div>
+<script class="demoF" type="text/html">
+    <div class="ui model">
+        <table>
+            <tr>
+                <td class="required" style="width:60px;background:#F7F7F7;font-weight:600">权限:</td>
+                <td>
+                    <input class="smui_text" field="PROFILE_NAME"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+<script class="demoQ" type="text/html" id="demoQ">
+   
+        
+    
+</script>
+
+<script type="text/html" id="demoB">
+    <div class="head">
+        <div class="title">
+            <label>权限:</label>
+            <span field="PROFILE_NAME"></span>
+            <span>显示</span>
+            <span>启用</span>
+        </div>
+    </div>
+        <div class="ui vertical menu" style="width:550px;height:410px;overflow:hidden; overflow-y:auto;">
+            <%for(var i=0;i<loc.length;i++){%>
+                <div class="item" menu_key="<%=loc[i].MENU_KEY%>" parent_key="<%=loc[i].PARENT_MENU_KEY%>">
+                    <span><%=loc[i].MENU_NAME%></span>
+                    <div class="ui toggle checkbox left" data-content="显示" field="VISIBLE" menu_key="<%=loc[i].MENU_KEY%>" parent_key="<%=loc[i].PARENT_MENU_KEY%>" style="float:right">
+                        <input type="checkbox" tabindex="0" />
+                        <label></label>
+                    </div>
+                    <div class="ui toggle checkbox right" data-content="启用" field="ENABLE" menu_key="<%=loc[i].MENU_KEY%>" parent_key="<%=loc[i].PARENT_MENU_KEY%>" style="float:right">
+                        <input type="checkbox" tabindex="0"  />
+                        <label></label>
+                    </div>
+                 
+                    <div class="ui list" style="padding-left:20px">
+                        <%for(var j=0;j<loc[i].sub.length;j++){%>
+                            <div class="item" menu_key="<%=loc[i].sub[j].MENU_KEY%>" parent_key="<%=loc[i].sub[j].PARENT_MENU_KEY%>">
+                                <span><%=loc[i].sub[j].MENU_NAME%></span>
+                                <div class="ui toggle checkbox topa" field="VISIBLE" data-content="显示" menu_key="<%=loc[i].sub[j].MENU_KEY%>" parent_key="<%=loc[i].sub[j].PARENT_MENU_KEY%>" style="float:right">
+                                    <input type="checkbox" tabindex="0" />
+                                    <label></label>
+                                </div>
+                                <div class="ui toggle checkbox bottom" field="ENABLE" data-content="启用" menu_key="<%=loc[i].sub[j].MENU_KEY%>" parent_key="<%=loc[i].sub[j].PARENT_MENU_KEY%>" style="float:right">
+                                    <input type="checkbox" tabindex="0" />
+                                    <label></label>
+                                </div>
+                            </div>
+                          <%}%>  
+                    </div>
+                </div>
+                <%}%>
+               
+        </div>
+</script>
+<script type="text/html" id="demoE" class="demoE">
+
+</script>
+<script type="text/html" id="demoP">
+    <div class="head">
+        <div class="title">
+            <label>权限:</label>
+            <span field="PROFILE_NAME"></span>
+            <span>显示</span>
+            <span>启用</span>
+        </div>
+    </div>
+    <div class="ui list" style="width:550px;height:410px;border:solid 1px #ccc;padding:5px ">
+        <%for(var i=0;i<chara.length;i++){%>
+        <div class="item" REPORT_KEY="<%=chara[i].REPORT_KEY%>">
+            <span><%=chara[i].REPORT_NAME%></span>
+            <div class="ui toggle checkbox topa" field="VISIBLE" data-content="显示" report_key="<%=chara[i].REPORT_KEY%>" style="float:right">
+                <input type="checkbox" tabindex="0" />
+                <label></label>
+            </div>
+            <div class="ui toggle checkbox bottom" field="ENABLE" data-content="启用" report_key="<%=chara[i].REPORT_KEY%>"  style="float:right">
+                <input type="checkbox" tabindex="0" />
+                <label></label>
+            </div>
+        </div>
+         <%}%>
+    </div>
+</script>
+
+
+
+
+
+
+@Scripts.Render(Url.Content4Version("~/Function/SystemConfig/Royala.js"))
+@*@Scripts.Render(Url.Content4Version("~/Function/SystemConfig/Royal.js"))*@
+@Styles.Render(Url.Content4Version("~/Function/SystemConfig/Royal.css"))

@@ -1,0 +1,67 @@
+﻿<div class="top">
+    <i class="home icon"></i>
+    <a href="javascript:;">首页</a>
+    <i class="right chevron icon jiant"></i>
+    <a href="javascript:;" class="xitong">系统</a>
+    <i class="right chevron icon jiant"></i>
+    <a href="javascript:;">短信模板</a>
+</div>
+<div class="form">
+    <label>短信模板名称:</label>
+    <input type="text" class="smui_text" field="TEMPLATE_NAME" id="temname"/>
+    <div id="btnSearch" class="ui blue button">查询</div>
+    <div class="ui green button" id="add">增加</div>
+    <table class="ui celled table display" id="example" width="100%">
+        <thead>
+
+        </thead>
+        <tbody></tbody>
+
+    </table>
+</div>
+
+<script type="text/html" class="DemoA">
+    <table class="ui table">
+        <tr>
+            <td class="required beijing">短信模板名称:</td>
+            <td>
+                <input class="smui_text" field="TEMPLATE_NAME" />
+            </td>
+        </tr>
+         <tr>
+             <td class="required beijing">模板内容:</td>
+             <td>
+                 <div class="semantic_color_blue" style="font-size: 12px;">
+                     点击右键,可选择短信限定字段
+                 </div>
+                 <textarea id="txtSMSContent"  class="fluid_width" field="TEMPLATE_TEXT" style="height: 200px;"></textarea>
+                 <div class="semantic_color_blue" style="font-size: 12px;">
+                     统计字符:<span id="spnSMSContextLength"></span>
+                 </div>
+             </td>
+         </tr>
+        <tr>
+            <td class="beijing">
+                备注:
+            </td>
+            <td>
+                <textarea class="fluid_width" field="TEMPLATE_COMMENT" style="height: 50px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+@Scripts.Render(Url.Content4Version("~/scripts/smartmenu/jquery-smartMenu.js"))
+@Styles.Render(Url.Content4Version("~/scripts/smartmenu/smartMenu.css"))
+@Scripts.Render(Url.Content4Version("~/Function/SystemConfig/sms.js")) 
+@Styles.Render(Url.Content4Version("~/Function/SystemConfig/sms.css"))
