@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" onclick="aa()" ondblclick="bb()" value="鉴定器">
+	</body>
+	<script>
+		var boff;
+		function aa(){
+			boff=false;
+			window.setTimeout(cc,500);
+			function cc(){
+				if(boff!=false)
+				return;
+				alert("单击")
+			}
+		}
+		function bb(){
+			boff=true;
+			alert("双击")
+		}
+	</script>
+</html>
