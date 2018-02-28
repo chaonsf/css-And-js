@@ -1,6 +1,6 @@
 <script>
 	//Arr为json类型数组
-	for(var i=0;i<arr.length;i++){
+	for(var i=0;i<arr.length-1;i++){
 		for(var j=1;j<arr.length;){
 			if(arr[i].id==arr[j].id){//通过id属性进行匹配
 				arr.splice(j,1);//去除重复的对象
