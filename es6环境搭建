@@ -1,0 +1,12 @@
+在项目文件夹下 npm init -y  生成一个package.json文件
+2.npm install -g babel-cli
+3. npm install --save-dev babel-preset-es2015  babel-cli
+4.在项目文件夹的根目录建一个.babelrc文件，在此文件中输入
+{
+  “presets":[
+     "es2015"
+],
+"plugins":[]
+}
+5.在cmd中输入转换命令babel  es6的js文件 -o  es5的js文件（html引入es5的js）
+或者在package.json文件中，把scripts下的东西改成“build":"babel es6的js文件 -o es5的js文件，然后直接运行npm run build
