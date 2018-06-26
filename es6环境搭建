@@ -10,3 +10,4 @@
 }
 5.在cmd中输入转换命令babel  es6的js文件 -o  es5的js文件（html引入es5的js）
 或者在package.json文件中，把scripts下的东西改成“build":"babel es6的js文件 -o es5的js文件，然后直接运行npm run build
+(监听转化可见https://www.cnblogs.com/zhenwen/archive/2016/07/17/5679589.html)
