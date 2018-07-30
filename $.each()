@@ -1,0 +1,22 @@
+                //html
+                <div class="seledate">
+                  <span data-start="" data-end="" class="seleted" data-index="1">当月</span>
+                  <span data-start="" data-end="" data-index="2">上月</span>
+                 <span data-start="" data-end="" data-index="3">三个月</span>
+                </div>
+                //js
+                var span=$(".seledate").find("span")
+                var date=new Date().getDate()
+                 $.each(span,function (i,v) {
+                     var index = $(v).attr('data-index');
+                     if(index==1){
+                         $(v).attr("data-start",moment().subtract(date-1, 'd').format('YYYY-MM-DD'))
+                         $(v).attr("data-end",moment().subtract(-1, 'M').subtract(date,"d").format('YYYY-MM-DD'))
+                     }else if(index==2){
+                         $(v).attr("data-start",moment().subtract(date-1, 'd').subtract(1,"M").format('YYYY-MM-DD'))
+                         $(v).attr("data-end",moment().subtract(date,"d").format('YYYY-MM-DD'))
+                     }else if(index==3){
+                         $(v).attr("data-start",moment().subtract(date-1, 'd').subtract(2,"M").format('YYYY-MM-DD'))
+                         $(v).attr("data-end",moment().subtract(-1, 'M').subtract(date,"d").format('YYYY-MM-DD'))
+                     }
+                 })
