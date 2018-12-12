@@ -105,24 +105,6 @@ $.defs = {
         }
         return _rs;
     },
-    getNowFormatDate: function() {
-        var date = new Date();
-        var seperator1 = "-";
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
-        if (month >= 1 && month <= 9) {
-            month = "0" + month;
-        }
-        if (strDate >= 0 && strDate <= 9) {
-            strDate = "0" + strDate;
-        }
-        var currentdate = year + seperator1 + month + seperator1 + strDate;
-        return currentdate;
-    },
-    detectionPhone: function(phone) {
-        return /^1[3|4|5|7|8][0-9]{9}$/.test(phone);
-    },
     delParamsUrl: function(url, name) {
         var baseUrl = url.split('?')[0] + '?';
         var query = url.split('?')[1];
@@ -140,74 +122,12 @@ $.defs = {
             return url;
         }
     },
-    subString: function(str) {
-        if (typeof str == 'string') {
-            var ruten = str.substring(3, 7);
-            return str.replace(ruten, '****');
-        }
-    },
-    subId: function(str) {
-        return str.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
-    },
-    headerHtml: function(content) {
-        var headerHtml = "<div class=\"weui-flex\">\n" +
-            "\t\t\t<div class=\"weui-flex__item\">\n" +
-            "\t\t\t\t<h2>保服通OA</h2>\n" +
-            "\t\t\t</div>\n" +
-            "\t\t\t<div class=\"weui-flex__item\" style=\"text-align: right;\">\n" +
-            "\t\t\t\t<h4 style=\"padding-top: 10px;\">" + content + "</h4>\n" +
-            "\t\t\t</div>\n" +
-            "\t\t</div>"
-        $(".top").append(headerHtml);
-    },
-    weui_msga: function(content) {
-        var _html = '<div id="toast">\n' +
-            '        <div class="weui-mask_transparent"></div>\n' +
-            '        <div class="weui-toast">\n' +
-            '            <i class="weui-icon-success-no-circle weui-icon_toast"></i>\n' +
-            '            <p class="weui-toast__content">' + content + '</p>\n' +
-            '        </div>\n' +
-            '    </div>'
-        var $shtml = $(_html);
-        $(document.body).append($shtml);
-        setTimeout(function() {
-            $shtml.find("#toast").fadeOut(200)
-            $shtml.remove()
-        }, 1000);
-    },
     selectOption: function(data, key, name) {
         var optionHtml = "";
         for (var i = 0; i < data.length; i++) {
             optionHtml += "<option value='" + data[i][key] + "'>" + data[i][name] + "</option>"
         }
         return optionHtml
-    },
-    show_alert: function(title, content) {
-        var _html = '<div class="js_dialog" id="dialog_alert" style="display:none;"> <div class="weui-mask"></div> <div class="weui-dialog"> ' +
-            '<div class="weui-dialog__hd"><strong class="weui-dialog__title">' + title + '</strong></div>' +
-            '<div class="weui-dialog__bd">' + content + '</div> <div class="weui-dialog__ft">' +
-            '<a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">知道了</a> </div> </div> </div>';
-        var $html = $(_html);
-        $(document.body).append($html);
-
-        $html.on("click", function() {
-            var $dlg = $(this).closest(".js_dialog");
-            $dlg.fadeOut(50, function() {
-                $dlg.remove();
-            });
-        })
-        $html.fadeIn(50);
-    },
-    /*不联动*/
-    pickData: function(arr, name) {
-        var data = [];
-        for (var i = 0; i < arr.length; i++) {
-            data.push({
-                label: arr[i][name],
-                value: i
-            })
-        }
-        return data
     },
     //错误提示
     msg: function(content) {
