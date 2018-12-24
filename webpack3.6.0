@@ -31,20 +31,26 @@
 const path=require('path');
 const uglify=require('uglifyjs-webpack-plugin');
 const extractTextPlugin =require('extract-text-webpack-plugin')
+const glob=require("glob");
+let files=glob.sync("./es6AndCss/es6/*.js");  //需要编译的文件夹里的文件
+let files2=glob.sync("./es6AndCss/es6/app/*.js")
+let dir=(file)=>{
+    let brr={};
+    for(let i=0;i<file.length;i++){
+        let b=path.basename(file[i],".js")
+         brr[b]=file[i]
+    }
+    return brr
+}
+let object1=dir(files);
+let object2=dir(files2);
+let obj=Object.assign(object1,object2)
+
 module.exports={
       devtool:"source-map",
-      entry:{
-         login:"./es6AndCss/es6/login.js",
-         public:"./es6AndCss/es6/public.js",
-         mutual:"./es6AndCss/es6/common.js",
-         index:"./es6AndCss/es6/index.js",
-         accountConfig:"./es6AndCss/es6/app/account/accountConfig.js",
-         accountAdd:"./es6AndCss/es6/app/account/add.js",
-         accountHistory:"./es6AndCss/es6/app/account/history.js",
-         accountQuery:"./es6AndCss/es6/app/account/query.js"
-      },
+      entry:obj,
       output:{
-         path:path.resolve(__dirname, "../accountAndReport/static/js"),
+         path:path.resolve(__dirname, "../KOA/static/js"),
          filename:'[name].js'
       },
       module:{
@@ -90,7 +96,7 @@ module.exports={
         new uglify({
             sourceMap: true
         }),
-        new extractTextPlugin("./css/index.css")
+        new extractTextPlugin("../css/index.css")
        
       ],
       devServer:{
