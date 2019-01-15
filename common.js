@@ -1,96 +1,145 @@
-$.defs = {
-    submit: function(opts) {
-        opts = opts || {};
-        var container = opts.container || 'body';
-        var param = {};
-        $.each($(container).find('[field]'), function(i, v) {
+
+import axios from "axios";
+
+$.defs={
+      ajax(opt){
+          let opts=opt||{};
+          let obj={
+              method:opts.type||'post',
+              url:opts.url||"../api/json",
+              responseType: opts.dataType || 'json',
+              data:opts.data ||{}
+          }
+          
+           if( opts.type =='post'){
+                 obj.data =opts.data||{}
+            }else{
+              obj.params = opts.data || {}
+           }
+          axios(obj).then((res)=>{
+               if(res.status==200){
+                    if(opts.success){
+                        opts.success(res.data,res)
+                    }
+               }
+          }).catch((error)=>{
+              $.defs.msg(error)
+          })
+          
+      },
+      msg(content){
+          let html=`
+            <div id="toasta">
+              <div class="weui-mask_transparent"></div>
+              <div class="weui-toast" style="width: 110px">
+                 <i class="weui-icon-info-circle" style="margin-top:0.2rem"></i>
+                 <p class="weui-toast__content">${content}</p>
+               </div>
+            </div>
+          `
+          let $html=$(html);
+          $(document.body).append($html);
+          setTimeout(function() {
+            $html.find("#toasta").fadeOut(1000)
+            $html.remove()
+         }, 2000);
+      },
+      loadingshow(content){
+        let _content=content||"数据加载中"
+        let html=`
+        <div id="loadingToast">
+           <div class="weui-mask_transparent"></div>
+          <div class="weui-toast">
+             <i class="weui-loading weui-icon_toast"></i>
+             <p class="weui-toast__content">${_content}</p>
+          </div>
+       </div>
+        `
+        let $html=$(html);
+        $(document.body).append($html);
+      },
+      loadinghide(){
+        $('#loadingToast').remove();
+      },
+      selectOption(data, key, name){
+         var optionHtml = "";
+        for (var i = 0; i < data.length; i++) {
+            optionHtml += "<option value='" + data[i][key] + "'>" + data[i][name] + "</option>"
+        }
+         return optionHtml
+      },
+      myGet(param,url){
+          let _url=url||$.defs.url;
+          return new Promise((resolve,reject)=>{
+               axios.get(_url,param).then((res)=>{
+                    resolve(res.data)
+               })
+               .catch((err)=>{
+                   reject(err)
+               })
+          })
+      },
+      myPost(param,url){
+          let _url=url|| $.defs.url;
+          return new Promise((resolve,reject)=>{
+              axios.post(_url,param).then((res)=>{
+                   resolve(res.data)
+              })
+              .catch((err)=>{
+                  reject(err)
+              })
+          })
+      },
+      url:"../api/json",
+      submit(opt){   //获取某个容器里的数据
+          let opts=opt||{};
+          let container=opts.container||'body';
+          let param={};
+          $.each($(container).find('[field]'),(i,v)=>{
             var item = $(v);
             var key = item.attr('field');
-            if (key == "") return;
-            if (item.attr('field_op') != "fill") {
+            if(key){
                 var value = $.defs.getValue(item);
-                param[key] = value;
-            }
-        });
-        if (opts.beforeSubmit && $.isFunction(opts.beforeSubmit)) {
-            param = opts.beforeSubmit(param);
-            if (!param) {
-                opts.success = null;
-            }
-        } else {
-            return param
-        }
-        if (opts.success) {
-            if (opts.url != "") {
-                $.defs.request(param, {
-                    url: opts.url,
-                    success: opts.success,
-                    error: opts.error,
-                    complete: opts.complete
-                })
-            }
-        }
-    },
-    setup: function(opts) {
-        var container = opts.container || 'body';
-        var data = opts.data;
-        $.each($(container).find('[field]'), function(i, v) {
-            var item = $(v);
-            var key = item.attr('field');
-            if (key == "") return
-            if (item.attr('field_op') != "out") {
-                $.defs.setValue(item, data[key]);
-            }
-        });
+                 param[key] = value;
+             }
+             
+          })
+          return param
 
-    },
-    getValue: function(item) {
-        var param;
-        var type = $.defs.getType(item);
-        if (type == 'input') {
-            param = $(item).val();
-        } else if (type == 'select') {
-            param = $(item).find('option:selected').val()
-        } else {
-            param = $(item).html();
-        }
-        return param
-    },
-    setValue: function(item, data) {
-        var type = $.defs.getType(item);
-        if (type == 'input') {
-            $(item).val(data);
-        } else {
-            $(item).html(data);
-        }
-    },
-    getType: function(param) {
-        var type = "";
-        if ($(param).is("select")) {
-            type = 'select';
-        } else if ($(param).is("input")) {
-            type = 'input'
-        }
-        return type
-    },
-    request: function(postdata, options) {
-        var defaults = {
-            url: options.url ? options.url : $.defs.url + "json/request",
-            type: options.type ? options.type : 'post',
-            dataType: 'json',
-            error:options.error?options.error:$.defs.error,
-            data: postdata ? postdata : {}
-        };
-
-        $.ajax(defaults).done(options.success).fail(options.error).always(options.complete);
-    },
-    url: '../',
-    error:function () {
-        $.defs.loadinghide();
-        $.defs.msg("服务器错误")
-    },
-    getUrlAllParams: function(url) {
-        var url = url ? url : window.location.href;
+      },
+      getValue(item){
+          let param;
+          if(item.is('select')){
+              param= item.find('option:selected').val()
+          }else if(item.is('input')){
+              param= item.val();
+          }else{
+            param = item.html();
+          }
+          return param;
+      },
+      fillData(opts){
+         let container=opts.container||'body';
+         let data=opts.data ||{};
+         $.each($(container).find('[field]'),(i,v)=>{
+              let item=$(v);
+              let key=item.attr("field");
+              if(key){
+                  $.defs.setValue(item,data[key])
+              }
+         })
+      },
+      setValue(item,data){
+           if(item.is('select')){
+               item.val(data)
+           }else if(item.is('input')){
+               item.val(data)
+           }else{
+               item.text(data)
+           }
+      },
+      getQueryString(url){//获取url完整参数
+        var url = url|| window.location.href;
         var _pa = url.substring(url.indexOf('?') + 1),
             _arrS = _pa.split('&'),
             _rs = {};
@@ -104,58 +153,5 @@ $.defs = {
             _rs[name] = value;
         }
         return _rs;
-    },
-    delParamsUrl: function(url, name) {
-        var baseUrl = url.split('?')[0] + '?';
-        var query = url.split('?')[1];
-        if (query.indexOf(name) > -1) {
-            var obj = {}
-            var arr = query.split("&");
-            for (var i = 0; i < arr.length; i++) {
-                arr[i] = arr[i].split("=");
-                obj[arr[i][0]] = arr[i][1];
-            };
-            delete obj[name];
-            var url = baseUrl + JSON.stringify(obj).replace(/[\"\{\}]/g, "").replace(/\:/g, "=").replace(/\,/g, "&");
-            return url
-        } else {
-            return url;
-        }
-    },
-    selectOption: function(data, key, name) {
-        var optionHtml = "";
-        for (var i = 0; i < data.length; i++) {
-            optionHtml += "<option value='" + data[i][key] + "'>" + data[i][name] + "</option>"
-        }
-        return optionHtml
-    },
-    //错误提示
-    msg: function(content) {
-        var _html = '<div id="toasta">\n' +
-            '        <div class="weui-mask_transparent"></div>\n' +
-            '        <div class="weui-toast" style="width: 110px">\n' +
-            '            <i class="weui-icon-info-circle"></i>\n' +
-            '            <p class="weui-toast__content">' + content + '</p>\n' +
-            '        </div>\n' +
-            '    </div>'
-        var $shtml = $(_html);
-        $(document.body).append($shtml);
-        setTimeout(function() {
-            $shtml.find("#toasta").fadeOut(1000)
-            $shtml.remove()
-        }, 2000);
-    },
-    loadingshow: function() {
-        var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "正在加载中";
-        var $loadingToast = $('#loadingToast');
-        $loadingToast.show().fadeIn(100);
-        $loadingToast.find('.weui-toast__content').html(text);
-
-    },
-    loadinghide: function() {
-        $('#loadingToast').fadeOut(100);
-    },
-
-
-
+      }
 }
