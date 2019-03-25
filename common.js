@@ -98,7 +98,7 @@ $.defs={
           $.each($(container).find('[field]'),(i,v)=>{
             var item = $(v);
             var key = item.attr('field');
-            if(key){
+            if(key && item.attr("field_op"!="fill"){ //field_op的属性为fill时不提交此元素的field
                 var value = $.defs.getValue(item);
                  param[key] = value;
              }
