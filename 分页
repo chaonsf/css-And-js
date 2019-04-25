@@ -1,0 +1,213 @@
+//demo  网址：https://www.cnblogs.com/w-yong/p/6255444.html
+
+后台调取数据调用：
+             $util.post(".am-table",endParma,function(data){
+                $('#my-modal-loading').modal('close');
+                console.log("table:",data);
+                if(data.rows){
+                  if(data.total>0){
+                    var tableData=data.rows;
+                    var html='';
+                    tableData.forEach((item,index)=>{
+                        html+=`
+                        <tr ky="${item.CONTACT_KY}">
+                        <td>${index+1}</td>
+                        <td>${item.CONTACT_NAME}</td>
+                        <td>${item.SYSV_CONTACT_TYPE_DESC}</td>
+                        <td>${item.CONTACT_EMAIL}</td>
+                        <td>${item.CONTACT_PHONE}</td>
+                        <td>${item.CONTACT_JOB}</td>
+                        <td>
+                          <div class="am-btn-group am-btn-group-xs">
+                           <span class="am-btn am-btn-default am-btn-xs am-text-secondary table_tr_last_btn edit" >
+                               <i class="am-icon-pencil-square-o"></i> 修改
+                             </span>
+                             <span class="am-btn am-btn-default am-btn-xs am-text-secondary table_tr_last_btn cancel" >
+                             <i class="am-icon-trash-o"></i>删除
+                            </span>
+                          </div>
+                        </td>
+                 </tr>
+                        `
+                    })
+                    let $html=$(html);
+                    $html.find(".edit").on("click",active.events.edit);
+                    $html.find(".cancel").on("click",active.events.delete)
+                    $(".RL_client_list").html($html);
+                    $.page.events(active.events.tableInit,data)
+                  }else{
+                    $(".RL_client_list").html("没有查到数据")
+                    //my_alert_fn("没有查到数据")
+                    $(".am-pagination").html("")
+                  }
+
+                }else{
+                    //删除掉最后一页的唯一一条数据
+                   $.page.page--;
+                    active.events.tableInit()
+                }
+
+
+                 
+
+           },active.config.url)
+           
+           
+      分页方法：（一个js）
+      $.page={
+     setPage(total){
+        let html="";
+       var cur=parseInt($.page.page); 
+        if(total<=8){  //设定的是最多显示1-8页
+            for(let i=0;i<total;i++){
+                if(i+1==cur){
+                    html+=`
+                      <li class="am-active"><a href="javascript:;">${i+1}</a></li>
+                    `
+                }else{
+                    html+=`
+                    <li><a href="javascript:;">${i+1}</a></li>
+                    `
+                }
+            }
+        }else{
+            if(cur<=8){  //当前页数小于8
+                for(let i=0;i<8;i++){
+                     if(i+1==cur){
+                        html+=`
+                        <li class="am-active"><a href="javascript:;">${i+1}</a></li>
+                      `
+                     }else{
+                        html+=`
+                        <li><a href="javascript:;">${i+1}</a></li>
+                        `
+                     }
+                }
+              
+            }else if(cur>=8){
+                 for(let i=1;i<=2;i++){
+                    html+=`
+                    <li><a href="javascript:;">${i}</a></li>
+                    `
+                 }
+                 html+=` 
+                   <li><a href="javascript:;">...</a></li>
+                 `
+                 if(cur+1==total){  //当前页加一等于总页数
+                     for(let i=cur-1;i<=total;i++){
+                         if(i==cur){
+                            html+=`
+                            <li class="am-active"><a href="javascript:;">${i}</a></li>
+                          `
+                         }else{
+                            html+=`
+                            <li><a href="javascript:;">${i}</a></li>
+                            `
+                         }
+                     }
+
+                 }else if(cur==total){  //当前页数等于总页数
+                      for(let i=cur-2;i<=total;i++){
+                           if(i==cur){
+                            html+=`
+                            <li class="am-active"><a href="javascript:;">${i}</a></li>
+                          `
+                           }else{
+                            html+=`
+                            <li><a href="javascript:;">${i}</a></li>
+                            `
+                             } 
+                        }
+                      }else{ //当前页小于总页数，则最后一页后面跟...
+                           for(var i=cur-1;i<=cur+1;i++){
+                                if(i==cur){
+                                    html+=`
+                                    <li class="am-active"><a href="javascript:;">${i}</a></li>
+                                  `
+                                }else{
+                                    html+=`
+                                    <li><a href="javascript:;">${i}</a></li>
+                                    `
+                                     } 
+                                }
+                                html+=` 
+                                <li><a href="javascript:;">...</a></li>
+                              `
+                           }
+                         
+                      }
+
+         }
+            return html;
+
+     },
+     events(fn,data){
+         var totalPage=Math.ceil(data.total / $.page.rows ); //计算总页数
+         let pageHtml=$.page.setPage(totalPage);
+         let prev=`
+         <li class="am-disabled"><a href="javascript:;">&laquo;</a></li>
+        `
+        let next=`
+        <li><a href="javascript:;">&raquo;</a></li>
+        `
+        let $pageHtml=$(pageHtml)
+        $pageHtml.on("click",(ev)=>{
+            let that=ev.target;
+            $.page.pageLi(fn,that)
+        })
+        let $prev=$(prev);
+        let $next=$(next);
+        $prev.on("click",()=>{
+            $.page.prev(fn)
+        })
+        $next.on("click",()=>{
+            $.page.next(fn,data.total)
+        })
+        $(".am-pagination").html("");
+        let num=`<li>共${data.total}条/共${totalPage}页</li>
+            <li>跳转到<input type="number" min="1" style="width:43px;display:inline-block;margin:0 5px;height:38px">页<button type="button" class="am-btn am-btn-success" style="margin-left:5px;">确定</button></li>
+        `;
+        let $num=$(num);
+        $num.find("button").on("click",(that)=>{
+           let pageNum=$num.find("input").val()
+            $.page.skip(pageNum,totalPage,fn)
+        })
+        $(".am-pagination").append($prev).append($pageHtml).append($next).append($num)
+     },
+     pageLi(fn,that){
+         let text=$(that).text();
+          if(text !="..."){
+            $.page.page=parseInt(text);
+            fn()
+          }
+
+     },
+     skip(num,totalPage,fn){  //跳转到第几页
+         if(num==""){
+            my_alert_fn("请输入需要跳转的页数")
+         }else if(num>totalPage){
+            my_alert_fn("输入的页数不存在，重新输入")
+         }else{
+             $.page.page=num;
+             fn()
+         }
+     },
+     prev(fn){
+          if($.page.page==1){
+             my_alert_fn("已经是首页了")
+          }else{
+              $.page.page--;
+              fn()
+          }
+     },
+     next(fn,total){
+        if($.page.rows*$.page.page>=total&&$.page.rows*($.page.page-1)<total||total==0){
+            my_alert_fn("已经是最后一页了")
+         }else{
+             $.page.page++;
+             fn()
+         }
+     },
+     page:1,
+     rows:2,
+}
