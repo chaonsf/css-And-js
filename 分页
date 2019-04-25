@@ -1,4 +1,5 @@
 //demo  网址：https://www.cnblogs.com/w-yong/p/6255444.html
+结合的是妹子ui的分页的css
 
 后台调取数据调用：
              $util.post(".am-table",endParma,function(data){
