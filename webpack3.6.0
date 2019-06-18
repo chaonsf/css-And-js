@@ -41,26 +41,36 @@ const path=require('path');
 const uglify=require('uglifyjs-webpack-plugin');
 const extractTextPlugin =require('extract-text-webpack-plugin')
 const glob=require("glob");
-let files=glob.sync("./es6AndCss/es6/*.js");  //需要编译的文件夹里的文件
-let files2=glob.sync("./es6AndCss/es6/app/*.js")
+
+let files2=glob.sync("./es6/js/*.js")
 let dir=(file)=>{
-    let brr={};
-    for(let i=0;i<file.length;i++){
-        let b=path.basename(file[i],".js")
-         brr[b]=file[i]
-    }
-    return brr
+  let brr={};
+  for(let i=0;i<file.length;i++){
+      let b=path.basename(file[i],".js")
+       brr[b]=file[i]
+  }
+  return brr
 }
-let object1=dir(files);
-let object2=dir(files2);
-let obj=Object.assign(object1,object2)
+  let object2=dir(files2); 
+
 
 module.exports={
       devtool:"source-map",
-      entry:obj,
+      entry:object2,
       output:{
-         path:path.resolve(__dirname, "../KOA/static/js"),
+         path:path.resolve(__dirname, "./dist/js"),
          filename:'[name].js'
+      },
+      resolve:{
+        extensions:[".js",".scss",".css"],
+        alias:{
+        }
+      },
+      watch:true,
+      watchOptions:{
+        ignored:/node_modules/,
+        poll:1000,
+        aggregateTimeout:500
       },
       module:{
         rules:[
@@ -80,7 +90,7 @@ module.exports={
                            ],
                 include:path.resolve(__dirname,"static")
             },
-                       {
+            {
               test:/\.css$/,
               use:extractTextPlugin.extract({
                 fallback: "style-loader",
@@ -126,7 +136,11 @@ module.exports={
        
       ],
       devServer:{
-        
+        contentBase:"../chatroom",
+        host:"localhost",
+        port:8082,
+        hot:true,
+        compress:true, 
       }
 
 }
