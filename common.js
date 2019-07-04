@@ -153,5 +153,21 @@ $.defs={
             _rs[name] = value;
         }
         return _rs;
-      }
+      },
+        Preview(url){  //调用微信图片预览
+            if(typeof  WeixinJSBridge !="undefined"){
+                 WeixinJSBridge.invoke("imagePreview",{
+                      current:url,
+                      urls:[url]
+                 })
+            }else{
+                weui.gallery(url,{
+                    className:".max",
+                     onDelete(){
+                        
+                    }
+                })
+                $(".weui-gallery").find(".weui-gallery__opr").remove()
+            }
+          }
 }
