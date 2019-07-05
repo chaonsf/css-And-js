@@ -1,6 +1,7 @@
 .poupup_box {
     position: fixed;
     height: 100%;
+  /*   z-index: 1000; */
     top: 0;
     width: 100%;
 }
@@ -10,7 +11,7 @@
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+   /*  z-index: 1000; */
     top: 0;
     right: 0;
     left: 0;
@@ -18,8 +19,8 @@
 }
 
 .animations {
-    animation: fadeIn ease .3s forwards;
-    -webkit-animation: fadeIn ease .3s forwards;
+    animation: fadeIn ease .5s forwards;
+    -webkit-animation: fadeIn ease .5s forwards;
 }
 
 .animations_out {
@@ -29,20 +30,20 @@
 
 .popup_content {
     position: fixed;
-    transition: .8s cubic-bezier(0.89, 0, 0.01, 1);
-    /* display: flex; */
+    /* transition: 1.5s cubic-bezier(0.89, 0, 0.01, 1); */
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    /* flex-direction: column; */
     z-index: 2000;
     width: 70%;
     right: 0;
     background: white;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .popup_content .content {
-    /* flex-grow: 1; */
-    height: calc(100% - 45px);
+    flex-grow: 1;
+    flex-basis: 0;
     overflow: auto;
 }
 
@@ -52,8 +53,18 @@
 }
 
 .slidrightOut {
-    animation: sildrightOut cubic-bezier(0.86, 0, 0.07, 1) .6s forwards;
-    -webkit-animation: sildrightOut cubic-bezier(0.86, 0, 0.07, 1) .6s forwards;
+    animation: sildrightOut cubic-bezier(0.86, 0, 0.01, 1) .5s forwards;
+    -webkit-animation: sildrightOut cubic-bezier(0.86, 0, 0.01, 1) .5s forwards;
+}
+
+.slidUpIn {
+    animation: sildUpIn ease .3s forwards;
+    -webkit-animation: sildUpIn ease .3s forwards;
+}
+
+.slidUpOut {
+    animation: sildUpOut cubic-bezier(0.86, 0, 0.07, 1) .5s forwards;
+    -webkit-animation: sildUpOut cubic-bezier(0.86, 0, 0.07, 1) .5s forwards;
 }
 
 .popup_buttons {
@@ -61,6 +72,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
+    z-index: 1000;
 }
 
 .popup_buttons button {
@@ -78,7 +90,7 @@
 }
 
 .popup_buttons .confrim {
-    background: #1AAD19;
+    background: #0A58C5;;
     color: white;
     margin-left: 5px;
 }
@@ -89,8 +101,8 @@
 }
 
 .popup_buttons .confrim:active {
-    color: rgba(255, 255, 255, 0.6);
-    background-color: #179B16;
+/*     color: rgba(255, 255, 255, 0.6);
+    background-color: #179B16; */
 }
 
 @keyframes fadeIn {
@@ -139,5 +151,27 @@
     100% {
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
+    }
+}
+
+@keyframes sildUpIn {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes sildUpOut {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
     }
 }
