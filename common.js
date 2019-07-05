@@ -170,7 +170,7 @@ $.defs={
                 $(".weui-gallery").find(".weui-gallery__opr").remove()
             }
           }
-      setClinicMap(point) {
+      setClinicMap(point) {  //<script src="http://api.map.baidu.com/api?v=2.0&ak=WVAXZ05oyNRXS5egLImmentg"></script>
 			var pointArr = point.split(',')  //因为我这个项目地点坐标传的是字符串，不是数组
 			var map = new BMap.Map('allMap'); //百度地图
 			var point = new BMap.Point(pointArr[0], pointArr[1]);
