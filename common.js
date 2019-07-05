@@ -170,4 +170,21 @@ $.defs={
                 $(".weui-gallery").find(".weui-gallery__opr").remove()
             }
           }
+      setClinicMap(point) {
+			var pointArr = point.split(',')  //因为我这个项目地点坐标传的是字符串，不是数组
+			var map = new BMap.Map('allMap'); //百度地图
+			var point = new BMap.Point(pointArr[0], pointArr[1]);
+			map.centerAndZoom(point, 15);
+			map.addControl(new BMap.MapTypeControl());
+			map.enableScrollWheelZoom(true);
+			map.addControl(new BMap.ScaleControl()); //比例尺控件
+			var marker = new BMap.Marker(point); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+			map.panTo(point);
+
+			marker.addEventListener('click', function () {
+				// alert(contentString); // 点击点弹出信息
+			});
+		}
 }
