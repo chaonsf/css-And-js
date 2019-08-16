@@ -27,23 +27,6 @@ $.defs={
           })
           
       },
-      msg(content){
-          let html=`
-            <div id="toasta">
-              <div class="weui-mask_transparent"></div>
-              <div class="weui-toast" style="width: 110px">
-                 <i class="weui-icon-info-circle" style="margin-top:0.2rem"></i>
-                 <p class="weui-toast__content">${content}</p>
-               </div>
-            </div>
-          `
-          let $html=$(html);
-          $(document.body).append($html);
-          setTimeout(function() {
-            $html.find("#toasta").fadeOut(1000)
-            $html.remove()
-         }, 2000);
-      },
       loadingshow(content){
         let _content=content||"数据加载中"
         let html=`
@@ -186,5 +169,32 @@ $.defs={
 			marker.addEventListener('click', function () {
 				// alert(contentString); // 点击点弹出信息
 			});
-		}
+		}，
+   checkBlank(str){   //避免全部输入空格
+    while(str.lastIndexOf(" ")>=0){
+        str = str.replace(" ","");
+      }
+      if(str.length == 0){
+         return false
+      }else{
+          return true
+      }
+  },
+	     getAbsoluteUrl(shorturl){  //通过相对路径获取绝对路径
+    if (shorturl.indexOf("http://") == 0 || shorturl.indexOf("https://") == 0) {
+        return shorturl;
+        }
+        var $div = $('<div><a href="' + shorturl + '"></a></div>');
+        var str = $div.find(">a")[0].href;
+        return str;
+  },
+    getCookie(cname){  //获取某个cookie的值
+        var name=cname+'=';
+        var ca=document.cookie.split(';');
+        for(let i=0;i<ca.length;i++){
+            var c=ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+   },
 }
