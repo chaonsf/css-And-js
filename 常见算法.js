@@ -32,7 +32,7 @@ function findMaxDuplicateChar(str) {
   }
   let maxChar = '',
       maxValue = 1;
-  for(var k in charObj) {
+  for(var k in charObj){
     if(charObj[k] >= maxValue) {
       maxChar = k;
       maxValue = charObj[k];
