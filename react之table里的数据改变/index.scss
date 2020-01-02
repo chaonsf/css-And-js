@@ -1,0 +1,79 @@
+.saledetail{
+    padding: 10px;
+    box-sizing: border-box;
+    .comment{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        span{
+            display: inline-block;
+            width:auto;
+            margin-right: 10px;
+        }
+        textarea{
+            flex: auto;
+            flex-basis: 0;
+        }
+    }
+    .ant-table-column-title{
+        i{
+            margin-left: 10px;
+            color: #1890ff;
+            font-weight: bold;
+        }
+    }
+    .count{
+        margin-bottom: 10px;
+        .heji{
+            font-weight: bold;
+        }
+        .label{
+            padding:0 5px;
+             
+            span{
+                margin-left: 5px;
+            }
+        }
+        .anticon-plus{
+            float: right;
+            font-size: 18px;
+            color: #1890ff;
+       }
+    }
+    .ant-card{
+        margin-bottom: 10px;
+        .ant-card-body{
+            padding: 10px 5px;
+            .payway{
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 5px;
+                .ant-input-group-addon{
+                    height: 32px;
+                    line-height: 32px;
+                    width:80px;
+                }
+                .ant-input-number{
+                    flex: auto;
+                    border-radius:0 4px 4px 0;  
+                }
+            }
+            .ant-input-group-wrapper{
+                margin-bottom: 5px;
+            }
+          .anticon-delete{
+              font-size: 18px;
+              color: red;
+              float: right;
+              margin-bottom: 5px;
+          }
+        }
+    }
+}
+@media only screen and (max-width:900px){
+     .saledetail{
+         background: #ededed;
+     }
+}
