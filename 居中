@@ -1,2 +1,2 @@
-垂直居中：align-items:center; display: -webkit-flex;
-水平居中：justify-content:center; display: -webkit-flex;
+垂直居中：align-items:center; display:flex;
+水平居中：justify-content:center; display:flex;
