@@ -49,12 +49,7 @@ const path=require('path');
 const uglify=require('uglifyjs-webpack-plugin');
 const extractTextPlugin =require('extract-text-webpack-plugin')
 const glob=require("glob");
-let file=glob.sync('./js/app/report/*.js')
-let file1=glob.sync('./js/*.js')
-let file2=glob.sync('./js/app/*.js')
-let file3=glob.sync('./js/app/overTime/*.js')
-let file4=glob.sync('./js/app/askForLeave/*.js')
-let file5=glob.sync('./js/app/reimburse/*.js')
+let arr=['./js/app/report/*.js','./js/*.js','./js/app/*.js','./js/app/overTime/*.js','./js/app/askForLeave/*.js','./js/app/reimburse/*.js','./js/app/other/*.js']
 let dir=(file)=>{
   let brr={};
   for(let i=0;i<file.length;i++){
@@ -63,13 +58,13 @@ let dir=(file)=>{
   }
   return brr
 }
-let obj1=dir(file)
-let obj2=dir(file1)
-let obj3=dir(file2)
-let obj4=dir(file3)
-let obj5=dir(file4)
-let obj6=dir(file5)
-let obj=Object.assign(obj1,obj2,obj3,obj4,obj5,obj6)
+var obj={};
+for(let i=0;i<arr.length;i++){
+   let file=glob.sync(arr[i])
+   let obj1=dir(file)
+   obj=Object.assign({},obj,obj1)
+}
+
 module.exports={
       devtool:"source-map",
       mode:"development",
